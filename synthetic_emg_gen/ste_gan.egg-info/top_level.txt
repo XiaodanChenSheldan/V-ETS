@@ -1,2 +1,0 @@
-scripts
-ste_gan
