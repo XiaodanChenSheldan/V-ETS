@@ -7,15 +7,10 @@ This repository contains the implementation and resources for the V-ETS project 
 [ASRU 2024](http://dx.doi.org/10.48550/arXiv.2506.11862) 
 
 This work builds on the following repositories:  
-- Morrison, Max, Rithesh Kumar, Kundan Kumar, Prem Seetharaman, Aaron Courville, and Yoshua Bengio. 2021. “Chunked Autoregressive GAN for Conditional Waveform Synthesis.” Version 2. Preprint, arXiv. https://doi.org/10.48550/ARXIV.2110.10139.
-    GitHub: https://github.com/descriptinc/cargan
-- Niekerk, Benjamin van, Marc-Andre Carbonneau, Julian Zaidi, Matthew Baas, Hugo Seute, and Herman Kamper. 2022. “A Comparison of Discrete and Soft Speech Units for Improved Voice Conversion.” In ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE. https://doi.org/10.1109/icassp43922.2022.9746484.
-    GitHub: https://github.com/bshall/soft-vc
-- Gaddy, David, and Dan Klein. 2020. *Digital Voicing of Silent Speech*. Version 1. Preprint, arXiv. https://doi.org/10.48550/ARXIV.2010.02960  
-    GitHub: https://github.com/dgaddy/silent_speech
-- Scheck, Kevin, and Tanja Schultz. 2023. *STE-GAN: Speech-to-Electromyography Signal Conversion Using Generative Adversarial Networks*. In INTERSPEECH 2023. ISCA. https://doi.org/10.21437/interspeech.2023-174  
-    GitHub: https://github.com/scheck-k/ste-gan/
-
+- [Morrison et al. (2021). Chunked Autoregressive GAN for Conditional Waveform Synthesis](https://doi.org/10.48550/ARXIV.2110.10139) | [GitHub](https://github.com/descriptinc/cargan)
+- [van Niekerk et al. (2022). A Comparison of Discrete and Soft Speech Units for Improved Voice Conversion. ICASSP 2022. IEEE](https://doi.org/10.1109/icassp43922.2022.9746484) | [GitHub](https://github.com/bshall/soft-vc[)
+- Gaddy & Klein (2020). Digital Voicing of Silent Speech](https://doi.org/10.48550/ARXIV.2010.02960  ) | [GitHub](https://github.com/dgaddy/silent_speech)
+- [Scheck & Schultz (2023). STE-GAN: Speech-to-Electromyography Signal Conversion Using GANs. INTERSPEECH 2023. ISCA](https://doi.org/10.21437/interspeech.2023-174) | [GitHub](https://github.com/scheck-k/ste-gan/)
 
 ---
 ## Open access Libri-EMG dataset
@@ -23,7 +18,7 @@ In support of future research, we provide the proposed [Libri-EMG](https://zenod
 
 The speech data used in this project is derived from [LibriSpeech](https://doi.org/10.1109/icassp.2015.7178964)
 
-[View Audio Examples Webpage](https://yourusername.github.io/yourrepo/audio_examples.html)
+[Audio Examples and Comparisons](https://yourusername.github.io/yourrepo/audio_examples.html)
 
 
 
