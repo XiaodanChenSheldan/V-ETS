@@ -19,12 +19,13 @@ This work builds on the following repositories:
 
 ---
 ## Open access Libri-EMG dataset
-In support of future research, we provide the proposed Libri-EMG dataset—an open-access, time-aligned, multi-speaker voiced EMG and speech recordings collection. This dataset contains **8.3 hours** of EMG-speech data covering a diverse set of **1,532 speakers** across both male and female categories.
+In support of future research, we provide the proposed [Libri-EMG](https://zenodo.org/records/16788832) dataset—an open-access, time-aligned, multi-speaker voiced EMG and speech recordings collection. This dataset contains **8.3 hours** of EMG-speech data covering a diverse set of **1,532 speakers** across both male and female categories.
 
 The speech data used in this project is derived from LibriSpeech (Panayotov, Vassil, Guoguo Chen, Daniel Povey, and Sanjeev Khudanpur. 2015. “LibriSpeech: An ASR Corpus Based on Public Domain Audio Books.” ICASSP 2015 - IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE. https://doi.org/10.1109/icassp.2015.7178964)
 
 [View Audio Examples Webpage](https://yourusername.github.io/yourrepo/audio_examples.html)
-[Libri-EMG](https://zenodo.org/records/16788832)
+
+
 
 ### Data Structure
 
