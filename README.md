@@ -18,7 +18,7 @@ In support of future research, we provide the proposed [Libri-EMG](https://zenod
 
 The speech data used in this project is derived from [LibriSpeech](https://doi.org/10.1109/icassp.2015.7178964)
 
-[Audio Examples and Comparisons](https://yourusername.github.io/yourrepo/audio_examples.html)
+[Audio Examples and Comparisons](https://xiaodanchensheldan.github.io/v-ets/)
 
 
 
