@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Audio Examples - Libri-EMG</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead tr {
+    background-color: #235b7f;
+    color: white;
+  }
+  thead th {
+    padding: 10px;
+    text-align: center;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #d1d7db;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #e8ebee;
+  }
+  td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .transcript {
+    text-align: left;
+    padding-left: 10px;
+    /* Make this column wider by taking more space */
+    width: 40%; 
+  }
+  /* Make audio controls smaller */
+  audio {
+    width: 120px; /* adjust as needed */
+    height: 25px;
+  }
+  /* To make transcripts column bigger, shrink other columns */
+  td:not(.transcript) {
+    width: 15%; /* distribute remaining width */
+  }
+
+  /* Highlight 'g' in refugees and things */
+  .highlight-g {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h2>Audio Examples</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test Dataset</th>
+      <th>Input</th>
+      <th>Voiced Baseline Model</th>
+      <th>Our CoM2S with Mix-Train-from-Scratch</th>
+      <th>Transcripts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Real</td>
+      <td><audio controls src="audio_samples/real_1.flac"></audio></td>
+      <td><audio controls src="audio_samples/baseline_1.wav"></audio></td>
+      <td><audio controls src="audio_samples/com2s_1.wav"></audio></td>
+      <td class="transcript">
+        Some of the refu<span class="highlight-g">g</span>ees were exchanging news with the people on the omnibuses
+      </td>
+    </tr>
+    <tr>
+      <td>Synthetic</td>
+      <td><audio controls src="audio_samples/synthetic_1.flac"></audio></td>
+      <td><audio controls src="audio_samples/com2s_2.wav"></audio></td>
+      <td><audio controls src="audio_samples/com2s_2.wav"></audio></td>
+      <td class="transcript">
+        Because we hadn't ever suspected <span class="highlight-g">things</span> were going wrong
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

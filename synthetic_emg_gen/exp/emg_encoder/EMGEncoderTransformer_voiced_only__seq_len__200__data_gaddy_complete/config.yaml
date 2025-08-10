@@ -1,0 +1,44 @@
+model_base_dir: exp/ste-gan
+model:
+  type: EMGGeneratorGanTTS
+  speech_feature_type: SPEECH_UNITS
+  discriminator_small: true
+train:
+  random_seed: 0
+  debug: false
+  loss_adversarial: mse
+  mixed_precision: true
+  loss_speech_unit_error: true
+  loss_speech_unit_weight: 1.0
+  loss_phoneme_error: true
+  loss_phoneme_weight: 1.0
+  loss_multi_td_error: true
+  loss_multi_td_weight: 15.0
+  loss_feat_match_error: true
+  loss_feat_match_weight: 7.0
+  loss_waveform_error: false
+  loss_waveform_weight: 0.0
+  batch_size: 32
+  chunk_size: 2048
+  max_steps: 25000
+  interval_log: 50
+  interval_sample: 1000
+  interval_save: 10000
+  interval_valid: 500
+  interval_waveform: 500
+  interval_plot: 1000
+  num_test_samples: 10
+emg_encoder:
+  type: EMGEncoderTransformer
+  params:
+    model_size: 768
+    num_extra_res_blocks: 3
+    dropout: 0.2
+    num_transformer_layers: 6
+data:
+  dataset_root: data/gaddy_complete
+  name: gaddy_voiced
+  num_emg_sessions: 17
+  num_emg_channels: 8
+  requires_activation: tanh
+  strict: false

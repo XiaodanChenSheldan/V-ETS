@@ -1,0 +1,992 @@
+Current time: 2025-02-13 07:54:59.254431
+a89357c2086609b432919b9d14ffc0be5d8983d5
+
+diff --git a/asr_evaluation.py b/asr_evaluation.py
+index e777864..c4c5d25 100644
+--- a/asr_evaluation.py
++++ b/asr_evaluation.py
+@@ -27,6 +27,8 @@ def evaluate(testset, audio_directory):
+     transformation = jiwer.Compose([jiwer.RemovePunctuation(), jiwer.ToLowerCase()])
+     targets = transformation(targets)
+     predictions = transformation(predictions)
+-    logging.info(f'targets: {targets}')
+-    logging.info(f'predictions: {predictions}')
++    # logging.info(f'targets: {targets}')
++    # logging.info(f'predictions: {predictions}')
++    predictions = [predictions[i] for i in range(len(predictions)) if len(targets[i]) > 0]
++    targets = [targets[i] for i in range(len(targets)) if len(targets[i]) > 0]
+     logging.info(f'wer: {jiwer.wer(targets, predictions)}')
+diff --git a/data_collection/clean_audio.py b/data_collection/clean_audio.py
+index 218ab6e..6fac5ba 100644
+--- a/data_collection/clean_audio.py
++++ b/data_collection/clean_audio.py
+@@ -7,15 +7,28 @@ import soundfile as sf
+ import librosa
+ import tqdm
+ 
++def get_file_name_list(path, fileType):
++    file_list = []
++    for filename in os.listdir(path):
++        # 如果是文件夹，则递归处理
++        if os.path.isdir(os.path.join(path, filename)):
++            file_list.extend(get_file_name_list(os.path.join(path, filename), fileType))
++        elif os.path.isfile(os.path.join(path, filename)):
++            if filename.endswith(fileType):
++                file_list.append(filename)
++    return file_list
++
+ def clean_directory(directory):
+-    silence, rate = sf.read(os.path.join(directory, '0_audio.flac'))
++    print(f'{directory=}')
++    file_name_list = get_file_name_list(directory, 'flac')
++    silence, rate = sf.read(os.path.join(directory, file_name_list[0]))
+ 
+     audio_file_names = []
+     # load audio files in numerical order
+     while True:
+         i = len(audio_file_names)
+-        fname = os.path.join(directory, f'{i}_audio.flac')
+-        if os.path.exists(fname):
++        if i<len(file_name_list):
++            fname = os.path.join(directory, f'{file_name_list[i]}')
+             audio_file_names.append(fname)
+         else:
+             break
+diff --git a/data_utils.py b/data_utils.py
+index 163edb5..068b58f 100644
+--- a/data_utils.py
++++ b/data_utils.py
+@@ -1,5 +1,5 @@
+ import string
+-
++import logging
+ import numpy as np
+ import librosa
+ import soundfile as sf
+@@ -172,7 +172,7 @@ def decollate_tensor(tensor, lengths):
+     results = []
+     idx = 0
+     for length in lengths:
+-        assert idx + length <= b * s
++        assert idx + length <= b * s, f'{length=}, {b=}, {s=}, {idx=}'
+         results.append(tensor[idx:idx+length])
+         idx += length
+     return results
+@@ -205,20 +205,27 @@ def print_confusion(confusion_mat, n=10):
+     # axes are (pred, target)
+     target_counts = confusion_mat.sum(0) + 1e-4
+     aslist = []
++    accuracy_sheldan = []
++    confusion_sheldan = []
+     for p1 in range(len(phoneme_inventory)):
+         for p2 in range(p1):
+             if p1 != p2:
+-                aslist.append(((confusion_mat[p1,p2]+confusion_mat[p2,p1])/(target_counts[p1]+target_counts[p2]), p1, p2))
++                confusion = (confusion_mat[p1,p2]+confusion_mat[p2,p1])/(target_counts[p1]+target_counts[p2])
++                aslist.append((confusion, p1, p2))
++                confusion_sheldan.append(confusion*100)
++                accuracy = (confusion_mat[p1,p1]+confusion_mat[p2,p2])/(target_counts[p1]+target_counts[p2])
++                accuracy_sheldan.append(accuracy*100)
++    logging.info(f'{np.mean(confusion_sheldan)=}, {np.mean(accuracy_sheldan)=}')
+     aslist.sort()
+     aslist = aslist[-n:]
+     max_val = aslist[-1][0]
+     min_val = aslist[0][0]
+     val_range = max_val - min_val
+-    print('Common confusions (confusion, accuracy)')
++    logging.info('Common confusions (confusion, accuracy)')
+     for v, p1, p2 in aslist:
+         p1s = phoneme_inventory[p1]
+         p2s = phoneme_inventory[p2]
+-        print(f'{p1s} {p2s} {v*100:.1f} {(confusion_mat[p1,p1]+confusion_mat[p2,p2])/(target_counts[p1]+target_counts[p2])*100:.1f}')
++        logging.info(f'{p1s} {p2s} {v*100:.1f} {(confusion_mat[p1,p1]+confusion_mat[p2,p2])/(target_counts[p1]+target_counts[p2])*100:.1f}')
+ 
+ def read_phonemes(textgrid_fname, max_len=None):
+     tg = TextGrid(textgrid_fname)
+@@ -251,7 +258,7 @@ class TextTransform(object):
+         return text
+ 
+     def text_to_int(self, text):
+-        text = self.clean_text(text)
++        text = self.clean_text(text).lower()
+         return [self.chars.index(c) for c in text]
+ 
+     def int_to_text(self, ints):
+diff --git a/evaluate.py b/evaluate.py
+index 4427c37..c9afd42 100644
+--- a/evaluate.py
++++ b/evaluate.py
+@@ -3,17 +3,21 @@ import os
+ import logging
+ 
+ import tqdm
++import shutil
+ 
+ import torch
+ from torch import nn
+ 
+ from architecture import Model
+-from transduction_model import test, save_output
+-from read_emg import EMGDataset
++from transduction_model_sheldan_cont import test, save_output
++from read_emg_sheldan import EMGDataset
+ from asr_evaluation import evaluate
+ from data_utils import phoneme_inventory, print_confusion
+ from vocoder import Vocoder
+ 
++from time import process_time
++from datetime import datetime
++
+ from absl import flags
+ FLAGS = flags.FLAGS
+ flags.DEFINE_list('models', [], 'identifiers of models to evaluate')
+@@ -34,29 +38,32 @@ class EnsembleModel(nn.Module):
+         return torch.stack(ys,0).mean(0), torch.stack(ps,0).mean(0)
+ 
+ def main():
+-    os.makedirs(FLAGS.output_directory, exist_ok=True)
+-    logging.basicConfig(handlers=[
+-            logging.FileHandler(os.path.join(FLAGS.output_directory, 'eval_log.txt'), 'w'),
+-            logging.StreamHandler()
+-            ], level=logging.INFO, format="%(message)s")
+ 
+     dev = FLAGS.dev
+     testset = EMGDataset(dev=dev, test=not dev)
+ 
+     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+ 
++    model_start = process_time()
+     models = []
+     for fname in FLAGS.models:
+-        state_dict = torch.load(fname)
++        state_dict = torch.load(fname, weights_only=True)
++        logging.info(f'***\n{testset.num_features=}, {testset.num_speech_features=}, {testset.num_emg=}, {len(testset)=}\n***')
+         model = Model(testset.num_features, testset.num_speech_features, len(phoneme_inventory)).to(device)
+         model.load_state_dict(state_dict)
+         models.append(model)
+     ensemble = EnsembleModel(models)
++    model_end = process_time()
++    logging.info(f'Model start time: {model_start}')
++    logging.info(f'Model end time: {model_end}')
++    logging.info(f'Model elapsed time in seconds: {model_end-model_start}')
+ 
+     _, _, confusion = test(ensemble, testset, device)
+     print_confusion(confusion)
+ 
+     vocoder = Vocoder()
++    logging.info(f'SHELDAN: {len(testset)=}')
++    logging.info(f'SHELDAN: {testset.exp_idx=}')
+ 
+     for i, datapoint in enumerate(tqdm.tqdm(testset, 'Generate outputs', disable=None)):
+         save_output(ensemble, datapoint, os.path.join(FLAGS.output_directory, f'example_output_{i}.wav'), device, testset.mfcc_norm, vocoder)
+@@ -65,4 +72,20 @@ def main():
+ 
+ if __name__ == "__main__":
+     FLAGS(sys.argv)
++
++    if os.path.exists(FLAGS.output_directory):
++        shutil.rmtree(FLAGS.output_directory)
++    os.makedirs(FLAGS.output_directory)
++    logging.basicConfig(handlers=[
++            logging.FileHandler(os.path.join(FLAGS.output_directory, 'eval_log.txt'), 'w'),
++            logging.StreamHandler()
++            ], level=logging.INFO, format="%(message)s")
++    
++    current_time = datetime.now()
++    logging.info(f'Current time: {current_time}')
++    time_start = process_time() 
++    logging.info(f'Whole program start time: {time_start}')
+     main()
++    time_end = process_time() 
++    logging.info(f'Whole program end time: {time_end}')
++    logging.info(f'Whole program elapsed time in seconds: {time_end-time_start}')
+diff --git a/make_vocoder_trainset.py b/make_vocoder_trainset.py
+index 385fe69..4d9bb05 100644
+--- a/make_vocoder_trainset.py
++++ b/make_vocoder_trainset.py
+@@ -9,7 +9,7 @@ import torch
+ 
+ from architecture import Model
+ from transduction_model import get_aligned_prediction
+-from read_emg import EMGDataset
++from silent_speech_sheldan.read_emg_sheldan import EMGDataset
+ from data_utils import phoneme_inventory
+ 
+ from absl import flags
+diff --git a/read_emg.py b/read_emg.py
+deleted file mode 100644
+index c0a9ce9..0000000
+--- a/read_emg.py
++++ /dev/null
+@@ -1,316 +0,0 @@
+-import re
+-import os
+-import numpy as np
+-import random
+-import scipy
+-import json
+-import copy
+-import sys
+-import pickle
+-import string
+-import logging
+-from functools import lru_cache
+-from copy import copy
+-
+-import torch
+-
+-from data_utils import load_audio, get_emg_features, FeatureNormalizer, phoneme_inventory, read_phonemes, TextTransform
+-
+-from absl import flags
+-FLAGS = flags.FLAGS
+-flags.DEFINE_list('remove_channels', [], 'channels to remove')
+-flags.DEFINE_list('silent_data_directories', ['./emg_data/silent_parallel_data'], 'silent data locations')
+-flags.DEFINE_list('voiced_data_directories', ['./emg_data/voiced_parallel_data','./emg_data/nonparallel_data'], 'voiced data locations')
+-flags.DEFINE_string('testset_file', 'testset_largedev.json', 'file with testset indices')
+-flags.DEFINE_string('text_align_directory', 'text_alignments', 'directory with alignment files')
+-
+-def remove_drift(signal, fs):
+-    b, a = scipy.signal.butter(3, 2, 'highpass', fs=fs)
+-    return scipy.signal.filtfilt(b, a, signal)
+-
+-def notch(signal, freq, sample_frequency):
+-    b, a = scipy.signal.iirnotch(freq, 30, sample_frequency)
+-    return scipy.signal.filtfilt(b, a, signal)
+-
+-def notch_harmonics(signal, freq, sample_frequency):
+-    for harmonic in range(1,8):
+-        signal = notch(signal, freq*harmonic, sample_frequency)
+-    return signal
+-
+-def subsample(signal, new_freq, old_freq):
+-    times = np.arange(len(signal))/old_freq
+-    sample_times = np.arange(0, times[-1], 1/new_freq)
+-    result = np.interp(sample_times, times, signal)
+-    return result
+-
+-def apply_to_all(function, signal_array, *args, **kwargs):
+-    results = []
+-    for i in range(signal_array.shape[1]):
+-        results.append(function(signal_array[:,i], *args, **kwargs))
+-    return np.stack(results, 1)
+-
+-def load_utterance(base_dir, index, limit_length=False, debug=False, text_align_directory=None):
+-    index = int(index)
+-    raw_emg = np.load(os.path.join(base_dir, f'{index}_emg.npy'))
+-    before = os.path.join(base_dir, f'{index-1}_emg.npy')
+-    after = os.path.join(base_dir, f'{index+1}_emg.npy')
+-    if os.path.exists(before):
+-        raw_emg_before = np.load(before)
+-    else:
+-        raw_emg_before = np.zeros([0,raw_emg.shape[1]])
+-    if os.path.exists(after):
+-        raw_emg_after = np.load(after)
+-    else:
+-        raw_emg_after = np.zeros([0,raw_emg.shape[1]])
+-
+-    x = np.concatenate([raw_emg_before, raw_emg, raw_emg_after], 0)
+-    x = apply_to_all(notch_harmonics, x, 60, 1000)
+-    x = apply_to_all(remove_drift, x, 1000)
+-    x = x[raw_emg_before.shape[0]:x.shape[0]-raw_emg_after.shape[0],:]
+-    emg_orig = apply_to_all(subsample, x, 689.06, 1000)
+-    x = apply_to_all(subsample, x, 516.79, 1000)
+-    emg = x
+-
+-    for c in FLAGS.remove_channels:
+-        emg[:,int(c)] = 0
+-        emg_orig[:,int(c)] = 0
+-
+-    emg_features = get_emg_features(emg)
+-
+-    mfccs = load_audio(os.path.join(base_dir, f'{index}_audio_clean.flac'),
+-            max_frames=min(emg_features.shape[0], 800 if limit_length else float('inf')))
+-
+-    if emg_features.shape[0] > mfccs.shape[0]:
+-        emg_features = emg_features[:mfccs.shape[0],:]
+-    assert emg_features.shape[0] == mfccs.shape[0]
+-    emg = emg[6:6+6*emg_features.shape[0],:]
+-    emg_orig = emg_orig[8:8+8*emg_features.shape[0],:]
+-    assert emg.shape[0] == emg_features.shape[0]*6
+-
+-    with open(os.path.join(base_dir, f'{index}_info.json')) as f:
+-        info = json.load(f)
+-
+-    sess = os.path.basename(base_dir)
+-    tg_fname = f'{text_align_directory}/{sess}/{sess}_{index}_audio.TextGrid'
+-    if os.path.exists(tg_fname):
+-        phonemes = read_phonemes(tg_fname, mfccs.shape[0])
+-    else:
+-        phonemes = np.zeros(mfccs.shape[0], dtype=np.int64)+phoneme_inventory.index('sil')
+-
+-    return mfccs, emg_features, info['text'], (info['book'],info['sentence_index']), phonemes, emg_orig.astype(np.float32)
+-
+-class EMGDirectory(object):
+-    def __init__(self, session_index, directory, silent, exclude_from_testset=False):
+-        self.session_index = session_index
+-        self.directory = directory
+-        self.silent = silent
+-        self.exclude_from_testset = exclude_from_testset
+-
+-    def __lt__(self, other):
+-        return self.session_index < other.session_index
+-
+-    def __repr__(self):
+-        return self.directory
+-
+-class SizeAwareSampler(torch.utils.data.Sampler):
+-    def __init__(self, emg_dataset, max_len):
+-        self.dataset = emg_dataset
+-        self.max_len = max_len
+-
+-    def __iter__(self):
+-        indices = list(range(len(self.dataset)))
+-        random.shuffle(indices)
+-        batch = []
+-        batch_length = 0
+-        for idx in indices:
+-            directory_info, file_idx = self.dataset.example_indices[idx]
+-            with open(os.path.join(directory_info.directory, f'{file_idx}_info.json')) as f:
+-                info = json.load(f)
+-            if not np.any([l in string.ascii_letters for l in info['text']]):
+-                continue
+-            length = sum([emg_len for emg_len, _, _ in info['chunks']])
+-            if length > self.max_len:
+-                logging.warning(f'Warning: example {idx} cannot fit within desired batch length')
+-            if length + batch_length > self.max_len:
+-                yield batch
+-                batch = []
+-                batch_length = 0
+-            batch.append(idx)
+-            batch_length += length
+-        # dropping last incomplete batch
+-
+-class EMGDataset(torch.utils.data.Dataset):
+-    def __init__(self, base_dir=None, limit_length=False, dev=False, test=False, no_testset=False, no_normalizers=False):
+-
+-        self.text_align_directory = FLAGS.text_align_directory
+-
+-        if no_testset:
+-            devset = []
+-            testset = []
+-        else:
+-            with open(FLAGS.testset_file) as f:
+-                testset_json = json.load(f)
+-                devset = testset_json['dev']
+-                testset = testset_json['test']
+-
+-        directories = []
+-        if base_dir is not None:
+-            directories.append(EMGDirectory(0, base_dir, False))
+-        else:
+-            for sd in FLAGS.silent_data_directories:
+-                for session_dir in sorted(os.listdir(sd)):
+-                    directories.append(EMGDirectory(len(directories), os.path.join(sd, session_dir), True))
+-
+-            has_silent = len(FLAGS.silent_data_directories) > 0
+-            for vd in FLAGS.voiced_data_directories:
+-                for session_dir in sorted(os.listdir(vd)):
+-                    directories.append(EMGDirectory(len(directories), os.path.join(vd, session_dir), False, exclude_from_testset=has_silent))
+-
+-        self.example_indices = []
+-        self.voiced_data_locations = {} # map from book/sentence_index to directory_info/index
+-        for directory_info in directories:
+-            for fname in os.listdir(directory_info.directory):
+-                m = re.match(r'(\d+)_info.json', fname)
+-                if m is not None:
+-                    idx_str = m.group(1)
+-                    with open(os.path.join(directory_info.directory, fname)) as f:
+-                        info = json.load(f)
+-                        if info['sentence_index'] >= 0: # boundary clips of silence are marked -1
+-                            location_in_testset = [info['book'], info['sentence_index']] in testset
+-                            location_in_devset = [info['book'], info['sentence_index']] in devset
+-                            if (test and location_in_testset and not directory_info.exclude_from_testset) \
+-                                    or (dev and location_in_devset and not directory_info.exclude_from_testset) \
+-                                    or (not test and not dev and not location_in_testset and not location_in_devset):
+-                                self.example_indices.append((directory_info,int(idx_str)))
+-
+-                            if not directory_info.silent:
+-                                location = (info['book'], info['sentence_index'])
+-                                self.voiced_data_locations[location] = (directory_info,int(idx_str))
+-
+-        self.example_indices.sort()
+-        random.seed(0)
+-        random.shuffle(self.example_indices)
+-
+-        self.no_normalizers = no_normalizers
+-        if not self.no_normalizers:
+-            self.mfcc_norm, self.emg_norm = pickle.load(open(FLAGS.normalizers_file,'rb'))
+-
+-        sample_mfccs, sample_emg, _, _, _, _ = load_utterance(self.example_indices[0][0].directory, self.example_indices[0][1])
+-        self.num_speech_features = sample_mfccs.shape[1]
+-        self.num_features = sample_emg.shape[1]
+-        self.limit_length = limit_length
+-        self.num_sessions = len(directories)
+-
+-        self.text_transform = TextTransform()
+-
+-    def silent_subset(self):
+-        result = copy(self)
+-        silent_indices = []
+-        for example in self.example_indices:
+-            if example[0].silent:
+-                silent_indices.append(example)
+-        result.example_indices = silent_indices
+-        return result
+-
+-    def subset(self, fraction):
+-        result = copy(self)
+-        result.example_indices = self.example_indices[:int(fraction*len(self.example_indices))]
+-        return result
+-
+-    def __len__(self):
+-        return len(self.example_indices)
+-
+-    @lru_cache(maxsize=None)
+-    def __getitem__(self, i):
+-        directory_info, idx = self.example_indices[i]
+-        mfccs, emg, text, book_location, phonemes, raw_emg = load_utterance(directory_info.directory, idx, self.limit_length, text_align_directory=self.text_align_directory)
+-        raw_emg = raw_emg / 20
+-        raw_emg = 50*np.tanh(raw_emg/50.)
+-
+-        if not self.no_normalizers:
+-            mfccs = self.mfcc_norm.normalize(mfccs)
+-            emg = self.emg_norm.normalize(emg)
+-            emg = 8*np.tanh(emg/8.)
+-
+-        session_ids = np.full(emg.shape[0], directory_info.session_index, dtype=np.int64)
+-        audio_file = f'{directory_info.directory}/{idx}_audio_clean.flac'
+-
+-        text_int = np.array(self.text_transform.text_to_int(text), dtype=np.int64)
+-
+-        result = {'audio_features':torch.from_numpy(mfccs).pin_memory(), 'emg':torch.from_numpy(emg).pin_memory(), 'text':text, 'text_int': torch.from_numpy(text_int).pin_memory(), 'file_label':idx, 'session_ids':torch.from_numpy(session_ids).pin_memory(), 'book_location':book_location, 'silent':directory_info.silent, 'raw_emg':torch.from_numpy(raw_emg).pin_memory()}
+-
+-        if directory_info.silent:
+-            voiced_directory, voiced_idx = self.voiced_data_locations[book_location]
+-            voiced_mfccs, voiced_emg, _, _, phonemes, _ = load_utterance(voiced_directory.directory, voiced_idx, False, text_align_directory=self.text_align_directory)
+-
+-            if not self.no_normalizers:
+-                voiced_mfccs = self.mfcc_norm.normalize(voiced_mfccs)
+-                voiced_emg = self.emg_norm.normalize(voiced_emg)
+-                voiced_emg = 8*np.tanh(voiced_emg/8.)
+-
+-            result['parallel_voiced_audio_features'] = torch.from_numpy(voiced_mfccs).pin_memory()
+-            result['parallel_voiced_emg'] = torch.from_numpy(voiced_emg).pin_memory()
+-
+-            audio_file = f'{voiced_directory.directory}/{voiced_idx}_audio_clean.flac'
+-
+-        result['phonemes'] = torch.from_numpy(phonemes).pin_memory() # either from this example if vocalized or aligned example if silent
+-        result['audio_file'] = audio_file
+-
+-        return result
+-
+-    @staticmethod
+-    def collate_raw(batch):
+-        batch_size = len(batch)
+-        audio_features = []
+-        audio_feature_lengths = []
+-        parallel_emg = []
+-        for ex in batch:
+-            if ex['silent']:
+-                audio_features.append(ex['parallel_voiced_audio_features'])
+-                audio_feature_lengths.append(ex['parallel_voiced_audio_features'].shape[0])
+-                parallel_emg.append(ex['parallel_voiced_emg'])
+-            else:
+-                audio_features.append(ex['audio_features'])
+-                audio_feature_lengths.append(ex['audio_features'].shape[0])
+-                parallel_emg.append(np.zeros(1))
+-        phonemes = [ex['phonemes'] for ex in batch]
+-        emg = [ex['emg'] for ex in batch]
+-        raw_emg = [ex['raw_emg'] for ex in batch]
+-        session_ids = [ex['session_ids'] for ex in batch]
+-        lengths = [ex['emg'].shape[0] for ex in batch]
+-        silent = [ex['silent'] for ex in batch]
+-        text_ints = [ex['text_int'] for ex in batch]
+-        text_lengths = [ex['text_int'].shape[0] for ex in batch]
+-
+-        result = {'audio_features':audio_features,
+-                  'audio_feature_lengths':audio_feature_lengths,
+-                  'emg':emg,
+-                  'raw_emg':raw_emg,
+-                  'parallel_voiced_emg':parallel_emg,
+-                  'phonemes':phonemes,
+-                  'session_ids':session_ids,
+-                  'lengths':lengths,
+-                  'silent':silent,
+-                  'text_int':text_ints,
+-                  'text_int_lengths':text_lengths}
+-        return result
+-
+-def make_normalizers():
+-    dataset = EMGDataset(no_normalizers=True)
+-    mfcc_samples = []
+-    emg_samples = []
+-    for d in dataset:
+-        mfcc_samples.append(d['audio_features'])
+-        emg_samples.append(d['emg'])
+-        if len(emg_samples) > 50:
+-            break
+-    mfcc_norm = FeatureNormalizer(mfcc_samples, share_scale=True)
+-    emg_norm = FeatureNormalizer(emg_samples, share_scale=False)
+-    pickle.dump((mfcc_norm, emg_norm), open(FLAGS.normalizers_file, 'wb'))
+-
+-if __name__ == '__main__':
+-    FLAGS(sys.argv)
+-    d = EMGDataset()
+-    for i in range(1000):
+-        d[i]
+-
+diff --git a/recognition_model.py b/recognition_model.py
+index 81c0352..ae04f10 100644
+--- a/recognition_model.py
++++ b/recognition_model.py
+@@ -11,7 +11,7 @@ import torch
+ from torch import nn
+ import torch.nn.functional as F
+ 
+-from read_emg import EMGDataset, SizeAwareSampler
++from silent_speech_sheldan.read_emg_sheldan import EMGDataset, SizeAwareSampler
+ from architecture import Model
+ from data_utils import combine_fixed_length, decollate_tensor
+ 
+diff --git a/transduction_model.py b/transduction_model.py
+deleted file mode 100755
+index 96426e9..0000000
+--- a/transduction_model.py
++++ /dev/null
+@@ -1,252 +0,0 @@
+-import os
+-import sys
+-import numpy as np
+-import logging
+-import subprocess
+-
+-import soundfile as sf
+-import tqdm
+-
+-import torch
+-import torch.nn.functional as F
+-
+-from read_emg import EMGDataset, SizeAwareSampler
+-from architecture import Model
+-from align import align_from_distances
+-from asr_evaluation import evaluate
+-from data_utils import phoneme_inventory, decollate_tensor, combine_fixed_length
+-from vocoder import Vocoder
+-
+-from absl import flags
+-FLAGS = flags.FLAGS
+-flags.DEFINE_integer('batch_size', 32, 'training batch size')
+-flags.DEFINE_integer('epochs', 80, 'number of training epochs')
+-flags.DEFINE_float('learning_rate', 1e-3, 'learning rate')
+-flags.DEFINE_integer('learning_rate_patience', 5, 'learning rate decay patience')
+-flags.DEFINE_integer('learning_rate_warmup', 500, 'steps of linear warmup')
+-flags.DEFINE_string('start_training_from', None, 'start training from this model')
+-flags.DEFINE_float('data_size_fraction', 1.0, 'fraction of training data to use')
+-flags.DEFINE_float('phoneme_loss_weight', 0.5, 'weight of auxiliary phoneme prediction loss')
+-flags.DEFINE_float('l2', 1e-7, 'weight decay')
+-flags.DEFINE_string('output_directory', 'output', 'output directory')
+-
+-def test(model, testset, device):
+-    model.eval()
+-
+-    dataloader = torch.utils.data.DataLoader(testset, batch_size=32, collate_fn=testset.collate_raw)
+-    losses = []
+-    accuracies = []
+-    phoneme_confusion = np.zeros((len(phoneme_inventory),len(phoneme_inventory)))
+-    seq_len = 200
+-    with torch.no_grad():
+-        for batch in tqdm.tqdm(dataloader, 'Validation', disable=None):
+-            X = combine_fixed_length([t.to(device, non_blocking=True) for t in batch['emg']], seq_len)
+-            X_raw = combine_fixed_length([t.to(device, non_blocking=True) for t in batch['raw_emg']], seq_len*8)
+-            sess = combine_fixed_length([t.to(device, non_blocking=True) for t in batch['session_ids']], seq_len)
+-
+-            pred, phoneme_pred = model(X, X_raw, sess)
+-
+-            loss, phon_acc = dtw_loss(pred, phoneme_pred, batch, True, phoneme_confusion)
+-            losses.append(loss.item())
+-
+-            accuracies.append(phon_acc)
+-
+-    model.train()
+-    return np.mean(losses), np.mean(accuracies), phoneme_confusion #TODO size-weight average
+-
+-def save_output(model, datapoint, filename, device, audio_normalizer, vocoder):
+-    model.eval()
+-    with torch.no_grad():
+-        sess = datapoint['session_ids'].to(device=device).unsqueeze(0)
+-        X = datapoint['emg'].to(dtype=torch.float32, device=device).unsqueeze(0)
+-        X_raw = datapoint['raw_emg'].to(dtype=torch.float32, device=device).unsqueeze(0)
+-
+-        pred, _ = model(X, X_raw, sess)
+-        y = pred.squeeze(0)
+-
+-        y = audio_normalizer.inverse(y.cpu()).to(device)
+-
+-        audio = vocoder(y).cpu().numpy()
+-
+-    sf.write(filename, audio, 22050)
+-
+-    model.train()
+-
+-def get_aligned_prediction(model, datapoint, device, audio_normalizer):
+-    model.eval()
+-    with torch.no_grad():
+-        silent = datapoint['silent']
+-        sess = datapoint['session_ids'].to(device).unsqueeze(0)
+-        X = datapoint['emg'].to(device).unsqueeze(0)
+-        X_raw = datapoint['raw_emg'].to(device).unsqueeze(0)
+-        y = datapoint['parallel_voiced_audio_features' if silent else 'audio_features'].to(device).unsqueeze(0)
+-
+-        pred, _ = model(X, X_raw, sess) # (1, seq, dim)
+-
+-        if silent:
+-            costs = torch.cdist(pred, y).squeeze(0)
+-            alignment = align_from_distances(costs.T.detach().cpu().numpy())
+-            pred_aligned = pred.squeeze(0)[alignment]
+-        else:
+-            pred_aligned = pred.squeeze(0)
+-
+-        pred_aligned = audio_normalizer.inverse(pred_aligned.cpu())
+-
+-    model.train()
+-    return pred_aligned
+-
+-def dtw_loss(predictions, phoneme_predictions, example, phoneme_eval=False, phoneme_confusion=None):
+-    device = predictions.device
+-
+-    predictions = decollate_tensor(predictions, example['lengths'])
+-    phoneme_predictions = decollate_tensor(phoneme_predictions, example['lengths'])
+-
+-    audio_features = [t.to(device, non_blocking=True) for t in example['audio_features']]
+-
+-    phoneme_targets = example['phonemes']
+-
+-    losses = []
+-    correct_phones = 0
+-    total_length = 0
+-    for pred, y, pred_phone, y_phone, silent in zip(predictions, audio_features, phoneme_predictions, phoneme_targets, example['silent']):
+-        assert len(pred.size()) == 2 and len(y.size()) == 2
+-        y_phone = y_phone.to(device)
+-
+-        if silent:
+-            dists = torch.cdist(pred.unsqueeze(0), y.unsqueeze(0))
+-            costs = dists.squeeze(0)
+-
+-            # pred_phone (seq1_len, 48), y_phone (seq2_len)
+-            # phone_probs (seq1_len, seq2_len)
+-            pred_phone = F.log_softmax(pred_phone, -1)
+-            phone_lprobs = pred_phone[:,y_phone]
+-
+-            costs = costs + FLAGS.phoneme_loss_weight * -phone_lprobs
+-
+-            alignment = align_from_distances(costs.T.cpu().detach().numpy())
+-
+-            loss = costs[alignment,range(len(alignment))].sum()
+-
+-            if phoneme_eval:
+-                alignment = align_from_distances(costs.T.cpu().detach().numpy())
+-
+-                pred_phone = pred_phone.argmax(-1)
+-                correct_phones += (pred_phone[alignment] == y_phone).sum().item()
+-
+-                for p, t in zip(pred_phone[alignment].tolist(), y_phone.tolist()):
+-                    phoneme_confusion[p, t] += 1
+-        else:
+-            assert y.size(0) == pred.size(0)
+-
+-            dists = F.pairwise_distance(y, pred)
+-
+-            assert len(pred_phone.size()) == 2 and len(y_phone.size()) == 1
+-            phoneme_loss = F.cross_entropy(pred_phone, y_phone, reduction='sum')
+-            loss = dists.sum() + FLAGS.phoneme_loss_weight * phoneme_loss
+-
+-            if phoneme_eval:
+-                pred_phone = pred_phone.argmax(-1)
+-                correct_phones += (pred_phone == y_phone).sum().item()
+-
+-                for p, t in zip(pred_phone.tolist(), y_phone.tolist()):
+-                    phoneme_confusion[p, t] += 1
+-
+-        losses.append(loss)
+-        total_length += y.size(0)
+-
+-    return sum(losses)/total_length, correct_phones/total_length
+-
+-def train_model(trainset, devset, device, save_sound_outputs=True):
+-    n_epochs = FLAGS.epochs
+-
+-    if FLAGS.data_size_fraction >= 1:
+-        training_subset = trainset
+-    else:
+-        training_subset = trainset.subset(FLAGS.data_size_fraction)
+-    dataloader = torch.utils.data.DataLoader(training_subset, pin_memory=(device=='cuda'), collate_fn=devset.collate_raw, num_workers=0, batch_sampler=SizeAwareSampler(training_subset, 256000))
+-
+-    n_phones = len(phoneme_inventory)
+-    model = Model(devset.num_features, devset.num_speech_features, n_phones).to(device)
+-
+-    if FLAGS.start_training_from is not None:
+-        state_dict = torch.load(FLAGS.start_training_from)
+-        model.load_state_dict(state_dict, strict=False)
+-
+-    if save_sound_outputs:
+-        vocoder = Vocoder()
+-
+-    optim = torch.optim.AdamW(model.parameters(), weight_decay=FLAGS.l2)
+-    lr_sched = torch.optim.lr_scheduler.ReduceLROnPlateau(optim, 'min', 0.5, patience=FLAGS.learning_rate_patience)
+-
+-    def set_lr(new_lr):
+-        for param_group in optim.param_groups:
+-            param_group['lr'] = new_lr
+-
+-    target_lr = FLAGS.learning_rate
+-    def schedule_lr(iteration):
+-        iteration = iteration + 1
+-        if iteration <= FLAGS.learning_rate_warmup:
+-            set_lr(iteration*target_lr/FLAGS.learning_rate_warmup)
+-
+-    seq_len = 200
+-
+-    batch_idx = 0
+-    for epoch_idx in range(n_epochs):
+-        losses = []
+-        for batch in tqdm.tqdm(dataloader, 'Train step', disable=None):
+-            optim.zero_grad()
+-            schedule_lr(batch_idx)
+-
+-            X = combine_fixed_length([t.to(device, non_blocking=True) for t in batch['emg']], seq_len)
+-            X_raw = combine_fixed_length([t.to(device, non_blocking=True) for t in batch['raw_emg']], seq_len*8)
+-            sess = combine_fixed_length([t.to(device, non_blocking=True) for t in batch['session_ids']], seq_len)
+-
+-            pred, phoneme_pred = model(X, X_raw, sess)
+-
+-            loss, _ = dtw_loss(pred, phoneme_pred, batch)
+-            losses.append(loss.item())
+-
+-            loss.backward()
+-            optim.step()
+-
+-            batch_idx += 1
+-        train_loss = np.mean(losses)
+-        val, phoneme_acc, _ = test(model, devset, device)
+-        lr_sched.step(val)
+-        logging.info(f'finished epoch {epoch_idx+1} - validation loss: {val:.4f} training loss: {train_loss:.4f} phoneme accuracy: {phoneme_acc*100:.2f}')
+-        torch.save(model.state_dict(), os.path.join(FLAGS.output_directory,'model.pt'))
+-        if save_sound_outputs:
+-            save_output(model, devset[0], os.path.join(FLAGS.output_directory, f'epoch_{epoch_idx}_output.wav'), device, devset.mfcc_norm, vocoder)
+-
+-    if save_sound_outputs:
+-        for i, datapoint in enumerate(devset):
+-            save_output(model, datapoint, os.path.join(FLAGS.output_directory, f'example_output_{i}.wav'), device, devset.mfcc_norm, vocoder)
+-
+-        evaluate(devset, FLAGS.output_directory)
+-
+-    return model
+-
+-def main():
+-    os.makedirs(FLAGS.output_directory, exist_ok=True)
+-    logging.basicConfig(handlers=[
+-            logging.FileHandler(os.path.join(FLAGS.output_directory, 'log.txt'), 'w'),
+-            logging.StreamHandler()
+-            ], level=logging.INFO, format="%(message)s")
+-
+-    logging.info(subprocess.run(['git','rev-parse','HEAD'], stdout=subprocess.PIPE, universal_newlines=True).stdout)
+-    logging.info(subprocess.run(['git','diff'], stdout=subprocess.PIPE, universal_newlines=True).stdout)
+-
+-    logging.info(sys.argv)
+-
+-    trainset = EMGDataset(dev=False,test=False)
+-    devset = EMGDataset(dev=True)
+-    logging.info('output example: %s', devset.example_indices[0])
+-    logging.info('train / dev split: %d %d',len(trainset),len(devset))
+-
+-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+-
+-    model = train_model(trainset, devset, device, save_sound_outputs=(FLAGS.hifigan_checkpoint is not None))
+-
+-if __name__ == '__main__':
+-    FLAGS(sys.argv)
+-    main()
+diff --git a/vocoder.py b/vocoder.py
+index c10a523..6e4dbf3 100644
+--- a/vocoder.py
++++ b/vocoder.py
+@@ -21,7 +21,7 @@ class Vocoder(object):
+         with open(config_file) as f:
+             hparams = AttrDict(json.load(f))
+         self.generator = Generator(hparams).to(device)
+-        self.generator.load_state_dict(torch.load(checkpoint_file)['generator'])
++        self.generator.load_state_dict(torch.load(checkpoint_file, weights_only=True)['generator'])
+         self.generator.eval()
+         self.generator.remove_weight_norm()
+ 
+
+['/data/xiaochen99/silent_speech_sheldan6_bis19_2/transduction_model_sheldan_mix_scratch.py', '--hifigan_checkpoint', 'hifigan_finetuned/checkpoint']
+output example: (./emg_data_all/voiced_parallel_data/7704-106965, 31)
+train / dev split: 3415 200
+FOR VERIFICATION: len(trainset)=3415, len(devset)=200, len(testset)=99
+output example: (./emg_data/voiced_parallel_data/5-6, 194)
+train / dev split: 6766 200
+FOR VERIFICATION: len(trainset_baseline)=6766, len(devset_baseline)=200, len(testset_baseline)=99
+Whole program start time: 23.63219914
+finished epoch 1 - validation loss: 2.1082 training loss: 2.9237 phoneme accuracy: 50.24
+batch_idx=202
+finished epoch 2 - validation loss: 1.9494 training loss: 1.8859 phoneme accuracy: 55.93
+batch_idx=404
+finished epoch 3 - validation loss: 1.6575 training loss: 1.6115 phoneme accuracy: 65.46
+batch_idx=606
+finished epoch 4 - validation loss: 1.4717 training loss: 1.4616 phoneme accuracy: 71.31
+batch_idx=808
+finished epoch 5 - validation loss: 1.4782 training loss: 1.3979 phoneme accuracy: 71.73
+batch_idx=1010
+finished epoch 6 - validation loss: 1.4191 training loss: 1.3401 phoneme accuracy: 73.17
+batch_idx=1212
+finished epoch 7 - validation loss: 1.3948 training loss: 1.3035 phoneme accuracy: 73.46
+batch_idx=1414
+finished epoch 8 - validation loss: 1.3741 training loss: 1.2873 phoneme accuracy: 74.44
+batch_idx=1616
+finished epoch 9 - validation loss: 1.3712 training loss: 1.2699 phoneme accuracy: 74.95
+batch_idx=1817
+finished epoch 10 - validation loss: 1.3530 training loss: 1.2620 phoneme accuracy: 74.85
+batch_idx=2019
+finished epoch 11 - validation loss: 1.3054 training loss: 1.2427 phoneme accuracy: 76.92
+batch_idx=2221
+finished epoch 12 - validation loss: 1.3542 training loss: 1.2337 phoneme accuracy: 75.01
+batch_idx=2423
+finished epoch 13 - validation loss: 1.2899 training loss: 1.2298 phoneme accuracy: 77.39
+batch_idx=2625
+finished epoch 14 - validation loss: 1.3048 training loss: 1.2172 phoneme accuracy: 76.75
+batch_idx=2827
+finished epoch 15 - validation loss: 1.3450 training loss: 1.2072 phoneme accuracy: 75.92
+batch_idx=3029
+finished epoch 16 - validation loss: 1.2707 training loss: 1.2055 phoneme accuracy: 78.24
+batch_idx=3231
+finished epoch 17 - validation loss: 1.2980 training loss: 1.1977 phoneme accuracy: 77.15
+batch_idx=3433
+finished epoch 18 - validation loss: 1.3141 training loss: 1.1941 phoneme accuracy: 76.30
+batch_idx=3635
+finished epoch 19 - validation loss: 1.2611 training loss: 1.1854 phoneme accuracy: 78.18
+batch_idx=3837
+finished epoch 20 - validation loss: 1.2954 training loss: 1.1804 phoneme accuracy: 78.32
+batch_idx=4039
+finished epoch 21 - validation loss: 1.2828 training loss: 1.1758 phoneme accuracy: 78.02
+batch_idx=4241
+finished epoch 22 - validation loss: 1.2526 training loss: 1.1599 phoneme accuracy: 78.81
+batch_idx=4443
+finished epoch 23 - validation loss: 1.2667 training loss: 1.1511 phoneme accuracy: 78.50
+batch_idx=4645
+finished epoch 24 - validation loss: 1.2318 training loss: 1.1406 phoneme accuracy: 79.54
+batch_idx=4847
+finished epoch 25 - validation loss: 1.2710 training loss: 1.1290 phoneme accuracy: 78.32
+batch_idx=5049
+finished epoch 26 - validation loss: 1.2370 training loss: 1.1207 phoneme accuracy: 79.04
+batch_idx=5251
+finished epoch 27 - validation loss: 1.2409 training loss: 1.1253 phoneme accuracy: 79.30
+batch_idx=5453
+finished epoch 28 - validation loss: 1.2376 training loss: 1.1005 phoneme accuracy: 79.60
+batch_idx=5656
+finished epoch 29 - validation loss: 1.2051 training loss: 1.0906 phoneme accuracy: 80.01
+batch_idx=5858
+finished epoch 30 - validation loss: 1.2163 training loss: 1.0779 phoneme accuracy: 79.70
+batch_idx=6060
+finished epoch 31 - validation loss: 1.2256 training loss: 1.0729 phoneme accuracy: 79.60
+batch_idx=6262
+finished epoch 32 - validation loss: 1.2781 training loss: 1.0668 phoneme accuracy: 79.40
+batch_idx=6464
+finished epoch 33 - validation loss: 1.2460 training loss: 1.0552 phoneme accuracy: 79.84
+batch_idx=6666
+finished epoch 34 - validation loss: 1.2152 training loss: 1.0476 phoneme accuracy: 80.16
+batch_idx=6868
+finished epoch 35 - validation loss: 1.2248 training loss: 1.0398 phoneme accuracy: 80.31
+batch_idx=7070
+finished epoch 36 - validation loss: 1.2237 training loss: 0.9746 phoneme accuracy: 81.61
+batch_idx=7272
+finished epoch 37 - validation loss: 1.2266 training loss: 0.9513 phoneme accuracy: 81.64
+batch_idx=7474
+finished epoch 38 - validation loss: 1.1777 training loss: 0.9409 phoneme accuracy: 81.92
+batch_idx=7676
+finished epoch 39 - validation loss: 1.1712 training loss: 0.9352 phoneme accuracy: 81.99
+batch_idx=7878
+finished epoch 40 - validation loss: 1.2281 training loss: 0.9252 phoneme accuracy: 81.64
+batch_idx=8080
+finished epoch 41 - validation loss: 1.1673 training loss: 0.9217 phoneme accuracy: 82.18
+batch_idx=8282
+finished epoch 42 - validation loss: 1.1847 training loss: 0.9142 phoneme accuracy: 81.86
+batch_idx=8484
+finished epoch 43 - validation loss: 1.1792 training loss: 0.9063 phoneme accuracy: 82.00
+batch_idx=8686
+finished epoch 44 - validation loss: 1.1780 training loss: 0.9013 phoneme accuracy: 82.24
+batch_idx=8888
+finished epoch 45 - validation loss: 1.2100 training loss: 0.8946 phoneme accuracy: 81.76
+batch_idx=9090
+finished epoch 46 - validation loss: 1.1832 training loss: 0.8896 phoneme accuracy: 82.15
+batch_idx=9292
+finished epoch 47 - validation loss: 1.1822 training loss: 0.8849 phoneme accuracy: 82.24
+batch_idx=9494
+finished epoch 48 - validation loss: 1.1722 training loss: 0.8551 phoneme accuracy: 82.85
+batch_idx=9696
+finished epoch 49 - validation loss: 1.1700 training loss: 0.8422 phoneme accuracy: 82.78
+batch_idx=9898
+finished epoch 50 - validation loss: 1.1729 training loss: 0.8372 phoneme accuracy: 82.60
+batch_idx=10100
+finished epoch 51 - validation loss: 1.1580 training loss: 0.8334 phoneme accuracy: 82.89
+batch_idx=10301
+finished epoch 52 - validation loss: 1.1718 training loss: 0.8296 phoneme accuracy: 82.80
+batch_idx=10503
+finished epoch 53 - validation loss: 1.1794 training loss: 0.8255 phoneme accuracy: 82.39
+batch_idx=10705
+finished epoch 54 - validation loss: 1.1708 training loss: 0.8203 phoneme accuracy: 82.69
+batch_idx=10907
+finished epoch 55 - validation loss: 1.1846 training loss: 0.8187 phoneme accuracy: 82.43
+batch_idx=11109
+finished epoch 56 - validation loss: 1.1856 training loss: 0.8153 phoneme accuracy: 82.64
+batch_idx=11311
+finished epoch 57 - validation loss: 1.2069 training loss: 0.8118 phoneme accuracy: 82.59
+batch_idx=11513
+finished epoch 58 - validation loss: 1.1714 training loss: 0.7972 phoneme accuracy: 82.79
+batch_idx=11715
+finished epoch 59 - validation loss: 1.1970 training loss: 0.7914 phoneme accuracy: 82.62
+batch_idx=11917
+finished epoch 60 - validation loss: 1.1624 training loss: 0.7891 phoneme accuracy: 83.03
+batch_idx=12119
+finished epoch 61 - validation loss: 1.1875 training loss: 0.7869 phoneme accuracy: 82.93
+batch_idx=12321
+finished epoch 62 - validation loss: 1.1912 training loss: 0.7848 phoneme accuracy: 82.96
+batch_idx=12523
+finished epoch 63 - validation loss: 1.1810 training loss: 0.7819 phoneme accuracy: 82.81
+batch_idx=12725
+finished epoch 64 - validation loss: 1.1832 training loss: 0.7749 phoneme accuracy: 83.01
+batch_idx=12927
+finished epoch 65 - validation loss: 1.1859 training loss: 0.7731 phoneme accuracy: 82.90
+batch_idx=13129
+finished epoch 66 - validation loss: 1.1786 training loss: 0.7715 phoneme accuracy: 82.95
+batch_idx=13331
+finished epoch 67 - validation loss: 1.1844 training loss: 0.7705 phoneme accuracy: 82.81
+batch_idx=13533
+finished epoch 68 - validation loss: 1.1827 training loss: 0.7680 phoneme accuracy: 83.01
+batch_idx=13735
+finished epoch 69 - validation loss: 1.1866 training loss: 0.7662 phoneme accuracy: 83.02
+batch_idx=13937
+finished epoch 70 - validation loss: 1.1922 training loss: 0.7634 phoneme accuracy: 83.04
+batch_idx=14139
+finished epoch 71 - validation loss: 1.1918 training loss: 0.7622 phoneme accuracy: 82.92
+batch_idx=14341
+finished epoch 72 - validation loss: 1.1907 training loss: 0.7609 phoneme accuracy: 82.94
+batch_idx=14543
+finished epoch 73 - validation loss: 1.1875 training loss: 0.7602 phoneme accuracy: 83.05
+batch_idx=14745
+finished epoch 74 - validation loss: 1.1908 training loss: 0.7597 phoneme accuracy: 83.01
+batch_idx=14947
+finished epoch 75 - validation loss: 1.1816 training loss: 0.7584 phoneme accuracy: 83.08
+batch_idx=15149
+finished epoch 76 - validation loss: 1.1931 training loss: 0.7575 phoneme accuracy: 83.02
+batch_idx=15351
+finished epoch 77 - validation loss: 1.1923 training loss: 0.7561 phoneme accuracy: 83.01
+batch_idx=15553
+finished epoch 78 - validation loss: 1.2007 training loss: 0.7560 phoneme accuracy: 82.98
+batch_idx=15755
+finished epoch 79 - validation loss: 1.1931 training loss: 0.7561 phoneme accuracy: 83.07
+batch_idx=15957
+finished epoch 80 - validation loss: 1.2036 training loss: 0.7566 phoneme accuracy: 82.91
+batch_idx=16159
+Whole program end time: 157271.123744417
+Whole program elapsed time in seconds: 157247.491545277

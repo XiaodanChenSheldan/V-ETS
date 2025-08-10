@@ -1,0 +1,341 @@
++++ STARTING TRAINING +++
+['/data/xiaochen99/ste-gan/ste_gan/emg_encoder/train.py', '--exp_dir=exp/emg_encoder']
+Saving configuration file under: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/config.yaml
+Loading EMG data from data root: data/gaddy_complete
+Filtered 1285 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 1285 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set train: 6755
+Filtered 199 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 199 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set valid: 199
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set test: 98
+Found no overlap in uterance IDs between data set splits.
+output directory: /data/xiaochen99/ste-gan/exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete
+output example: {'UTT_ID': 'voiced_parallel_data_5-10__102__normal', 'TRANSCRIPTION': '“are we far from sunbury?”', 'REAL_EMG': tensor([[ 0.1237,  0.0323,  0.0683,  ...,  0.0820,  0.2094,  0.1562],
+        [ 0.1771,  0.1163,  0.0646,  ...,  0.0188,  0.2044,  0.1609],
+        [ 0.1371,  0.1210,  0.0424,  ...,  0.0356,  0.1697,  0.1675],
+        ...,
+        [-0.0410, -0.2398,  0.0207,  ...,  0.0208,  0.0264,  0.0524],
+        [-0.0029, -0.0698,  0.0597,  ...,  0.0649,  0.0693,  0.0733],
+        [-0.0988, -0.2019,  0.0228,  ..., -0.0094,  0.0050,  0.0013]]), 'PHONEMES': tensor([47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        17, 17, 17, 17, 17, 17, 43, 43, 43, 24, 24, 24, 19, 19, 19, 19, 19, 19,
+        19, 19, 19,  0,  0,  0,  0,  0,  0,  0,  0, 35, 35, 35, 35, 35, 35, 35,
+        35, 35, 35, 47, 19, 19, 19, 19, 17, 17, 28, 28, 28, 28, 28, 36, 36, 36,
+        36, 36,  2,  2, 29, 29, 29, 29,  8,  8, 13, 13, 13, 13, 13, 35, 35, 35,
+        35, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47]), 'SPEECH_UNITS': tensor([[ 0.1122, -0.7376, -0.3409,  ...,  0.3392, -0.2369,  0.2235],
+        [ 0.1713, -0.5571, -0.1678,  ...,  0.3873, -0.1963,  0.1327],
+        [-0.0829, -0.5464, -0.3512,  ...,  0.4263, -0.2132, -0.1697],
+        ...,
+        [-0.2342, -0.7303, -0.5880,  ...,  0.9846, -0.4728,  0.3679],
+        [-0.0680, -0.6121, -0.3304,  ...,  0.8405, -0.2324,  0.3799],
+        [-0.0423, -0.4620, -0.2296,  ...,  0.6968, -0.0775,  0.3665]]), 'SESSION_ID': 'voiced_parallel_data_5-10', 'SESSION_INDEX': tensor(10), 'SPEAKING_MODE': 'normal', 'SPEAKING_MODE_IDX': tensor(0), 'MFCCS': None, 'EMG_FEATS': None}
+train / dev split: 6755 / 199
+UTT_ID -> voiced_parallel_data_5-10__102__normal
+TRANSCRIPTION -> “are we far from sunbury?”
+REAL_EMG -> torch.Size([2784, 8])
+PHONEMES -> torch.Size([174])
+SPEECH_UNITS -> torch.Size([174, 256])
+SESSION_ID -> voiced_parallel_data_5-10
+SESSION_INDEX -> torch.Size([])
+SPEAKING_MODE -> normal
+SPEAKING_MODE_IDX -> torch.Size([])
+MFCCS -> None
+EMG_FEATS -> None
+Loaded EMG data from data root: data/gaddy_complete
+Setting random seed to: 0
+Model output path: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete
+Initializing EMG encoder with type EMGEncoderTransformer
+Initializing standard Transformer model
+2024-10-21 15:24:04.607800 Starting new epoch: 1
++++ STARTING TRAINING +++
+['/data/xiaochen99/ste-gan/ste_gan/emg_encoder/train.py', '--exp_dir=exp/emg_encoder']
+Saving configuration file under: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/config.yaml
+Loading EMG data from data root: data/gaddy_complete
+Filtered 1285 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 1285 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set train: 6755
+Filtered 199 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 199 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set valid: 199
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set test: 98
+Found no overlap in uterance IDs between data set splits.
+output directory: /data/xiaochen99/ste-gan/exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete
+output example: {'UTT_ID': 'voiced_parallel_data_5-10__102__normal', 'TRANSCRIPTION': '“are we far from sunbury?”', 'REAL_EMG': tensor([[ 0.1237,  0.0323,  0.0683,  ...,  0.0820,  0.2094,  0.1562],
+        [ 0.1771,  0.1163,  0.0646,  ...,  0.0188,  0.2044,  0.1609],
+        [ 0.1371,  0.1210,  0.0424,  ...,  0.0356,  0.1697,  0.1675],
+        ...,
+        [-0.0410, -0.2398,  0.0207,  ...,  0.0208,  0.0264,  0.0524],
+        [-0.0029, -0.0698,  0.0597,  ...,  0.0649,  0.0693,  0.0733],
+        [-0.0988, -0.2019,  0.0228,  ..., -0.0094,  0.0050,  0.0013]]), 'PHONEMES': tensor([47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        17, 17, 17, 17, 17, 17, 43, 43, 43, 24, 24, 24, 19, 19, 19, 19, 19, 19,
+        19, 19, 19,  0,  0,  0,  0,  0,  0,  0,  0, 35, 35, 35, 35, 35, 35, 35,
+        35, 35, 35, 47, 19, 19, 19, 19, 17, 17, 28, 28, 28, 28, 28, 36, 36, 36,
+        36, 36,  2,  2, 29, 29, 29, 29,  8,  8, 13, 13, 13, 13, 13, 35, 35, 35,
+        35, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47,
+        47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47]), 'SPEECH_UNITS': tensor([[ 0.1122, -0.7376, -0.3409,  ...,  0.3392, -0.2369,  0.2235],
+        [ 0.1713, -0.5571, -0.1678,  ...,  0.3873, -0.1963,  0.1327],
+        [-0.0829, -0.5464, -0.3512,  ...,  0.4263, -0.2132, -0.1697],
+        ...,
+        [-0.2342, -0.7303, -0.5880,  ...,  0.9846, -0.4728,  0.3679],
+        [-0.0680, -0.6121, -0.3304,  ...,  0.8405, -0.2324,  0.3799],
+        [-0.0423, -0.4620, -0.2296,  ...,  0.6968, -0.0775,  0.3665]]), 'SESSION_ID': 'voiced_parallel_data_5-10', 'SESSION_INDEX': tensor(10), 'SPEAKING_MODE': 'normal', 'SPEAKING_MODE_IDX': tensor(0), 'MFCCS': None, 'EMG_FEATS': None}
+train / dev split: 6755 / 199
+UTT_ID -> voiced_parallel_data_5-10__102__normal
+TRANSCRIPTION -> “are we far from sunbury?”
+REAL_EMG -> torch.Size([2784, 8])
+PHONEMES -> torch.Size([174])
+SPEECH_UNITS -> torch.Size([174, 256])
+SESSION_ID -> voiced_parallel_data_5-10
+SESSION_INDEX -> torch.Size([])
+SPEAKING_MODE -> normal
+SPEAKING_MODE_IDX -> torch.Size([])
+MFCCS -> None
+EMG_FEATS -> None
+Loaded EMG data from data root: data/gaddy_complete
+Setting random seed to: 0
+Model output path: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete
+Initializing EMG encoder with type EMGEncoderTransformer
+Initializing standard Transformer model
+2024-10-21 15:35:30.340274 Starting new epoch: 1
+2024-10-21 15:36:52.619914 Finished: 1
+finished epoch 1 - training loss: 4.2649 | Train Phoneme Acc: nan |  validation loss: 3.4654  |  val. phoneme accuracy: 46.84
+Saving model as val loss improved.
+2024-10-21 15:36:56.805575 Starting new epoch: 2
+2024-10-21 15:37:53.734412 Finished: 2
+finished epoch 2 - training loss: 3.1806 | Train Phoneme Acc: nan |  validation loss: 2.9555  |  val. phoneme accuracy: 57.36
+Saving model as val loss improved.
+2024-10-21 15:37:58.254367 Starting new epoch: 3
+2024-10-21 15:38:56.439933 Finished: 3
+finished epoch 3 - training loss: 2.7500 | Train Phoneme Acc: nan |  validation loss: 2.6213  |  val. phoneme accuracy: 63.42
+Saving model as val loss improved.
+2024-10-21 15:39:00.961176 Starting new epoch: 4
+2024-10-21 15:39:59.660965 Finished: 4
+finished epoch 4 - training loss: 2.5023 | Train Phoneme Acc: nan |  validation loss: 2.4719  |  val. phoneme accuracy: 65.85
+Saving model as val loss improved.
+2024-10-21 15:40:04.032706 Starting new epoch: 5
+2024-10-21 15:41:03.198798 Finished: 5
+finished epoch 5 - training loss: 2.3410 | Train Phoneme Acc: nan |  validation loss: 2.2844  |  val. phoneme accuracy: 69.66
+Saving model as val loss improved.
+2024-10-21 15:41:07.487760 Starting new epoch: 6
+2024-10-21 15:42:06.372113 Finished: 6
+finished epoch 6 - training loss: 2.2225 | Train Phoneme Acc: nan |  validation loss: 2.1418  |  val. phoneme accuracy: 72.55
+Saving model as val loss improved.
+2024-10-21 15:42:10.704180 Starting new epoch: 7
+2024-10-21 15:43:09.685994 Finished: 7
+finished epoch 7 - training loss: 2.1163 | Train Phoneme Acc: nan |  validation loss: 2.1344  |  val. phoneme accuracy: 72.62
+Saving model as val loss improved.
+2024-10-21 15:43:14.014281 Starting new epoch: 8
+2024-10-21 15:44:12.585046 Finished: 8
+finished epoch 8 - training loss: 2.0498 | Train Phoneme Acc: nan |  validation loss: 2.0399  |  val. phoneme accuracy: 74.50
+Saving model as val loss improved.
+2024-10-21 15:44:17.270933 Starting new epoch: 9
+2024-10-21 15:45:15.968760 Finished: 9
+finished epoch 9 - training loss: 1.9844 | Train Phoneme Acc: nan |  validation loss: 1.9809  |  val. phoneme accuracy: 75.19
+Saving model as val loss improved.
+2024-10-21 15:45:20.559451 Starting new epoch: 10
+2024-10-21 15:46:19.682164 Finished: 10
+finished epoch 10 - training loss: 1.9260 | Train Phoneme Acc: nan |  validation loss: 1.9215  |  val. phoneme accuracy: 76.48
+Saving model as val loss improved.
+2024-10-21 15:46:24.391815 Starting new epoch: 11
+2024-10-21 15:47:22.951549 Finished: 11
+finished epoch 11 - training loss: 1.8773 | Train Phoneme Acc: nan |  validation loss: 1.9212  |  val. phoneme accuracy: 76.26
+Saving model as val loss improved.
+2024-10-21 15:47:27.521059 Starting new epoch: 12
+2024-10-21 15:48:26.018435 Finished: 12
+finished epoch 12 - training loss: 1.8373 | Train Phoneme Acc: nan |  validation loss: 1.9033  |  val. phoneme accuracy: 76.65
+Saving model as val loss improved.
+2024-10-21 15:48:30.413814 Starting new epoch: 13
+2024-10-21 15:49:28.940534 Finished: 13
+finished epoch 13 - training loss: 1.8024 | Train Phoneme Acc: nan |  validation loss: 1.8794  |  val. phoneme accuracy: 77.26
+Saving model as val loss improved.
+2024-10-21 15:49:33.285369 Starting new epoch: 14
+2024-10-21 15:50:31.954921 Finished: 14
+finished epoch 14 - training loss: 1.7799 | Train Phoneme Acc: nan |  validation loss: 1.8389  |  val. phoneme accuracy: 78.00
+Saving model as val loss improved.
+2024-10-21 15:50:36.572608 Starting new epoch: 15
+2024-10-21 15:51:35.029454 Finished: 15
+finished epoch 15 - training loss: 1.7435 | Train Phoneme Acc: nan |  validation loss: 1.9058  |  val. phoneme accuracy: 77.00
+2024-10-21 15:51:37.190842 Starting new epoch: 16
+2024-10-21 15:52:35.615636 Finished: 16
+finished epoch 16 - training loss: 1.7075 | Train Phoneme Acc: nan |  validation loss: 1.8471  |  val. phoneme accuracy: 77.95
+2024-10-21 15:52:37.738435 Starting new epoch: 17
+2024-10-21 15:53:36.149282 Finished: 17
+finished epoch 17 - training loss: 1.6877 | Train Phoneme Acc: nan |  validation loss: 1.8515  |  val. phoneme accuracy: 77.82
+2024-10-21 15:53:38.332730 Starting new epoch: 18
+2024-10-21 15:54:36.787856 Finished: 18
+finished epoch 18 - training loss: 1.6704 | Train Phoneme Acc: nan |  validation loss: 1.9010  |  val. phoneme accuracy: 76.97
+2024-10-21 15:54:38.970912 Starting new epoch: 19
+2024-10-21 15:55:37.488373 Finished: 19
+finished epoch 19 - training loss: 1.6498 | Train Phoneme Acc: nan |  validation loss: 1.7838  |  val. phoneme accuracy: 79.12
+Saving model as val loss improved.
+2024-10-21 15:55:41.793777 Starting new epoch: 20
+2024-10-21 15:56:40.843064 Finished: 20
+finished epoch 20 - training loss: 1.6330 | Train Phoneme Acc: nan |  validation loss: 1.8314  |  val. phoneme accuracy: 78.27
+2024-10-21 15:56:43.007689 Starting new epoch: 21
+2024-10-21 15:57:42.010045 Finished: 21
+finished epoch 21 - training loss: 1.6188 | Train Phoneme Acc: nan |  validation loss: 1.7662  |  val. phoneme accuracy: 79.38
+Saving model as val loss improved.
+2024-10-21 15:57:46.280375 Starting new epoch: 22
+2024-10-21 15:58:44.945878 Finished: 22
+finished epoch 22 - training loss: 1.5968 | Train Phoneme Acc: nan |  validation loss: 1.7388  |  val. phoneme accuracy: 79.82
+Saving model as val loss improved.
+2024-10-21 15:58:49.264604 Starting new epoch: 23
+2024-10-21 15:59:47.790923 Finished: 23
+finished epoch 23 - training loss: 1.5770 | Train Phoneme Acc: nan |  validation loss: 1.7004  |  val. phoneme accuracy: 80.69
+Saving model as val loss improved.
+2024-10-21 15:59:52.130757 Starting new epoch: 24
+2024-10-21 16:00:50.617401 Finished: 24
+finished epoch 24 - training loss: 1.5634 | Train Phoneme Acc: nan |  validation loss: 1.6819  |  val. phoneme accuracy: 80.89
+Saving model as val loss improved.
+2024-10-21 16:00:54.974367 Starting new epoch: 25
+2024-10-21 16:01:53.565678 Finished: 25
+finished epoch 25 - training loss: 1.5470 | Train Phoneme Acc: nan |  validation loss: 1.7415  |  val. phoneme accuracy: 80.26
+2024-10-21 16:01:55.718167 Starting new epoch: 26
+2024-10-21 16:02:54.298153 Finished: 26
+finished epoch 26 - training loss: 1.5370 | Train Phoneme Acc: nan |  validation loss: 1.7209  |  val. phoneme accuracy: 80.17
+2024-10-21 16:02:56.481689 Starting new epoch: 27
+2024-10-21 16:03:55.007583 Finished: 27
+finished epoch 27 - training loss: 1.5295 | Train Phoneme Acc: nan |  validation loss: 1.6881  |  val. phoneme accuracy: 80.85
+2024-10-21 16:03:57.195847 Starting new epoch: 28
+2024-10-21 16:04:55.865344 Finished: 28
+finished epoch 28 - training loss: 1.5141 | Train Phoneme Acc: nan |  validation loss: 1.7795  |  val. phoneme accuracy: 79.34
+2024-10-21 16:04:58.050143 Starting new epoch: 29
+2024-10-21 16:05:56.711873 Finished: 29
+finished epoch 29 - training loss: 1.4984 | Train Phoneme Acc: nan |  validation loss: 1.6833  |  val. phoneme accuracy: 80.92
+2024-10-21 16:05:58.861168 Starting new epoch: 30
+2024-10-21 16:06:57.419154 Finished: 30
+finished epoch 30 - training loss: 1.4961 | Train Phoneme Acc: nan |  validation loss: 1.7451  |  val. phoneme accuracy: 80.48
+2024-10-21 16:06:59.593495 Starting new epoch: 31
+2024-10-21 16:07:58.145489 Finished: 31
+finished epoch 31 - training loss: 1.4011 | Train Phoneme Acc: nan |  validation loss: 1.6563  |  val. phoneme accuracy: 81.78
+Saving model as val loss improved.
+2024-10-21 16:08:02.501138 Starting new epoch: 32
+2024-10-21 16:09:01.199976 Finished: 32
+finished epoch 32 - training loss: 1.3727 | Train Phoneme Acc: nan |  validation loss: 1.6266  |  val. phoneme accuracy: 82.29
+Saving model as val loss improved.
+2024-10-21 16:09:05.582419 Starting new epoch: 33
+2024-10-21 16:10:03.760072 Finished: 33
+finished epoch 33 - training loss: 1.3632 | Train Phoneme Acc: nan |  validation loss: 1.6486  |  val. phoneme accuracy: 82.09
+2024-10-21 16:10:05.881752 Starting new epoch: 34
+2024-10-21 16:11:04.373982 Finished: 34
+finished epoch 34 - training loss: 1.3531 | Train Phoneme Acc: nan |  validation loss: 1.6461  |  val. phoneme accuracy: 82.14
+2024-10-21 16:11:06.550137 Starting new epoch: 35
+2024-10-21 16:12:05.225738 Finished: 35
+finished epoch 35 - training loss: 1.3425 | Train Phoneme Acc: nan |  validation loss: 1.5831  |  val. phoneme accuracy: 82.86
+Saving model as val loss improved.
+2024-10-21 16:12:09.639425 Starting new epoch: 36
+2024-10-21 16:13:08.380093 Finished: 36
+finished epoch 36 - training loss: 1.3379 | Train Phoneme Acc: nan |  validation loss: 1.5827  |  val. phoneme accuracy: 82.87
+Saving model as val loss improved.
+2024-10-21 16:13:12.815495 Starting new epoch: 37
+2024-10-21 16:14:11.310437 Finished: 37
+finished epoch 37 - training loss: 1.3261 | Train Phoneme Acc: nan |  validation loss: 1.5614  |  val. phoneme accuracy: 83.09
+Saving model as val loss improved.
+2024-10-21 16:14:15.709120 Starting new epoch: 38
+2024-10-21 16:15:13.490528 Finished: 38
+finished epoch 38 - training loss: 1.3199 | Train Phoneme Acc: nan |  validation loss: 1.6111  |  val. phoneme accuracy: 82.49
+2024-10-21 16:15:15.735785 Starting new epoch: 39
+2024-10-21 16:16:13.676510 Finished: 39
+finished epoch 39 - training loss: 1.3139 | Train Phoneme Acc: nan |  validation loss: 1.6251  |  val. phoneme accuracy: 82.53
+2024-10-21 16:16:15.856297 Starting new epoch: 40
+2024-10-21 16:17:13.570703 Finished: 40
+finished epoch 40 - training loss: 1.3073 | Train Phoneme Acc: nan |  validation loss: 1.5932  |  val. phoneme accuracy: 82.86
+2024-10-21 16:17:15.723120 Starting new epoch: 41
+2024-10-21 16:19:14.813103 Finished: 41
+finished epoch 41 - training loss: 1.2964 | Train Phoneme Acc: nan |  validation loss: 1.6097  |  val. phoneme accuracy: 82.52
+2024-10-21 16:19:16.935651 Starting new epoch: 42
+2024-10-21 16:21:30.985394 Finished: 42
+finished epoch 42 - training loss: 1.2963 | Train Phoneme Acc: nan |  validation loss: 1.6179  |  val. phoneme accuracy: 82.47
+2024-10-21 16:21:33.129177 Starting new epoch: 43
+2024-10-21 16:23:47.085940 Finished: 43
+finished epoch 43 - training loss: 1.2896 | Train Phoneme Acc: nan |  validation loss: 1.5690  |  val. phoneme accuracy: 83.31
+2024-10-21 16:23:49.152611 Starting new epoch: 44
+2024-10-21 16:25:58.839376 Finished: 44
+finished epoch 44 - training loss: 1.2482 | Train Phoneme Acc: nan |  validation loss: 1.6010  |  val. phoneme accuracy: 82.94
+2024-10-21 16:26:00.971191 Starting new epoch: 45
+2024-10-21 16:28:01.637430 Finished: 45
+finished epoch 45 - training loss: 1.2357 | Train Phoneme Acc: nan |  validation loss: 1.6103  |  val. phoneme accuracy: 82.90
+2024-10-21 16:28:03.776856 Starting new epoch: 46
+2024-10-21 16:30:11.920121 Finished: 46
+finished epoch 46 - training loss: 1.2299 | Train Phoneme Acc: nan |  validation loss: 1.5775  |  val. phoneme accuracy: 83.45
+2024-10-21 16:30:14.050760 Starting new epoch: 47
+2024-10-21 16:32:28.602624 Finished: 47
+finished epoch 47 - training loss: 1.2223 | Train Phoneme Acc: nan |  validation loss: 1.5592  |  val. phoneme accuracy: 83.66
+Saving model as val loss improved.
+2024-10-21 16:32:32.892763 Starting new epoch: 48
+2024-10-21 16:34:46.333479 Finished: 48
+finished epoch 48 - training loss: 1.2186 | Train Phoneme Acc: nan |  validation loss: 1.5586  |  val. phoneme accuracy: 83.67
+Saving model as val loss improved.
+2024-10-21 16:34:50.681338 Starting new epoch: 49
+2024-10-21 16:37:02.141795 Finished: 49
+finished epoch 49 - training loss: 1.2120 | Train Phoneme Acc: nan |  validation loss: 1.5789  |  val. phoneme accuracy: 83.51
+2024-10-21 16:37:04.297833 Starting new epoch: 50
+2024-10-21 16:39:04.727710 Finished: 50
+finished epoch 50 - training loss: 1.2079 | Train Phoneme Acc: nan |  validation loss: 1.5631  |  val. phoneme accuracy: 83.67
+2024-10-21 16:39:06.926641 Starting new epoch: 51
+2024-10-21 16:41:12.859252 Finished: 51
+finished epoch 51 - training loss: 1.2015 | Train Phoneme Acc: nan |  validation loss: 1.5725  |  val. phoneme accuracy: 83.61
+2024-10-21 16:41:15.060602 Starting new epoch: 52
+2024-10-21 16:43:28.329850 Finished: 52
+finished epoch 52 - training loss: 1.1998 | Train Phoneme Acc: nan |  validation loss: 1.5840  |  val. phoneme accuracy: 83.40
+2024-10-21 16:43:30.548532 Starting new epoch: 53
+2024-10-21 16:45:43.728602 Finished: 53
+finished epoch 53 - training loss: 1.1956 | Train Phoneme Acc: nan |  validation loss: 1.6086  |  val. phoneme accuracy: 83.01
+2024-10-21 16:45:45.927736 Starting new epoch: 54
+2024-10-21 16:47:59.726941 Finished: 54
+finished epoch 54 - training loss: 1.1931 | Train Phoneme Acc: nan |  validation loss: 1.5705  |  val. phoneme accuracy: 83.39
+2024-10-21 16:48:01.898036 Starting new epoch: 55
+2024-10-21 16:50:04.221851 Finished: 55
+finished epoch 55 - training loss: 1.1702 | Train Phoneme Acc: nan |  validation loss: 1.5466  |  val. phoneme accuracy: 83.93
+Saving model as val loss improved.
+2024-10-21 16:50:08.479130 Starting new epoch: 56
+2024-10-21 16:52:10.989610 Finished: 56
+finished epoch 56 - training loss: 1.1659 | Train Phoneme Acc: nan |  validation loss: 1.5353  |  val. phoneme accuracy: 84.03
+Saving model as val loss improved.
+2024-10-21 16:52:15.425477 Starting new epoch: 57
+2024-10-21 16:54:29.980643 Finished: 57
+finished epoch 57 - training loss: 1.1594 | Train Phoneme Acc: nan |  validation loss: 1.5507  |  val. phoneme accuracy: 83.86
+2024-10-21 16:54:32.174154 Starting new epoch: 58
+2024-10-21 16:56:46.000236 Finished: 58
+finished epoch 58 - training loss: 1.1582 | Train Phoneme Acc: nan |  validation loss: 1.5776  |  val. phoneme accuracy: 83.57
+2024-10-21 16:56:48.225392 Starting new epoch: 59
+2024-10-21 16:59:02.281145 Finished: 59
+finished epoch 59 - training loss: 1.1540 | Train Phoneme Acc: nan |  validation loss: 1.5763  |  val. phoneme accuracy: 83.60
+2024-10-21 16:59:04.443346 Starting new epoch: 60
+2024-10-21 17:01:08.572520 Finished: 60
+finished epoch 60 - training loss: 1.1552 | Train Phoneme Acc: nan |  validation loss: 1.5943  |  val. phoneme accuracy: 83.48
+2024-10-21 17:01:10.754401 Starting new epoch: 61
+2024-10-21 17:03:11.273970 Finished: 61
+finished epoch 61 - training loss: 1.1543 | Train Phoneme Acc: nan |  validation loss: 1.5488  |  val. phoneme accuracy: 83.89
+2024-10-21 17:03:13.424399 Starting new epoch: 62
+2024-10-21 17:05:26.789649 Finished: 62
+finished epoch 62 - training loss: 1.1442 | Train Phoneme Acc: nan |  validation loss: 1.5612  |  val. phoneme accuracy: 83.78
+2024-10-21 17:05:28.987822 Starting new epoch: 63
+2024-10-21 17:07:43.468324 Finished: 63
+finished epoch 63 - training loss: 1.1371 | Train Phoneme Acc: nan |  validation loss: 1.5543  |  val. phoneme accuracy: 83.81
+2024-10-21 17:07:45.674337 Starting new epoch: 64
+2024-10-21 17:10:00.511488 Finished: 64
+finished epoch 64 - training loss: 1.1336 | Train Phoneme Acc: nan |  validation loss: 1.5597  |  val. phoneme accuracy: 83.82
+2024-10-21 17:10:02.723915 Starting new epoch: 65
+2024-10-21 17:12:10.796751 Finished: 65
+finished epoch 65 - training loss: 1.1288 | Train Phoneme Acc: nan |  validation loss: 1.5364  |  val. phoneme accuracy: 84.20
+2024-10-21 17:12:12.976985 Starting new epoch: 66
+2024-10-21 17:14:14.164419 Finished: 66
+finished epoch 66 - training loss: 1.1311 | Train Phoneme Acc: nan |  validation loss: 1.5642  |  val. phoneme accuracy: 83.83
+2024-10-21 17:14:16.351949 Starting new epoch: 67
+2024-10-21 17:16:27.449482 Finished: 67
+finished epoch 67 - training loss: 1.1283 | Train Phoneme Acc: nan |  validation loss: 1.5654  |  val. phoneme accuracy: 83.79
+BREAKING TRAINING LOOP BECAUSE NO IMPROVEMENT AFTER 10 EPOCHS OF TRAINING
+Finished training the model
+Creating a '.done' file: /data/xiaochen99/ste-gan/exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/.done

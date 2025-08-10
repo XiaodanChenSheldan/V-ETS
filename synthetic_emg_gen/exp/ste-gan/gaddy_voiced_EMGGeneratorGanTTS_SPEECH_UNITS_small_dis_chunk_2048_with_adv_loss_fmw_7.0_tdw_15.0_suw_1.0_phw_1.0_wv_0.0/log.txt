@@ -1,0 +1,1910 @@
+Initializing Models
+Initializing small discriminators with 8 channels
+Initializing EMG Encoder Model with EMG encoder checkpoint: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/best_val_loss_model.pt
+Initializing EMG encoder with type EMGEncoderTransformer
+Initializing standard Transformer model
+Loading checkpoint path: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/best_val_loss_model.pt
+Initializing Losses
+Writing tensorboard logs to: exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0
+Loading Data -- this can take a while
+Data Set root: data/gaddy_complete
+Filtered 2056 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 2056 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set train: 5984
+Filtered 206 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 206 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set valid: 192
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set test: 98
+Found no overlap in uterance IDs between data set splits.
+Saving Session ID to Index to exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0/session_idx_to_id.json
+Saving Speaking Mode ID to Index to exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0/speaking_mode_idx_to_id.json
+Starting Training
+Compiling models...PyTorch version: 2.5.0+cu124
+Starting epoch 0
+Epoch -1 (0/187) | Steps 0 | ms/batch 3097.45 | Train Loss: 86.4260 | Ph. Acc. (Avg.) 20.83 | Ph. Acc. Avg. (No Sil) 0.00
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 28.7326s to run validation loop
+	 - Avg. Val. Speech Unit Error : 8.242817878723145
+	 - Avg. Val. Multi-TD Val. Error: 2.516975482304891
+	 - Avg. Val. Phoneme Error: 5.888605991999309
+	 - Avg. Val. Phoneme Accuracy: 45.15787760416667
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 0.0
+	 - Avg. Val. Waveform Error: 0.07789270207285881
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 8.2428...
+----------------------------------------------------------------------------------------------------
+Took 30.0431s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 18.6573s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch -1 (50/187) | Steps 50 | ms/batch 1730.32 | Train Loss: 74.7888 | Ph. Acc. (Avg.) 24.00 | Ph. Acc. Avg. (No Sil) 0.28
+Epoch -1 (100/187) | Steps 100 | ms/batch 757.21 | Train Loss: 73.8345 | Ph. Acc. (Avg.) 23.85 | Ph. Acc. Avg. (No Sil) 0.46
+Epoch -1 (150/187) | Steps 150 | ms/batch 756.06 | Train Loss: 56.3428 | Ph. Acc. (Avg.) 24.13 | Ph. Acc. Avg. (No Sil) 1.72
+Finished training epoch -1. Elapsed time: 342.2519209384918
+Starting epoch 1
+Epoch 0 (13/187) | Steps 200 | ms/batch 766.48 | Train Loss: 58.6789 | Ph. Acc. (Avg.) 27.97 | Ph. Acc. Avg. (No Sil) 7.77
+Epoch 0 (63/187) | Steps 250 | ms/batch 755.34 | Train Loss: 54.6999 | Ph. Acc. (Avg.) 31.93 | Ph. Acc. Avg. (No Sil) 12.13
+Epoch 0 (113/187) | Steps 300 | ms/batch 757.26 | Train Loss: 54.7947 | Ph. Acc. (Avg.) 35.27 | Ph. Acc. Avg. (No Sil) 16.45
+Epoch 0 (163/187) | Steps 350 | ms/batch 755.76 | Train Loss: 53.0392 | Ph. Acc. (Avg.) 38.81 | Ph. Acc. Avg. (No Sil) 21.25
+Finished training epoch 0. Elapsed time: 141.91597199440002
+Finished training epoch 0. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.9825s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 2
+Epoch 1 (26/187) | Steps 400 | ms/batch 866.23 | Train Loss: 49.1616 | Ph. Acc. (Avg.) 58.67 | Ph. Acc. Avg. (No Sil) 47.20
+Epoch 1 (76/187) | Steps 450 | ms/batch 756.74 | Train Loss: 45.6339 | Ph. Acc. (Avg.) 62.75 | Ph. Acc. Avg. (No Sil) 52.65
+Epoch 1 (126/187) | Steps 500 | ms/batch 755.91 | Train Loss: 46.5470 | Ph. Acc. (Avg.) 65.31 | Ph. Acc. Avg. (No Sil) 56.08
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9429s to run validation loop
+	 - Avg. Val. Speech Unit Error : 2.623579462369283
+	 - Avg. Val. Multi-TD Val. Error: 1.6077946623166401
+	 - Avg. Val. Phoneme Error: 0.7658161520957947
+	 - Avg. Val. Phoneme Accuracy: 80.02522786458334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 65.81095117970025
+	 - Avg. Val. Waveform Error: 0.11623554925123851
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 2.6236...
+----------------------------------------------------------------------------------------------------
+Took 2.5137s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 1 (176/187) | Steps 550 | ms/batch 780.19 | Train Loss: 47.6130 | Ph. Acc. (Avg.) 67.44 | Ph. Acc. Avg. (No Sil) 58.78
+Finished training epoch 1. Elapsed time: 142.66187286376953
+Starting epoch 3
+Epoch 2 (39/187) | Steps 600 | ms/batch 717.88 | Train Loss: 45.5812 | Ph. Acc. (Avg.) 75.18 | Ph. Acc. Avg. (No Sil) 68.77
+Epoch 2 (89/187) | Steps 650 | ms/batch 708.40 | Train Loss: 45.6293 | Ph. Acc. (Avg.) 75.39 | Ph. Acc. Avg. (No Sil) 69.12
+Epoch 2 (139/187) | Steps 700 | ms/batch 708.93 | Train Loss: 48.5906 | Ph. Acc. (Avg.) 75.67 | Ph. Acc. Avg. (No Sil) 69.51
+Finished training epoch 2. Elapsed time: 133.00854659080505
+Starting epoch 4
+Epoch 3 (2/187) | Steps 750 | ms/batch 718.66 | Train Loss: 49.1123 | Ph. Acc. (Avg.) 75.68 | Ph. Acc. Avg. (No Sil) 71.59
+Epoch 3 (52/187) | Steps 800 | ms/batch 708.54 | Train Loss: 48.9953 | Ph. Acc. (Avg.) 77.27 | Ph. Acc. Avg. (No Sil) 71.64
+Epoch 3 (102/187) | Steps 850 | ms/batch 708.02 | Train Loss: 46.0496 | Ph. Acc. (Avg.) 77.88 | Ph. Acc. Avg. (No Sil) 72.47
+Epoch 3 (152/187) | Steps 900 | ms/batch 1168.44 | Train Loss: 45.1735 | Ph. Acc. (Avg.) 78.46 | Ph. Acc. Avg. (No Sil) 73.10
+Finished training epoch 3. Elapsed time: 157.5307137966156
+Starting epoch 5
+Epoch 4 (15/187) | Steps 950 | ms/batch 764.67 | Train Loss: 42.5319 | Ph. Acc. (Avg.) 80.25 | Ph. Acc. Avg. (No Sil) 75.69
+Epoch 4 (65/187) | Steps 1000 | ms/batch 755.59 | Train Loss: 44.2312 | Ph. Acc. (Avg.) 80.70 | Ph. Acc. Avg. (No Sil) 75.97
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9138s to run validation loop
+	 - Avg. Val. Speech Unit Error : 2.086874862511953
+	 - Avg. Val. Multi-TD Val. Error: 1.5222750902175903
+	 - Avg. Val. Phoneme Error: 0.5591450532277426
+	 - Avg. Val. Phoneme Accuracy: 85.39225260416666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 75.4785576495029
+	 - Avg. Val. Waveform Error: 0.1126045286655426
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 2.0869...
+----------------------------------------------------------------------------------------------------
+Took 2.4691s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.5927s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 4 (115/187) | Steps 1050 | ms/batch 877.35 | Train Loss: 44.5394 | Ph. Acc. (Avg.) 80.62 | Ph. Acc. Avg. (No Sil) 76.00
+Epoch 4 (165/187) | Steps 1100 | ms/batch 756.07 | Train Loss: 48.7400 | Ph. Acc. (Avg.) 80.78 | Ph. Acc. Avg. (No Sil) 76.19
+Finished training epoch 4. Elapsed time: 147.89357924461365
+Starting epoch 6
+Epoch 5 (28/187) | Steps 1150 | ms/batch 766.51 | Train Loss: 43.6017 | Ph. Acc. (Avg.) 81.17 | Ph. Acc. Avg. (No Sil) 76.86
+Epoch 5 (78/187) | Steps 1200 | ms/batch 756.18 | Train Loss: 43.0606 | Ph. Acc. (Avg.) 81.38 | Ph. Acc. Avg. (No Sil) 77.11
+Epoch 5 (128/187) | Steps 1250 | ms/batch 757.10 | Train Loss: 44.7887 | Ph. Acc. (Avg.) 81.72 | Ph. Acc. Avg. (No Sil) 77.52
+Epoch 5 (178/187) | Steps 1300 | ms/batch 757.28 | Train Loss: 44.4709 | Ph. Acc. (Avg.) 81.99 | Ph. Acc. Avg. (No Sil) 77.81
+Finished training epoch 5. Elapsed time: 142.0251693725586
+Finished training epoch 5. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.5955s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 7
+Epoch 6 (41/187) | Steps 1350 | ms/batch 858.54 | Train Loss: 46.8888 | Ph. Acc. (Avg.) 83.11 | Ph. Acc. Avg. (No Sil) 79.08
+Epoch 6 (91/187) | Steps 1400 | ms/batch 757.20 | Train Loss: 45.8064 | Ph. Acc. (Avg.) 82.78 | Ph. Acc. Avg. (No Sil) 78.74
+Epoch 6 (141/187) | Steps 1450 | ms/batch 755.55 | Train Loss: 43.4075 | Ph. Acc. (Avg.) 82.62 | Ph. Acc. Avg. (No Sil) 78.52
+Finished training epoch 6. Elapsed time: 141.94231152534485
+Starting epoch 8
+Epoch 7 (4/187) | Steps 1500 | ms/batch 765.61 | Train Loss: 41.9216 | Ph. Acc. (Avg.) 83.83 | Ph. Acc. Avg. (No Sil) 80.13
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9760s to run validation loop
+	 - Avg. Val. Speech Unit Error : 2.0514771540959678
+	 - Avg. Val. Multi-TD Val. Error: 1.4916392763455708
+	 - Avg. Val. Phoneme Error: 0.4841209004322688
+	 - Avg. Val. Phoneme Accuracy: 86.86930338541666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 78.01602611663452
+	 - Avg. Val. Waveform Error: 0.1051575777431329
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 2.0515...
+----------------------------------------------------------------------------------------------------
+Took 2.5272s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 7 (54/187) | Steps 1550 | ms/batch 781.80 | Train Loss: 41.6791 | Ph. Acc. (Avg.) 83.30 | Ph. Acc. Avg. (No Sil) 79.45
+Epoch 7 (104/187) | Steps 1600 | ms/batch 709.32 | Train Loss: 42.8927 | Ph. Acc. (Avg.) 83.16 | Ph. Acc. Avg. (No Sil) 79.30
+Epoch 7 (154/187) | Steps 1650 | ms/batch 709.79 | Train Loss: 42.3898 | Ph. Acc. (Avg.) 83.20 | Ph. Acc. Avg. (No Sil) 79.31
+Finished training epoch 7. Elapsed time: 137.00151371955872
+Starting epoch 9
+Epoch 8 (17/187) | Steps 1700 | ms/batch 718.96 | Train Loss: 43.1577 | Ph. Acc. (Avg.) 83.50 | Ph. Acc. Avg. (No Sil) 80.04
+Epoch 8 (67/187) | Steps 1750 | ms/batch 708.41 | Train Loss: 41.9543 | Ph. Acc. (Avg.) 83.84 | Ph. Acc. Avg. (No Sil) 80.24
+Epoch 8 (117/187) | Steps 1800 | ms/batch 708.57 | Train Loss: 42.0312 | Ph. Acc. (Avg.) 83.76 | Ph. Acc. Avg. (No Sil) 80.07
+Epoch 8 (167/187) | Steps 1850 | ms/batch 708.08 | Train Loss: 44.5174 | Ph. Acc. (Avg.) 83.72 | Ph. Acc. Avg. (No Sil) 80.04
+Finished training epoch 8. Elapsed time: 133.55334758758545
+Starting epoch 10
+Epoch 9 (30/187) | Steps 1900 | ms/batch 760.14 | Train Loss: 45.7138 | Ph. Acc. (Avg.) 84.12 | Ph. Acc. Avg. (No Sil) 80.44
+Epoch 9 (80/187) | Steps 1950 | ms/batch 755.76 | Train Loss: 41.2994 | Ph. Acc. (Avg.) 84.19 | Ph. Acc. Avg. (No Sil) 80.53
+Epoch 9 (130/187) | Steps 2000 | ms/batch 755.96 | Train Loss: 44.2835 | Ph. Acc. (Avg.) 84.14 | Ph. Acc. Avg. (No Sil) 80.47
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9332s to run validation loop
+	 - Avg. Val. Speech Unit Error : 2.0294925769170127
+	 - Avg. Val. Multi-TD Val. Error: 1.4802931745847066
+	 - Avg. Val. Phoneme Error: 0.4728555828332901
+	 - Avg. Val. Phoneme Accuracy: 87.43896484375
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 79.03991690161745
+	 - Avg. Val. Waveform Error: 0.10391171524922053
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 2.0295...
+----------------------------------------------------------------------------------------------------
+Took 2.4800s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.8704s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 9 (180/187) | Steps 2050 | ms/batch 902.88 | Train Loss: 41.6441 | Ph. Acc. (Avg.) 84.16 | Ph. Acc. Avg. (No Sil) 80.52
+Finished training epoch 9. Elapsed time: 149.2173788547516
+Starting epoch 11
+Epoch 10 (43/187) | Steps 2100 | ms/batch 764.42 | Train Loss: 41.5187 | Ph. Acc. (Avg.) 84.33 | Ph. Acc. Avg. (No Sil) 80.74
+Initializing Models
+Initializing small discriminators with 8 channels
+Initializing EMG Encoder Model with EMG encoder checkpoint: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/best_val_loss_model.pt
+Initializing EMG encoder with type EMGEncoderTransformer
+Initializing standard Transformer model
+Loading checkpoint path: exp/emg_encoder/EMGEncoderTransformer_voiced_only__seq_len__200__data_gaddy_complete/best_val_loss_model.pt
+Initializing Losses
+Writing tensorboard logs to: exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0
+Loading Data -- this can take a while
+Data Set root: data/gaddy_complete
+Filtered 2056 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 2056 EMG paths for partition train due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set train: 5984
+Filtered 206 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 206 EMG paths for partition valid due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set valid: 192
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Filtered 98 EMG paths for partition test due to max. EMG length and/or speaking mode (only_include_voiced=True).
+Total number of EMG paths in data set test: 98
+Found no overlap in uterance IDs between data set splits.
+Saving Session ID to Index to exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0/session_idx_to_id.json
+Saving Speaking Mode ID to Index to exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0/speaking_mode_idx_to_id.json
+Starting Training
+Compiling models...PyTorch version: 2.5.0+cu124
+Starting epoch 0
+Epoch -1 (0/187) | Steps 0 | ms/batch 1143.33 | Train Loss: 88.2744 | Ph. Acc. (Avg.) 20.83 | Ph. Acc. Avg. (No Sil) 0.00
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 9.8855s to run validation loop
+	 - Avg. Val. Speech Unit Error : 8.280152002970377
+	 - Avg. Val. Multi-TD Val. Error: 2.5491783618927
+	 - Avg. Val. Phoneme Error: 6.935574213663737
+	 - Avg. Val. Phoneme Accuracy: 45.15787760416667
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 0.0
+	 - Avg. Val. Waveform Error: 0.07649540156126022
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 8.2802...
+----------------------------------------------------------------------------------------------------
+Took 11.4313s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 16.2094s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch -1 (50/187) | Steps 50 | ms/batch 1242.02 | Train Loss: 77.9002 | Ph. Acc. (Avg.) 23.94 | Ph. Acc. Avg. (No Sil) 0.00
+Epoch -1 (100/187) | Steps 100 | ms/batch 688.87 | Train Loss: 76.1830 | Ph. Acc. (Avg.) 24.06 | Ph. Acc. Avg. (No Sil) 0.10
+Epoch -1 (150/187) | Steps 150 | ms/batch 688.86 | Train Loss: 68.8875 | Ph. Acc. (Avg.) 24.16 | Ph. Acc. Avg. (No Sil) 0.74
+Finished training epoch -1. Elapsed time: 212.35779786109924
+Starting epoch 1
+Epoch 0 (13/187) | Steps 200 | ms/batch 699.90 | Train Loss: 62.3216 | Ph. Acc. (Avg.) 26.41 | Ph. Acc. Avg. (No Sil) 6.21
+Epoch 0 (63/187) | Steps 250 | ms/batch 691.69 | Train Loss: 57.1050 | Ph. Acc. (Avg.) 27.82 | Ph. Acc. Avg. (No Sil) 7.07
+Epoch 0 (113/187) | Steps 300 | ms/batch 732.51 | Train Loss: 55.0144 | Ph. Acc. (Avg.) 30.14 | Ph. Acc. Avg. (No Sil) 10.10
+Epoch 0 (163/187) | Steps 350 | ms/batch 734.28 | Train Loss: 54.6329 | Ph. Acc. (Avg.) 32.77 | Ph. Acc. Avg. (No Sil) 13.66
+Finished training epoch 0. Elapsed time: 134.97164630889893
+Finished training epoch 0. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.7921s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 2
+Epoch 1 (26/187) | Steps 400 | ms/batch 840.84 | Train Loss: 50.7757 | Ph. Acc. (Avg.) 47.47 | Ph. Acc. Avg. (No Sil) 32.78
+Epoch 1 (76/187) | Steps 450 | ms/batch 733.83 | Train Loss: 46.8333 | Ph. Acc. (Avg.) 53.63 | Ph. Acc. Avg. (No Sil) 41.02
+Epoch 1 (126/187) | Steps 500 | ms/batch 734.15 | Train Loss: 48.1771 | Ph. Acc. (Avg.) 57.72 | Ph. Acc. Avg. (No Sil) 46.39
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9134s to run validation loop
+	 - Avg. Val. Speech Unit Error : 3.0313820044199624
+	 - Avg. Val. Multi-TD Val. Error: 1.6123286883036296
+	 - Avg. Val. Phoneme Error: 1.0092707673708599
+	 - Avg. Val. Phoneme Accuracy: 74.89827473958334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 56.49206113666716
+	 - Avg. Val. Waveform Error: 0.11374006047844887
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 3.0314...
+----------------------------------------------------------------------------------------------------
+Took 2.4795s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 1 (176/187) | Steps 550 | ms/batch 784.49 | Train Loss: 49.2244 | Ph. Acc. (Avg.) 61.28 | Ph. Acc. Avg. (No Sil) 50.87
+Finished training epoch 1. Elapsed time: 140.24450087547302
+Starting epoch 3
+Epoch 2 (39/187) | Steps 600 | ms/batch 743.60 | Train Loss: 45.9364 | Ph. Acc. (Avg.) 72.47 | Ph. Acc. Avg. (No Sil) 65.31
+Epoch 2 (89/187) | Steps 650 | ms/batch 734.42 | Train Loss: 46.8113 | Ph. Acc. (Avg.) 73.77 | Ph. Acc. Avg. (No Sil) 67.05
+Epoch 2 (139/187) | Steps 700 | ms/batch 735.49 | Train Loss: 48.2702 | Ph. Acc. (Avg.) 74.83 | Ph. Acc. Avg. (No Sil) 68.45
+Finished training epoch 2. Elapsed time: 137.89831733703613
+Starting epoch 4
+Epoch 3 (2/187) | Steps 750 | ms/batch 744.35 | Train Loss: 48.6252 | Ph. Acc. (Avg.) 75.55 | Ph. Acc. Avg. (No Sil) 71.72
+Epoch 3 (52/187) | Steps 800 | ms/batch 735.21 | Train Loss: 48.6935 | Ph. Acc. (Avg.) 77.93 | Ph. Acc. Avg. (No Sil) 72.61
+Epoch 3 (102/187) | Steps 850 | ms/batch 734.01 | Train Loss: 46.1307 | Ph. Acc. (Avg.) 78.31 | Ph. Acc. Avg. (No Sil) 73.13
+Epoch 3 (152/187) | Steps 900 | ms/batch 735.42 | Train Loss: 45.1257 | Ph. Acc. (Avg.) 78.77 | Ph. Acc. Avg. (No Sil) 73.61
+Finished training epoch 3. Elapsed time: 137.08478665351868
+Starting epoch 5
+Epoch 4 (15/187) | Steps 950 | ms/batch 713.96 | Train Loss: 42.8084 | Ph. Acc. (Avg.) 79.68 | Ph. Acc. Avg. (No Sil) 75.16
+Epoch 4 (65/187) | Steps 1000 | ms/batch 688.71 | Train Loss: 44.0739 | Ph. Acc. (Avg.) 80.16 | Ph. Acc. Avg. (No Sil) 75.45
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8937s to run validation loop
+	 - Avg. Val. Speech Unit Error : 2.137812296549479
+	 - Avg. Val. Multi-TD Val. Error: 1.5138921936353047
+	 - Avg. Val. Phoneme Error: 0.5459511478741964
+	 - Avg. Val. Phoneme Accuracy: 85.52652994791666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 75.83469357471435
+	 - Avg. Val. Waveform Error: 0.10937999809781711
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 2.1378...
+----------------------------------------------------------------------------------------------------
+Took 2.4640s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.8768s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 4 (115/187) | Steps 1050 | ms/batch 816.12 | Train Loss: 45.7356 | Ph. Acc. (Avg.) 80.28 | Ph. Acc. Avg. (No Sil) 75.64
+Epoch 4 (165/187) | Steps 1100 | ms/batch 701.02 | Train Loss: 49.0857 | Ph. Acc. (Avg.) 80.66 | Ph. Acc. Avg. (No Sil) 76.08
+Finished training epoch 4. Elapsed time: 136.37628746032715
+Starting epoch 6
+Epoch 5 (28/187) | Steps 1150 | ms/batch 701.45 | Train Loss: 43.7817 | Ph. Acc. (Avg.) 80.87 | Ph. Acc. Avg. (No Sil) 76.46
+Epoch 5 (78/187) | Steps 1200 | ms/batch 689.14 | Train Loss: 43.0768 | Ph. Acc. (Avg.) 81.31 | Ph. Acc. Avg. (No Sil) 77.01
+Epoch 5 (128/187) | Steps 1250 | ms/batch 702.70 | Train Loss: 45.9218 | Ph. Acc. (Avg.) 81.64 | Ph. Acc. Avg. (No Sil) 77.43
+Epoch 5 (178/187) | Steps 1300 | ms/batch 735.21 | Train Loss: 44.9228 | Ph. Acc. (Avg.) 81.87 | Ph. Acc. Avg. (No Sil) 77.68
+Finished training epoch 5. Elapsed time: 132.76369404792786
+Finished training epoch 5. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.5783s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 7
+Epoch 6 (41/187) | Steps 1350 | ms/batch 835.63 | Train Loss: 46.9222 | Ph. Acc. (Avg.) 83.14 | Ph. Acc. Avg. (No Sil) 79.04
+Epoch 6 (91/187) | Steps 1400 | ms/batch 732.77 | Train Loss: 45.8100 | Ph. Acc. (Avg.) 82.72 | Ph. Acc. Avg. (No Sil) 78.70
+Epoch 6 (141/187) | Steps 1450 | ms/batch 734.42 | Train Loss: 43.2910 | Ph. Acc. (Avg.) 82.52 | Ph. Acc. Avg. (No Sil) 78.41
+Finished training epoch 6. Elapsed time: 137.699383020401
+Starting epoch 8
+Epoch 7 (4/187) | Steps 1500 | ms/batch 743.43 | Train Loss: 42.1645 | Ph. Acc. (Avg.) 82.86 | Ph. Acc. Avg. (No Sil) 79.07
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9430s to run validation loop
+	 - Avg. Val. Speech Unit Error : 2.03236057360967
+	 - Avg. Val. Multi-TD Val. Error: 1.4962674578030903
+	 - Avg. Val. Phoneme Error: 0.49621210992336273
+	 - Avg. Val. Phoneme Accuracy: 86.34033203125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 77.10342780828016
+	 - Avg. Val. Waveform Error: 0.1081121563911438
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 2.0324...
+----------------------------------------------------------------------------------------------------
+Took 2.5211s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 7 (54/187) | Steps 1550 | ms/batch 785.23 | Train Loss: 41.9244 | Ph. Acc. (Avg.) 83.00 | Ph. Acc. Avg. (No Sil) 79.10
+Epoch 7 (104/187) | Steps 1600 | ms/batch 733.06 | Train Loss: 42.4516 | Ph. Acc. (Avg.) 83.03 | Ph. Acc. Avg. (No Sil) 79.14
+Epoch 7 (154/187) | Steps 1650 | ms/batch 732.93 | Train Loss: 42.4446 | Ph. Acc. (Avg.) 83.07 | Ph. Acc. Avg. (No Sil) 79.14
+Finished training epoch 7. Elapsed time: 140.22997069358826
+Starting epoch 9
+Epoch 8 (17/187) | Steps 1700 | ms/batch 746.22 | Train Loss: 43.6965 | Ph. Acc. (Avg.) 83.01 | Ph. Acc. Avg. (No Sil) 79.31
+Epoch 8 (67/187) | Steps 1750 | ms/batch 735.54 | Train Loss: 42.3171 | Ph. Acc. (Avg.) 83.19 | Ph. Acc. Avg. (No Sil) 79.40
+Epoch 8 (117/187) | Steps 1800 | ms/batch 736.99 | Train Loss: 41.9858 | Ph. Acc. (Avg.) 83.43 | Ph. Acc. Avg. (No Sil) 79.57
+Epoch 8 (167/187) | Steps 1850 | ms/batch 735.77 | Train Loss: 44.8309 | Ph. Acc. (Avg.) 83.49 | Ph. Acc. Avg. (No Sil) 79.69
+Finished training epoch 8. Elapsed time: 138.1971309185028
+Starting epoch 10
+Epoch 9 (30/187) | Steps 1900 | ms/batch 744.72 | Train Loss: 45.5343 | Ph. Acc. (Avg.) 84.22 | Ph. Acc. Avg. (No Sil) 80.54
+Epoch 9 (80/187) | Steps 1950 | ms/batch 703.07 | Train Loss: 42.3915 | Ph. Acc. (Avg.) 84.16 | Ph. Acc. Avg. (No Sil) 80.47
+Epoch 9 (130/187) | Steps 2000 | ms/batch 689.06 | Train Loss: 43.7405 | Ph. Acc. (Avg.) 84.24 | Ph. Acc. Avg. (No Sil) 80.60
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8653s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.9780287543932598
+	 - Avg. Val. Multi-TD Val. Error: 1.4844795664151509
+	 - Avg. Val. Phoneme Error: 0.4721545825401942
+	 - Avg. Val. Phoneme Accuracy: 87.34537760416666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 78.88410743433744
+	 - Avg. Val. Waveform Error: 0.10573558260997136
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.9780...
+----------------------------------------------------------------------------------------------------
+Took 2.4593s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.0174s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 9 (180/187) | Steps 2050 | ms/batch 819.92 | Train Loss: 41.3491 | Ph. Acc. (Avg.) 84.13 | Ph. Acc. Avg. (No Sil) 80.45
+Finished training epoch 9. Elapsed time: 137.99522638320923
+Starting epoch 11
+Epoch 10 (43/187) | Steps 2100 | ms/batch 699.52 | Train Loss: 41.5446 | Ph. Acc. (Avg.) 84.34 | Ph. Acc. Avg. (No Sil) 80.68
+Epoch 10 (93/187) | Steps 2150 | ms/batch 689.42 | Train Loss: 42.2944 | Ph. Acc. (Avg.) 84.17 | Ph. Acc. Avg. (No Sil) 80.54
+Epoch 10 (143/187) | Steps 2200 | ms/batch 689.02 | Train Loss: 42.6952 | Ph. Acc. (Avg.) 84.21 | Ph. Acc. Avg. (No Sil) 80.62
+Finished training epoch 10. Elapsed time: 129.6938648223877
+Finished training epoch 10. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.5812s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 12
+Epoch 11 (6/187) | Steps 2250 | ms/batch 801.98 | Train Loss: 47.5385 | Ph. Acc. (Avg.) 83.82 | Ph. Acc. Avg. (No Sil) 80.21
+Epoch 11 (56/187) | Steps 2300 | ms/batch 735.89 | Train Loss: 44.4128 | Ph. Acc. (Avg.) 84.19 | Ph. Acc. Avg. (No Sil) 80.47
+Epoch 11 (106/187) | Steps 2350 | ms/batch 728.20 | Train Loss: 42.8657 | Ph. Acc. (Avg.) 84.27 | Ph. Acc. Avg. (No Sil) 80.71
+Epoch 11 (156/187) | Steps 2400 | ms/batch 735.00 | Train Loss: 41.4888 | Ph. Acc. (Avg.) 84.33 | Ph. Acc. Avg. (No Sil) 80.77
+Finished training epoch 11. Elapsed time: 137.6107726097107
+Starting epoch 13
+Epoch 12 (19/187) | Steps 2450 | ms/batch 745.83 | Train Loss: 40.1514 | Ph. Acc. (Avg.) 84.49 | Ph. Acc. Avg. (No Sil) 81.17
+Epoch 12 (69/187) | Steps 2500 | ms/batch 735.87 | Train Loss: 42.5414 | Ph. Acc. (Avg.) 84.79 | Ph. Acc. Avg. (No Sil) 81.44
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9491s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8964213530222576
+	 - Avg. Val. Multi-TD Val. Error: 1.4399788578351338
+	 - Avg. Val. Phoneme Error: 0.43231360117594403
+	 - Avg. Val. Phoneme Accuracy: 88.19580078125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 80.44962160557945
+	 - Avg. Val. Waveform Error: 0.10848159715533257
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8964...
+----------------------------------------------------------------------------------------------------
+Took 2.4734s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 12 (119/187) | Steps 2550 | ms/batch 785.67 | Train Loss: 45.6144 | Ph. Acc. (Avg.) 84.89 | Ph. Acc. Avg. (No Sil) 81.51
+Epoch 12 (169/187) | Steps 2600 | ms/batch 735.93 | Train Loss: 42.3309 | Ph. Acc. (Avg.) 84.84 | Ph. Acc. Avg. (No Sil) 81.49
+Finished training epoch 12. Elapsed time: 140.61158800125122
+Starting epoch 14
+Epoch 13 (32/187) | Steps 2650 | ms/batch 745.79 | Train Loss: 41.5308 | Ph. Acc. (Avg.) 84.61 | Ph. Acc. Avg. (No Sil) 81.22
+Epoch 13 (82/187) | Steps 2700 | ms/batch 735.80 | Train Loss: 41.2322 | Ph. Acc. (Avg.) 84.92 | Ph. Acc. Avg. (No Sil) 81.49
+Epoch 13 (132/187) | Steps 2750 | ms/batch 734.46 | Train Loss: 41.7697 | Ph. Acc. (Avg.) 85.08 | Ph. Acc. Avg. (No Sil) 81.70
+Epoch 13 (182/187) | Steps 2800 | ms/batch 735.69 | Train Loss: 41.8115 | Ph. Acc. (Avg.) 85.01 | Ph. Acc. Avg. (No Sil) 81.62
+Finished training epoch 13. Elapsed time: 138.0162935256958
+Starting epoch 15
+Epoch 14 (45/187) | Steps 2850 | ms/batch 745.82 | Train Loss: 44.4156 | Ph. Acc. (Avg.) 85.02 | Ph. Acc. Avg. (No Sil) 81.76
+Epoch 14 (95/187) | Steps 2900 | ms/batch 734.94 | Train Loss: 43.4804 | Ph. Acc. (Avg.) 84.98 | Ph. Acc. Avg. (No Sil) 81.72
+Epoch 14 (145/187) | Steps 2950 | ms/batch 702.93 | Train Loss: 43.2104 | Ph. Acc. (Avg.) 85.16 | Ph. Acc. Avg. (No Sil) 81.85
+Finished training epoch 14. Elapsed time: 134.4698348045349
+Starting epoch 16
+Epoch 15 (8/187) | Steps 3000 | ms/batch 697.90 | Train Loss: 42.4011 | Ph. Acc. (Avg.) 86.14 | Ph. Acc. Avg. (No Sil) 82.85
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8899s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.926554560661316
+	 - Avg. Val. Multi-TD Val. Error: 1.4363553722699482
+	 - Avg. Val. Phoneme Error: 0.4196212689081828
+	 - Avg. Val. Phoneme Accuracy: 88.39925130208334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 80.9170500074195
+	 - Avg. Val. Waveform Error: 0.10838742057482402
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.8911s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.3540s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 15 (58/187) | Steps 3050 | ms/batch 794.43 | Train Loss: 42.9719 | Ph. Acc. (Avg.) 85.35 | Ph. Acc. Avg. (No Sil) 82.17
+Epoch 15 (108/187) | Steps 3100 | ms/batch 689.55 | Train Loss: 43.4294 | Ph. Acc. (Avg.) 85.33 | Ph. Acc. Avg. (No Sil) 82.10
+Epoch 15 (158/187) | Steps 3150 | ms/batch 688.63 | Train Loss: 41.2558 | Ph. Acc. (Avg.) 85.33 | Ph. Acc. Avg. (No Sil) 82.03
+Finished training epoch 15. Elapsed time: 134.570739030838
+Finished training epoch 15. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4733s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 17
+Epoch 16 (21/187) | Steps 3200 | ms/batch 787.63 | Train Loss: 45.7456 | Ph. Acc. (Avg.) 86.00 | Ph. Acc. Avg. (No Sil) 82.77
+Epoch 16 (71/187) | Steps 3250 | ms/batch 710.35 | Train Loss: 43.8412 | Ph. Acc. (Avg.) 85.96 | Ph. Acc. Avg. (No Sil) 82.72
+Epoch 16 (121/187) | Steps 3300 | ms/batch 735.34 | Train Loss: 46.2773 | Ph. Acc. (Avg.) 85.70 | Ph. Acc. Avg. (No Sil) 82.45
+Epoch 16 (171/187) | Steps 3350 | ms/batch 737.35 | Train Loss: 44.8767 | Ph. Acc. (Avg.) 85.70 | Ph. Acc. Avg. (No Sil) 82.47
+Finished training epoch 16. Elapsed time: 135.84551358222961
+Starting epoch 18
+Epoch 17 (34/187) | Steps 3400 | ms/batch 745.77 | Train Loss: 41.6219 | Ph. Acc. (Avg.) 85.53 | Ph. Acc. Avg. (No Sil) 82.57
+Epoch 17 (84/187) | Steps 3450 | ms/batch 735.53 | Train Loss: 39.7197 | Ph. Acc. (Avg.) 85.40 | Ph. Acc. Avg. (No Sil) 82.34
+Epoch 17 (134/187) | Steps 3500 | ms/batch 735.85 | Train Loss: 40.6307 | Ph. Acc. (Avg.) 85.58 | Ph. Acc. Avg. (No Sil) 82.51
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9706s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.889140745004018
+	 - Avg. Val. Multi-TD Val. Error: 1.4229902823766072
+	 - Avg. Val. Phoneme Error: 0.4311675826708476
+	 - Avg. Val. Phoneme Accuracy: 88.15511067708334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 80.67220655883662
+	 - Avg. Val. Waveform Error: 0.11300576602419217
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8891...
+----------------------------------------------------------------------------------------------------
+Took 2.5307s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 17 (184/187) | Steps 3550 | ms/batch 786.70 | Train Loss: 42.2186 | Ph. Acc. (Avg.) 85.65 | Ph. Acc. Avg. (No Sil) 82.53
+Finished training epoch 17. Elapsed time: 140.60341501235962
+Starting epoch 19
+Epoch 18 (47/187) | Steps 3600 | ms/batch 744.47 | Train Loss: 44.2134 | Ph. Acc. (Avg.) 85.84 | Ph. Acc. Avg. (No Sil) 82.51
+Epoch 18 (97/187) | Steps 3650 | ms/batch 735.20 | Train Loss: 43.9490 | Ph. Acc. (Avg.) 85.77 | Ph. Acc. Avg. (No Sil) 82.56
+Epoch 18 (147/187) | Steps 3700 | ms/batch 736.45 | Train Loss: 44.3178 | Ph. Acc. (Avg.) 85.70 | Ph. Acc. Avg. (No Sil) 82.50
+Finished training epoch 18. Elapsed time: 138.05471444129944
+Starting epoch 20
+Epoch 19 (10/187) | Steps 3750 | ms/batch 745.53 | Train Loss: 43.5222 | Ph. Acc. (Avg.) 85.82 | Ph. Acc. Avg. (No Sil) 82.54
+Epoch 19 (60/187) | Steps 3800 | ms/batch 735.28 | Train Loss: 41.7153 | Ph. Acc. (Avg.) 85.97 | Ph. Acc. Avg. (No Sil) 82.85
+Epoch 19 (110/187) | Steps 3850 | ms/batch 736.14 | Train Loss: 43.6556 | Ph. Acc. (Avg.) 85.87 | Ph. Acc. Avg. (No Sil) 82.77
+Epoch 19 (160/187) | Steps 3900 | ms/batch 737.65 | Train Loss: 40.8814 | Ph. Acc. (Avg.) 85.95 | Ph. Acc. Avg. (No Sil) 82.87
+Finished training epoch 19. Elapsed time: 137.74065613746643
+Starting epoch 21
+Epoch 20 (23/187) | Steps 3950 | ms/batch 714.81 | Train Loss: 40.1753 | Ph. Acc. (Avg.) 86.55 | Ph. Acc. Avg. (No Sil) 83.43
+Epoch 20 (73/187) | Steps 4000 | ms/batch 689.08 | Train Loss: 40.9013 | Ph. Acc. (Avg.) 86.44 | Ph. Acc. Avg. (No Sil) 83.38
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8949s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8643290996551514
+	 - Avg. Val. Multi-TD Val. Error: 1.411230981349945
+	 - Avg. Val. Phoneme Error: 0.42432819306850433
+	 - Avg. Val. Phoneme Accuracy: 88.68001302083334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 81.35480041549191
+	 - Avg. Val. Waveform Error: 0.1088055968284607
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8643...
+----------------------------------------------------------------------------------------------------
+Took 2.4428s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.9876s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 20 (123/187) | Steps 4050 | ms/batch 818.80 | Train Loss: 43.2845 | Ph. Acc. (Avg.) 86.28 | Ph. Acc. Avg. (No Sil) 83.19
+Epoch 20 (173/187) | Steps 4100 | ms/batch 689.88 | Train Loss: 40.7684 | Ph. Acc. (Avg.) 86.14 | Ph. Acc. Avg. (No Sil) 83.07
+Finished training epoch 20. Elapsed time: 135.8672115802765
+Finished training epoch 20. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4666s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 22
+Epoch 21 (36/187) | Steps 4150 | ms/batch 787.23 | Train Loss: 38.5373 | Ph. Acc. (Avg.) 86.06 | Ph. Acc. Avg. (No Sil) 82.85
+Epoch 21 (86/187) | Steps 4200 | ms/batch 688.81 | Train Loss: 40.7167 | Ph. Acc. (Avg.) 86.13 | Ph. Acc. Avg. (No Sil) 83.03
+Epoch 21 (136/187) | Steps 4250 | ms/batch 713.71 | Train Loss: 40.8200 | Ph. Acc. (Avg.) 86.12 | Ph. Acc. Avg. (No Sil) 83.07
+Epoch 21 (186/187) | Steps 4300 | ms/batch 736.50 | Train Loss: 41.4679 | Ph. Acc. (Avg.) 86.12 | Ph. Acc. Avg. (No Sil) 83.07
+Finished training epoch 21. Elapsed time: 132.90151739120483
+Starting epoch 23
+Epoch 22 (49/187) | Steps 4350 | ms/batch 746.72 | Train Loss: 41.0891 | Ph. Acc. (Avg.) 86.47 | Ph. Acc. Avg. (No Sil) 83.37
+Epoch 22 (99/187) | Steps 4400 | ms/batch 735.30 | Train Loss: 39.5885 | Ph. Acc. (Avg.) 86.34 | Ph. Acc. Avg. (No Sil) 83.28
+Epoch 22 (149/187) | Steps 4450 | ms/batch 734.73 | Train Loss: 44.3299 | Ph. Acc. (Avg.) 86.21 | Ph. Acc. Avg. (No Sil) 83.18
+Finished training epoch 22. Elapsed time: 137.79269766807556
+Starting epoch 24
+Epoch 23 (12/187) | Steps 4500 | ms/batch 740.80 | Train Loss: 40.7501 | Ph. Acc. (Avg.) 86.68 | Ph. Acc. Avg. (No Sil) 83.70
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9784s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8975836435953777
+	 - Avg. Val. Multi-TD Val. Error: 1.418905238310496
+	 - Avg. Val. Phoneme Error: 0.4203295012315114
+	 - Avg. Val. Phoneme Accuracy: 88.37483723958334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 80.75382104169758
+	 - Avg. Val. Waveform Error: 0.10554131617148717
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9795s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 23 (62/187) | Steps 4550 | ms/batch 755.67 | Train Loss: 40.7044 | Ph. Acc. (Avg.) 86.55 | Ph. Acc. Avg. (No Sil) 83.62
+Epoch 23 (112/187) | Steps 4600 | ms/batch 735.35 | Train Loss: 42.6912 | Ph. Acc. (Avg.) 86.27 | Ph. Acc. Avg. (No Sil) 83.33
+Epoch 23 (162/187) | Steps 4650 | ms/batch 737.20 | Train Loss: 42.6789 | Ph. Acc. (Avg.) 86.19 | Ph. Acc. Avg. (No Sil) 83.26
+Finished training epoch 23. Elapsed time: 139.65668964385986
+Starting epoch 25
+Epoch 24 (25/187) | Steps 4700 | ms/batch 757.22 | Train Loss: 41.0529 | Ph. Acc. (Avg.) 86.67 | Ph. Acc. Avg. (No Sil) 83.53
+Epoch 24 (75/187) | Steps 4750 | ms/batch 735.55 | Train Loss: 41.6859 | Ph. Acc. (Avg.) 86.40 | Ph. Acc. Avg. (No Sil) 83.45
+Epoch 24 (125/187) | Steps 4800 | ms/batch 735.77 | Train Loss: 42.2566 | Ph. Acc. (Avg.) 86.46 | Ph. Acc. Avg. (No Sil) 83.46
+Epoch 24 (175/187) | Steps 4850 | ms/batch 737.32 | Train Loss: 38.0001 | Ph. Acc. (Avg.) 86.45 | Ph. Acc. Avg. (No Sil) 83.41
+Finished training epoch 24. Elapsed time: 138.20713138580322
+Starting epoch 26
+Epoch 25 (38/187) | Steps 4900 | ms/batch 746.15 | Train Loss: 39.7930 | Ph. Acc. (Avg.) 86.41 | Ph. Acc. Avg. (No Sil) 83.35
+Epoch 25 (88/187) | Steps 4950 | ms/batch 704.78 | Train Loss: 40.6947 | Ph. Acc. (Avg.) 86.51 | Ph. Acc. Avg. (No Sil) 83.47
+Epoch 25 (138/187) | Steps 5000 | ms/batch 688.97 | Train Loss: 39.3236 | Ph. Acc. (Avg.) 86.50 | Ph. Acc. Avg. (No Sil) 83.51
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9135s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8816689054171245
+	 - Avg. Val. Multi-TD Val. Error: 1.4022528131802876
+	 - Avg. Val. Phoneme Error: 0.4100352923075358
+	 - Avg. Val. Phoneme Accuracy: 88.64339192708334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 81.32512242172429
+	 - Avg. Val. Waveform Error: 0.10896383225917816
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9146s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.8448s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training epoch 25. Elapsed time: 136.81983351707458
+Finished training epoch 25. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 5.0554s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 27
+Epoch 26 (1/187) | Steps 5050 | ms/batch 897.35 | Train Loss: 38.1647 | Ph. Acc. (Avg.) 84.78 | Ph. Acc. Avg. (No Sil) 81.60
+Epoch 26 (51/187) | Steps 5100 | ms/batch 688.86 | Train Loss: 39.9329 | Ph. Acc. (Avg.) 86.67 | Ph. Acc. Avg. (No Sil) 83.79
+Epoch 26 (101/187) | Steps 5150 | ms/batch 688.86 | Train Loss: 42.6519 | Ph. Acc. (Avg.) 86.60 | Ph. Acc. Avg. (No Sil) 83.64
+Epoch 26 (151/187) | Steps 5200 | ms/batch 688.70 | Train Loss: 39.7381 | Ph. Acc. (Avg.) 86.67 | Ph. Acc. Avg. (No Sil) 83.66
+Finished training epoch 26. Elapsed time: 129.67108750343323
+Starting epoch 28
+Epoch 27 (14/187) | Steps 5250 | ms/batch 719.02 | Train Loss: 39.3258 | Ph. Acc. (Avg.) 87.02 | Ph. Acc. Avg. (No Sil) 83.96
+Epoch 27 (64/187) | Steps 5300 | ms/batch 735.79 | Train Loss: 38.5412 | Ph. Acc. (Avg.) 86.64 | Ph. Acc. Avg. (No Sil) 83.62
+Epoch 27 (114/187) | Steps 5350 | ms/batch 735.16 | Train Loss: 41.3464 | Ph. Acc. (Avg.) 86.58 | Ph. Acc. Avg. (No Sil) 83.62
+Epoch 27 (164/187) | Steps 5400 | ms/batch 735.16 | Train Loss: 38.6161 | Ph. Acc. (Avg.) 86.49 | Ph. Acc. Avg. (No Sil) 83.50
+Finished training epoch 27. Elapsed time: 137.96748447418213
+Starting epoch 29
+Epoch 28 (27/187) | Steps 5450 | ms/batch 744.68 | Train Loss: 39.1259 | Ph. Acc. (Avg.) 87.32 | Ph. Acc. Avg. (No Sil) 84.47
+Epoch 28 (77/187) | Steps 5500 | ms/batch 735.23 | Train Loss: 38.3158 | Ph. Acc. (Avg.) 86.79 | Ph. Acc. Avg. (No Sil) 83.85
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9354s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8464401165644329
+	 - Avg. Val. Multi-TD Val. Error: 1.4070123831431072
+	 - Avg. Val. Phoneme Error: 0.3981652855873108
+	 - Avg. Val. Phoneme Accuracy: 88.82649739583334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 81.57738536874908
+	 - Avg. Val. Waveform Error: 0.10643211876352628
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8464...
+----------------------------------------------------------------------------------------------------
+Took 2.4461s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 28 (127/187) | Steps 5550 | ms/batch 783.71 | Train Loss: 41.9573 | Ph. Acc. (Avg.) 86.68 | Ph. Acc. Avg. (No Sil) 83.70
+Epoch 28 (177/187) | Steps 5600 | ms/batch 734.85 | Train Loss: 40.8983 | Ph. Acc. (Avg.) 86.68 | Ph. Acc. Avg. (No Sil) 83.78
+Finished training epoch 28. Elapsed time: 140.38575625419617
+Starting epoch 30
+Epoch 29 (40/187) | Steps 5650 | ms/batch 746.56 | Train Loss: 41.4423 | Ph. Acc. (Avg.) 86.72 | Ph. Acc. Avg. (No Sil) 83.88
+Epoch 29 (90/187) | Steps 5700 | ms/batch 735.59 | Train Loss: 38.8401 | Ph. Acc. (Avg.) 86.62 | Ph. Acc. Avg. (No Sil) 83.81
+Epoch 29 (140/187) | Steps 5750 | ms/batch 736.01 | Train Loss: 39.5172 | Ph. Acc. (Avg.) 86.67 | Ph. Acc. Avg. (No Sil) 83.81
+Finished training epoch 29. Elapsed time: 138.0704426765442
+Starting epoch 31
+Epoch 30 (3/187) | Steps 5800 | ms/batch 744.04 | Train Loss: 37.4954 | Ph. Acc. (Avg.) 87.69 | Ph. Acc. Avg. (No Sil) 84.78
+Epoch 30 (53/187) | Steps 5850 | ms/batch 735.49 | Train Loss: 37.6484 | Ph. Acc. (Avg.) 87.01 | Ph. Acc. Avg. (No Sil) 84.12
+Epoch 30 (103/187) | Steps 5900 | ms/batch 735.13 | Train Loss: 41.2800 | Ph. Acc. (Avg.) 86.98 | Ph. Acc. Avg. (No Sil) 84.09
+Epoch 30 (153/187) | Steps 5950 | ms/batch 706.88 | Train Loss: 39.2602 | Ph. Acc. (Avg.) 86.82 | Ph. Acc. Avg. (No Sil) 83.92
+Finished training epoch 30. Elapsed time: 135.02708530426025
+Finished training epoch 30. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4843s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 32
+Epoch 31 (16/187) | Steps 6000 | ms/batch 788.14 | Train Loss: 36.2633 | Ph. Acc. (Avg.) 86.86 | Ph. Acc. Avg. (No Sil) 83.91
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9152s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8443548480669658
+	 - Avg. Val. Multi-TD Val. Error: 1.4089893698692322
+	 - Avg. Val. Phoneme Error: 0.4046150396267573
+	 - Avg. Val. Phoneme Accuracy: 89.02180989583334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.04481377058912
+	 - Avg. Val. Waveform Error: 0.10717236374815305
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8444...
+----------------------------------------------------------------------------------------------------
+Took 2.4751s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.3199s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 31 (66/187) | Steps 6050 | ms/batch 826.18 | Train Loss: 39.5291 | Ph. Acc. (Avg.) 86.91 | Ph. Acc. Avg. (No Sil) 83.99
+Epoch 31 (116/187) | Steps 6100 | ms/batch 689.83 | Train Loss: 39.8046 | Ph. Acc. (Avg.) 86.99 | Ph. Acc. Avg. (No Sil) 84.10
+Epoch 31 (166/187) | Steps 6150 | ms/batch 689.26 | Train Loss: 39.8911 | Ph. Acc. (Avg.) 86.97 | Ph. Acc. Avg. (No Sil) 84.04
+Finished training epoch 31. Elapsed time: 136.2598214149475
+Starting epoch 33
+Epoch 32 (29/187) | Steps 6200 | ms/batch 700.61 | Train Loss: 39.1002 | Ph. Acc. (Avg.) 87.25 | Ph. Acc. Avg. (No Sil) 84.32
+Epoch 32 (79/187) | Steps 6250 | ms/batch 711.40 | Train Loss: 38.3803 | Ph. Acc. (Avg.) 87.06 | Ph. Acc. Avg. (No Sil) 84.04
+Epoch 32 (129/187) | Steps 6300 | ms/batch 735.92 | Train Loss: 38.5624 | Ph. Acc. (Avg.) 86.91 | Ph. Acc. Avg. (No Sil) 83.91
+Epoch 32 (179/187) | Steps 6350 | ms/batch 735.92 | Train Loss: 38.1457 | Ph. Acc. (Avg.) 86.87 | Ph. Acc. Avg. (No Sil) 83.93
+Finished training epoch 32. Elapsed time: 135.57157826423645
+Starting epoch 34
+Epoch 33 (42/187) | Steps 6400 | ms/batch 746.24 | Train Loss: 38.7908 | Ph. Acc. (Avg.) 87.06 | Ph. Acc. Avg. (No Sil) 84.10
+Epoch 33 (92/187) | Steps 6450 | ms/batch 735.12 | Train Loss: 40.4936 | Ph. Acc. (Avg.) 86.98 | Ph. Acc. Avg. (No Sil) 84.06
+Epoch 33 (142/187) | Steps 6500 | ms/batch 735.45 | Train Loss: 38.8082 | Ph. Acc. (Avg.) 87.05 | Ph. Acc. Avg. (No Sil) 84.18
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9405s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8599269191424053
+	 - Avg. Val. Multi-TD Val. Error: 1.3973880807558696
+	 - Avg. Val. Phoneme Error: 0.40131858984629315
+	 - Avg. Val. Phoneme Accuracy: 89.02180989583334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.1857842409853
+	 - Avg. Val. Waveform Error: 0.10936327278614044
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9417s to run validation loop
+----------------------------------------------------------------------------------------------------
+Finished training epoch 33. Elapsed time: 139.01645135879517
+Starting epoch 35
+Epoch 34 (5/187) | Steps 6550 | ms/batch 765.41 | Train Loss: 38.0152 | Ph. Acc. (Avg.) 86.52 | Ph. Acc. Avg. (No Sil) 83.69
+Epoch 34 (55/187) | Steps 6600 | ms/batch 730.33 | Train Loss: 39.5988 | Ph. Acc. (Avg.) 87.16 | Ph. Acc. Avg. (No Sil) 84.19
+Epoch 34 (105/187) | Steps 6650 | ms/batch 735.29 | Train Loss: 38.2905 | Ph. Acc. (Avg.) 87.01 | Ph. Acc. Avg. (No Sil) 84.09
+Epoch 34 (155/187) | Steps 6700 | ms/batch 734.78 | Train Loss: 41.1878 | Ph. Acc. (Avg.) 86.91 | Ph. Acc. Avg. (No Sil) 83.99
+Finished training epoch 34. Elapsed time: 137.71104669570923
+Starting epoch 36
+Epoch 35 (18/187) | Steps 6750 | ms/batch 744.36 | Train Loss: 38.9817 | Ph. Acc. (Avg.) 87.42 | Ph. Acc. Avg. (No Sil) 84.73
+Epoch 35 (68/187) | Steps 6800 | ms/batch 734.91 | Train Loss: 39.1407 | Ph. Acc. (Avg.) 87.12 | Ph. Acc. Avg. (No Sil) 84.28
+Epoch 35 (118/187) | Steps 6850 | ms/batch 734.94 | Train Loss: 39.9525 | Ph. Acc. (Avg.) 87.02 | Ph. Acc. Avg. (No Sil) 84.17
+Epoch 35 (168/187) | Steps 6900 | ms/batch 735.94 | Train Loss: 39.4807 | Ph. Acc. (Avg.) 87.08 | Ph. Acc. Avg. (No Sil) 84.23
+Finished training epoch 35. Elapsed time: 137.9668607711792
+Finished training epoch 35. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.7355s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 37
+Epoch 36 (31/187) | Steps 6950 | ms/batch 810.77 | Train Loss: 36.7566 | Ph. Acc. (Avg.) 87.11 | Ph. Acc. Avg. (No Sil) 84.38
+Epoch 36 (81/187) | Steps 7000 | ms/batch 688.79 | Train Loss: 36.3289 | Ph. Acc. (Avg.) 87.16 | Ph. Acc. Avg. (No Sil) 84.37
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8800s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8558620413144429
+	 - Avg. Val. Multi-TD Val. Error: 1.3971410989761353
+	 - Avg. Val. Phoneme Error: 0.39688266317049664
+	 - Avg. Val. Phoneme Accuracy: 89.03401692708334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 81.94836029084433
+	 - Avg. Val. Waveform Error: 0.10948250194390614
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.8806s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.7777s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 36 (131/187) | Steps 7050 | ms/batch 783.03 | Train Loss: 38.1280 | Ph. Acc. (Avg.) 87.09 | Ph. Acc. Avg. (No Sil) 84.31
+Epoch 36 (181/187) | Steps 7100 | ms/batch 691.10 | Train Loss: 40.5789 | Ph. Acc. (Avg.) 87.09 | Ph. Acc. Avg. (No Sil) 84.32
+Finished training epoch 36. Elapsed time: 134.18940544128418
+Starting epoch 38
+Epoch 37 (44/187) | Steps 7150 | ms/batch 701.00 | Train Loss: 40.5579 | Ph. Acc. (Avg.) 86.98 | Ph. Acc. Avg. (No Sil) 84.29
+Epoch 37 (94/187) | Steps 7200 | ms/batch 688.74 | Train Loss: 38.5911 | Ph. Acc. (Avg.) 87.17 | Ph. Acc. Avg. (No Sil) 84.48
+Epoch 37 (144/187) | Steps 7250 | ms/batch 703.45 | Train Loss: 35.8766 | Ph. Acc. (Avg.) 87.30 | Ph. Acc. Avg. (No Sil) 84.55
+Finished training epoch 37. Elapsed time: 132.10230255126953
+Starting epoch 39
+Epoch 38 (7/187) | Steps 7300 | ms/batch 745.13 | Train Loss: 40.0965 | Ph. Acc. (Avg.) 86.71 | Ph. Acc. Avg. (No Sil) 83.94
+Epoch 38 (57/187) | Steps 7350 | ms/batch 736.46 | Train Loss: 41.3242 | Ph. Acc. (Avg.) 87.20 | Ph. Acc. Avg. (No Sil) 84.53
+Epoch 38 (107/187) | Steps 7400 | ms/batch 736.22 | Train Loss: 37.7168 | Ph. Acc. (Avg.) 87.11 | Ph. Acc. Avg. (No Sil) 84.37
+Epoch 38 (157/187) | Steps 7450 | ms/batch 735.64 | Train Loss: 39.5534 | Ph. Acc. (Avg.) 87.19 | Ph. Acc. Avg. (No Sil) 84.40
+Finished training epoch 38. Elapsed time: 138.09769678115845
+Starting epoch 40
+Epoch 39 (20/187) | Steps 7500 | ms/batch 744.87 | Train Loss: 39.4028 | Ph. Acc. (Avg.) 87.35 | Ph. Acc. Avg. (No Sil) 84.80
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9577s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8394799431165059
+	 - Avg. Val. Multi-TD Val. Error: 1.3964916070302327
+	 - Avg. Val. Phoneme Error: 0.40412361919879913
+	 - Avg. Val. Phoneme Accuracy: 88.82242838541666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 81.74061433447099
+	 - Avg. Val. Waveform Error: 0.11153505494197209
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8395...
+----------------------------------------------------------------------------------------------------
+Took 2.4755s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 39 (70/187) | Steps 7550 | ms/batch 785.07 | Train Loss: 36.5885 | Ph. Acc. (Avg.) 87.20 | Ph. Acc. Avg. (No Sil) 84.48
+Epoch 39 (120/187) | Steps 7600 | ms/batch 736.16 | Train Loss: 39.0543 | Ph. Acc. (Avg.) 87.20 | Ph. Acc. Avg. (No Sil) 84.48
+Epoch 39 (170/187) | Steps 7650 | ms/batch 735.97 | Train Loss: 41.9617 | Ph. Acc. (Avg.) 87.20 | Ph. Acc. Avg. (No Sil) 84.45
+Finished training epoch 39. Elapsed time: 140.5570683479309
+Starting epoch 41
+Epoch 40 (33/187) | Steps 7700 | ms/batch 744.78 | Train Loss: 38.5864 | Ph. Acc. (Avg.) 87.65 | Ph. Acc. Avg. (No Sil) 85.11
+Epoch 40 (83/187) | Steps 7750 | ms/batch 733.83 | Train Loss: 40.1980 | Ph. Acc. (Avg.) 87.36 | Ph. Acc. Avg. (No Sil) 84.72
+Epoch 40 (133/187) | Steps 7800 | ms/batch 735.29 | Train Loss: 38.2477 | Ph. Acc. (Avg.) 87.41 | Ph. Acc. Avg. (No Sil) 84.75
+Epoch 40 (183/187) | Steps 7850 | ms/batch 734.74 | Train Loss: 38.7797 | Ph. Acc. (Avg.) 87.36 | Ph. Acc. Avg. (No Sil) 84.64
+Finished training epoch 40. Elapsed time: 137.87862873077393
+Finished training epoch 40. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4943s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 42
+Epoch 41 (46/187) | Steps 7900 | ms/batch 836.68 | Train Loss: 41.2118 | Ph. Acc. (Avg.) 87.54 | Ph. Acc. Avg. (No Sil) 84.81
+Epoch 41 (96/187) | Steps 7950 | ms/batch 702.14 | Train Loss: 37.5662 | Ph. Acc. (Avg.) 87.25 | Ph. Acc. Avg. (No Sil) 84.51
+Epoch 41 (146/187) | Steps 8000 | ms/batch 691.78 | Train Loss: 36.5825 | Ph. Acc. (Avg.) 87.26 | Ph. Acc. Avg. (No Sil) 84.51
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9137s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8116218447685242
+	 - Avg. Val. Multi-TD Val. Error: 1.3905460437138875
+	 - Avg. Val. Phoneme Error: 0.3931837280591329
+	 - Avg. Val. Phoneme Accuracy: 89.02994791666666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.0373942721472
+	 - Avg. Val. Waveform Error: 0.11021364852786064
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.8116...
+----------------------------------------------------------------------------------------------------
+Took 2.4653s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.1453s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training epoch 41. Elapsed time: 139.01803064346313
+Starting epoch 43
+Epoch 42 (9/187) | Steps 8050 | ms/batch 833.61 | Train Loss: 40.1315 | Ph. Acc. (Avg.) 87.67 | Ph. Acc. Avg. (No Sil) 84.79
+Epoch 42 (59/187) | Steps 8100 | ms/batch 690.67 | Train Loss: 38.3944 | Ph. Acc. (Avg.) 87.47 | Ph. Acc. Avg. (No Sil) 84.69
+Epoch 42 (109/187) | Steps 8150 | ms/batch 691.89 | Train Loss: 38.6902 | Ph. Acc. (Avg.) 87.39 | Ph. Acc. Avg. (No Sil) 84.61
+Epoch 42 (159/187) | Steps 8200 | ms/batch 690.08 | Train Loss: 37.2734 | Ph. Acc. (Avg.) 87.41 | Ph. Acc. Avg. (No Sil) 84.67
+Finished training epoch 42. Elapsed time: 129.77646851539612
+Starting epoch 44
+Epoch 43 (22/187) | Steps 8250 | ms/batch 1129.22 | Train Loss: 39.1660 | Ph. Acc. (Avg.) 87.38 | Ph. Acc. Avg. (No Sil) 84.85
+Epoch 43 (72/187) | Steps 8300 | ms/batch 816.95 | Train Loss: 37.3147 | Ph. Acc. (Avg.) 87.52 | Ph. Acc. Avg. (No Sil) 84.81
+Epoch 43 (122/187) | Steps 8350 | ms/batch 735.80 | Train Loss: 37.9565 | Ph. Acc. (Avg.) 87.49 | Ph. Acc. Avg. (No Sil) 84.78
+Epoch 43 (172/187) | Steps 8400 | ms/batch 736.13 | Train Loss: 37.4675 | Ph. Acc. (Avg.) 87.36 | Ph. Acc. Avg. (No Sil) 84.61
+Finished training epoch 43. Elapsed time: 162.51735019683838
+Starting epoch 45
+Epoch 44 (35/187) | Steps 8450 | ms/batch 745.47 | Train Loss: 36.4368 | Ph. Acc. (Avg.) 87.48 | Ph. Acc. Avg. (No Sil) 84.81
+Epoch 44 (85/187) | Steps 8500 | ms/batch 735.04 | Train Loss: 36.9119 | Ph. Acc. (Avg.) 87.60 | Ph. Acc. Avg. (No Sil) 84.88
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9252s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7998235821723938
+	 - Avg. Val. Multi-TD Val. Error: 1.4023218949635823
+	 - Avg. Val. Phoneme Error: 0.40139107902844745
+	 - Avg. Val. Phoneme Accuracy: 89.02994791666666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.0151357768215
+	 - Avg. Val. Waveform Error: 0.11132047449549039
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7998...
+----------------------------------------------------------------------------------------------------
+Took 2.9367s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 44 (135/187) | Steps 8550 | ms/batch 792.91 | Train Loss: 36.5601 | Ph. Acc. (Avg.) 87.49 | Ph. Acc. Avg. (No Sil) 84.78
+Epoch 44 (185/187) | Steps 8600 | ms/batch 735.84 | Train Loss: 38.3927 | Ph. Acc. (Avg.) 87.53 | Ph. Acc. Avg. (No Sil) 84.81
+Finished training epoch 44. Elapsed time: 140.90578317642212
+Starting epoch 46
+Epoch 45 (48/187) | Steps 8650 | ms/batch 745.68 | Train Loss: 40.6367 | Ph. Acc. (Avg.) 87.36 | Ph. Acc. Avg. (No Sil) 84.68
+Epoch 45 (98/187) | Steps 8700 | ms/batch 729.66 | Train Loss: 41.8890 | Ph. Acc. (Avg.) 87.48 | Ph. Acc. Avg. (No Sil) 84.80
+Epoch 45 (148/187) | Steps 8750 | ms/batch 735.50 | Train Loss: 37.5142 | Ph. Acc. (Avg.) 87.49 | Ph. Acc. Avg. (No Sil) 84.76
+Finished training epoch 45. Elapsed time: 137.72861075401306
+Finished training epoch 45. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4705s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 47
+Epoch 46 (11/187) | Steps 8800 | ms/batch 833.16 | Train Loss: 40.0398 | Ph. Acc. (Avg.) 87.99 | Ph. Acc. Avg. (No Sil) 85.15
+Epoch 46 (61/187) | Steps 8850 | ms/batch 733.74 | Train Loss: 37.6766 | Ph. Acc. (Avg.) 87.82 | Ph. Acc. Avg. (No Sil) 85.09
+Epoch 46 (111/187) | Steps 8900 | ms/batch 735.48 | Train Loss: 37.6047 | Ph. Acc. (Avg.) 87.74 | Ph. Acc. Avg. (No Sil) 85.03
+Epoch 46 (161/187) | Steps 8950 | ms/batch 718.40 | Train Loss: 36.4933 | Ph. Acc. (Avg.) 87.69 | Ph. Acc. Avg. (No Sil) 84.97
+Finished training epoch 46. Elapsed time: 135.85770344734192
+Starting epoch 48
+Epoch 47 (24/187) | Steps 9000 | ms/batch 699.32 | Train Loss: 38.7542 | Ph. Acc. (Avg.) 87.21 | Ph. Acc. Avg. (No Sil) 84.43
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8862s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8096318244934082
+	 - Avg. Val. Multi-TD Val. Error: 1.4012555082639058
+	 - Avg. Val. Phoneme Error: 0.386965478459994
+	 - Avg. Val. Phoneme Accuracy: 89.33512369791666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.54933966463867
+	 - Avg. Val. Waveform Error: 0.11159409210085869
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.8867s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.7517s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 47 (74/187) | Steps 9050 | ms/batch 782.51 | Train Loss: 37.5903 | Ph. Acc. (Avg.) 87.64 | Ph. Acc. Avg. (No Sil) 84.88
+Epoch 47 (124/187) | Steps 9100 | ms/batch 689.37 | Train Loss: 37.2799 | Ph. Acc. (Avg.) 87.63 | Ph. Acc. Avg. (No Sil) 84.94
+Epoch 47 (174/187) | Steps 9150 | ms/batch 689.46 | Train Loss: 36.1975 | Ph. Acc. (Avg.) 87.59 | Ph. Acc. Avg. (No Sil) 84.86
+Finished training epoch 47. Elapsed time: 134.0798749923706
+Starting epoch 49
+Epoch 48 (37/187) | Steps 9200 | ms/batch 697.95 | Train Loss: 38.0509 | Ph. Acc. (Avg.) 87.52 | Ph. Acc. Avg. (No Sil) 84.80
+Epoch 48 (87/187) | Steps 9250 | ms/batch 689.25 | Train Loss: 40.3200 | Ph. Acc. (Avg.) 87.60 | Ph. Acc. Avg. (No Sil) 84.95
+Epoch 48 (137/187) | Steps 9300 | ms/batch 725.14 | Train Loss: 39.7234 | Ph. Acc. (Avg.) 87.58 | Ph. Acc. Avg. (No Sil) 84.92
+Finished training epoch 48. Elapsed time: 133.40489554405212
+Starting epoch 50
+Epoch 49 (0/187) | Steps 9350 | ms/batch 744.99 | Train Loss: 36.7904 | Ph. Acc. (Avg.) 87.26 | Ph. Acc. Avg. (No Sil) 84.27
+Epoch 49 (50/187) | Steps 9400 | ms/batch 734.53 | Train Loss: 36.8693 | Ph. Acc. (Avg.) 87.72 | Ph. Acc. Avg. (No Sil) 84.94
+Epoch 49 (100/187) | Steps 9450 | ms/batch 735.81 | Train Loss: 38.0379 | Ph. Acc. (Avg.) 87.71 | Ph. Acc. Avg. (No Sil) 84.95
+Epoch 49 (150/187) | Steps 9500 | ms/batch 734.63 | Train Loss: 35.7855 | Ph. Acc. (Avg.) 87.66 | Ph. Acc. Avg. (No Sil) 84.93
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9423s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8113965193430583
+	 - Avg. Val. Multi-TD Val. Error: 1.401699463526408
+	 - Avg. Val. Phoneme Error: 0.385088990132014
+	 - Avg. Val. Phoneme Accuracy: 89.59554036458334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.95741207894346
+	 - Avg. Val. Waveform Error: 0.10873502492904663
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9428s to run validation loop
+----------------------------------------------------------------------------------------------------
+Finished training epoch 49. Elapsed time: 138.86102724075317
+Starting epoch 51
+Epoch 50 (13/187) | Steps 9550 | ms/batch 763.66 | Train Loss: 38.6463 | Ph. Acc. (Avg.) 87.92 | Ph. Acc. Avg. (No Sil) 85.19
+Epoch 50 (63/187) | Steps 9600 | ms/batch 735.10 | Train Loss: 36.1083 | Ph. Acc. (Avg.) 87.79 | Ph. Acc. Avg. (No Sil) 85.15
+Epoch 50 (113/187) | Steps 9650 | ms/batch 735.05 | Train Loss: 41.6530 | Ph. Acc. (Avg.) 87.80 | Ph. Acc. Avg. (No Sil) 85.17
+Epoch 50 (163/187) | Steps 9700 | ms/batch 744.22 | Train Loss: 37.1260 | Ph. Acc. (Avg.) 87.80 | Ph. Acc. Avg. (No Sil) 85.18
+Finished training epoch 50. Elapsed time: 138.42049479484558
+Finished training epoch 50. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.9146s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 52
+Epoch 51 (26/187) | Steps 9750 | ms/batch 844.05 | Train Loss: 37.5024 | Ph. Acc. (Avg.) 87.73 | Ph. Acc. Avg. (No Sil) 85.11
+Epoch 51 (76/187) | Steps 9800 | ms/batch 735.36 | Train Loss: 35.3882 | Ph. Acc. (Avg.) 87.90 | Ph. Acc. Avg. (No Sil) 85.21
+Epoch 51 (126/187) | Steps 9850 | ms/batch 735.11 | Train Loss: 36.6516 | Ph. Acc. (Avg.) 87.83 | Ph. Acc. Avg. (No Sil) 85.13
+Epoch 51 (176/187) | Steps 9900 | ms/batch 735.39 | Train Loss: 35.7282 | Ph. Acc. (Avg.) 87.74 | Ph. Acc. Avg. (No Sil) 85.07
+Finished training epoch 51. Elapsed time: 138.00974369049072
+Starting epoch 53
+Epoch 52 (39/187) | Steps 9950 | ms/batch 735.74 | Train Loss: 35.8036 | Ph. Acc. (Avg.) 87.68 | Ph. Acc. Avg. (No Sil) 85.01
+Epoch 52 (89/187) | Steps 10000 | ms/batch 692.03 | Train Loss: 38.6485 | Ph. Acc. (Avg.) 87.61 | Ph. Acc. Avg. (No Sil) 84.94
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8984s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8081220785776775
+	 - Avg. Val. Multi-TD Val. Error: 1.4078510006268818
+	 - Avg. Val. Phoneme Error: 0.39201754828294116
+	 - Avg. Val. Phoneme Accuracy: 89.23746744791666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.36385220359104
+	 - Avg. Val. Waveform Error: 0.10868378480275472
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.8996s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.8442s to generate samples
+----------------------------------------------------------------------------------------------------
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.5553s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Epoch 52 (139/187) | Steps 10050 | ms/batch 876.37 | Train Loss: 38.2583 | Ph. Acc. (Avg.) 87.68 | Ph. Acc. Avg. (No Sil) 84.97
+Finished training epoch 52. Elapsed time: 140.223788022995
+Starting epoch 54
+Epoch 53 (2/187) | Steps 10100 | ms/batch 698.03 | Train Loss: 36.8770 | Ph. Acc. (Avg.) 87.26 | Ph. Acc. Avg. (No Sil) 84.40
+Epoch 53 (52/187) | Steps 10150 | ms/batch 689.29 | Train Loss: 35.6019 | Ph. Acc. (Avg.) 87.86 | Ph. Acc. Avg. (No Sil) 85.12
+Epoch 53 (102/187) | Steps 10200 | ms/batch 689.38 | Train Loss: 35.4799 | Ph. Acc. (Avg.) 87.92 | Ph. Acc. Avg. (No Sil) 85.26
+Epoch 53 (152/187) | Steps 10250 | ms/batch 689.24 | Train Loss: 36.5169 | Ph. Acc. (Avg.) 87.84 | Ph. Acc. Avg. (No Sil) 85.21
+Finished training epoch 53. Elapsed time: 130.76376676559448
+Starting epoch 55
+Epoch 54 (15/187) | Steps 10300 | ms/batch 742.02 | Train Loss: 37.0352 | Ph. Acc. (Avg.) 88.32 | Ph. Acc. Avg. (No Sil) 85.83
+Epoch 54 (65/187) | Steps 10350 | ms/batch 735.22 | Train Loss: 36.7053 | Ph. Acc. (Avg.) 87.86 | Ph. Acc. Avg. (No Sil) 85.29
+Epoch 54 (115/187) | Steps 10400 | ms/batch 735.02 | Train Loss: 35.1698 | Ph. Acc. (Avg.) 87.84 | Ph. Acc. Avg. (No Sil) 85.22
+Epoch 54 (165/187) | Steps 10450 | ms/batch 735.75 | Train Loss: 37.5411 | Ph. Acc. (Avg.) 87.90 | Ph. Acc. Avg. (No Sil) 85.30
+Finished training epoch 54. Elapsed time: 138.00869941711426
+Starting epoch 56
+Epoch 55 (28/187) | Steps 10500 | ms/batch 745.70 | Train Loss: 36.8007 | Ph. Acc. (Avg.) 88.13 | Ph. Acc. Avg. (No Sil) 85.54
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9426s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8307326833407085
+	 - Avg. Val. Multi-TD Val. Error: 1.4012959202130635
+	 - Avg. Val. Phoneme Error: 0.40372230609258014
+	 - Avg. Val. Phoneme Accuracy: 89.08284505208334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.12642825345007
+	 - Avg. Val. Waveform Error: 0.10832608863711357
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9433s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 55 (78/187) | Steps 10550 | ms/batch 755.09 | Train Loss: 38.3463 | Ph. Acc. (Avg.) 88.06 | Ph. Acc. Avg. (No Sil) 85.42
+Epoch 55 (128/187) | Steps 10600 | ms/batch 735.29 | Train Loss: 38.0420 | Ph. Acc. (Avg.) 87.97 | Ph. Acc. Avg. (No Sil) 85.34
+Epoch 55 (178/187) | Steps 10650 | ms/batch 734.40 | Train Loss: 35.0550 | Ph. Acc. (Avg.) 87.91 | Ph. Acc. Avg. (No Sil) 85.28
+Finished training epoch 55. Elapsed time: 138.97060704231262
+Finished training epoch 55. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.5431s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 57
+Epoch 56 (41/187) | Steps 10700 | ms/batch 836.49 | Train Loss: 38.0374 | Ph. Acc. (Avg.) 88.22 | Ph. Acc. Avg. (No Sil) 85.73
+Epoch 56 (91/187) | Steps 10750 | ms/batch 734.87 | Train Loss: 36.5076 | Ph. Acc. (Avg.) 88.10 | Ph. Acc. Avg. (No Sil) 85.55
+Epoch 56 (141/187) | Steps 10800 | ms/batch 729.77 | Train Loss: 34.9738 | Ph. Acc. (Avg.) 88.03 | Ph. Acc. Avg. (No Sil) 85.43
+Finished training epoch 56. Elapsed time: 137.7521255016327
+Starting epoch 58
+Epoch 57 (4/187) | Steps 10850 | ms/batch 746.43 | Train Loss: 35.6299 | Ph. Acc. (Avg.) 88.03 | Ph. Acc. Avg. (No Sil) 85.88
+Epoch 57 (54/187) | Steps 10900 | ms/batch 736.76 | Train Loss: 34.9981 | Ph. Acc. (Avg.) 88.39 | Ph. Acc. Avg. (No Sil) 85.94
+Epoch 57 (104/187) | Steps 10950 | ms/batch 723.34 | Train Loss: 35.5981 | Ph. Acc. (Avg.) 88.09 | Ph. Acc. Avg. (No Sil) 85.64
+Epoch 57 (154/187) | Steps 11000 | ms/batch 690.01 | Train Loss: 35.3259 | Ph. Acc. (Avg.) 88.13 | Ph. Acc. Avg. (No Sil) 85.66
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9175s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7980058391888936
+	 - Avg. Val. Multi-TD Val. Error: 1.4102850159009297
+	 - Avg. Val. Phoneme Error: 0.38839975992838544
+	 - Avg. Val. Phoneme Accuracy: 89.22526041666666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.25997922540436
+	 - Avg. Val. Waveform Error: 0.10853688170512517
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7980...
+----------------------------------------------------------------------------------------------------
+Took 2.4286s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.2983s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training epoch 57. Elapsed time: 140.57537627220154
+Starting epoch 59
+Epoch 58 (17/187) | Steps 11050 | ms/batch 835.37 | Train Loss: 36.9287 | Ph. Acc. (Avg.) 88.12 | Ph. Acc. Avg. (No Sil) 85.62
+Epoch 58 (67/187) | Steps 11100 | ms/batch 690.26 | Train Loss: 35.7033 | Ph. Acc. (Avg.) 88.14 | Ph. Acc. Avg. (No Sil) 85.60
+Epoch 58 (117/187) | Steps 11150 | ms/batch 689.81 | Train Loss: 38.0028 | Ph. Acc. (Avg.) 88.12 | Ph. Acc. Avg. (No Sil) 85.57
+Epoch 58 (167/187) | Steps 11200 | ms/batch 690.44 | Train Loss: 35.2538 | Ph. Acc. (Avg.) 88.15 | Ph. Acc. Avg. (No Sil) 85.61
+Finished training epoch 58. Elapsed time: 129.5915172100067
+Starting epoch 60
+Epoch 59 (30/187) | Steps 11250 | ms/batch 702.62 | Train Loss: 34.6253 | Ph. Acc. (Avg.) 88.21 | Ph. Acc. Avg. (No Sil) 85.47
+Epoch 59 (80/187) | Steps 11300 | ms/batch 731.24 | Train Loss: 34.6167 | Ph. Acc. (Avg.) 88.09 | Ph. Acc. Avg. (No Sil) 85.34
+Epoch 59 (130/187) | Steps 11350 | ms/batch 734.04 | Train Loss: 38.8918 | Ph. Acc. (Avg.) 88.00 | Ph. Acc. Avg. (No Sil) 85.30
+Epoch 59 (180/187) | Steps 11400 | ms/batch 735.53 | Train Loss: 40.0792 | Ph. Acc. (Avg.) 88.03 | Ph. Acc. Avg. (No Sil) 85.38
+Finished training epoch 59. Elapsed time: 136.42014026641846
+Starting epoch 61
+Epoch 60 (43/187) | Steps 11450 | ms/batch 745.12 | Train Loss: 34.3185 | Ph. Acc. (Avg.) 88.25 | Ph. Acc. Avg. (No Sil) 85.70
+Epoch 60 (93/187) | Steps 11500 | ms/batch 734.85 | Train Loss: 34.8885 | Ph. Acc. (Avg.) 88.12 | Ph. Acc. Avg. (No Sil) 85.57
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9195s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8016231854756672
+	 - Avg. Val. Multi-TD Val. Error: 1.4087120691935222
+	 - Avg. Val. Phoneme Error: 0.39185384412606555
+	 - Avg. Val. Phoneme Accuracy: 89.14794921875
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.14868674877577
+	 - Avg. Val. Waveform Error: 0.10951840380827586
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9208s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 60 (143/187) | Steps 11550 | ms/batch 754.19 | Train Loss: 38.0712 | Ph. Acc. (Avg.) 88.15 | Ph. Acc. Avg. (No Sil) 85.57
+Finished training epoch 60. Elapsed time: 138.89226865768433
+Finished training epoch 60. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.6070s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 62
+Epoch 61 (6/187) | Steps 11600 | ms/batch 836.79 | Train Loss: 35.1290 | Ph. Acc. (Avg.) 88.31 | Ph. Acc. Avg. (No Sil) 85.72
+Epoch 61 (56/187) | Steps 11650 | ms/batch 735.13 | Train Loss: 38.3813 | Ph. Acc. (Avg.) 88.38 | Ph. Acc. Avg. (No Sil) 85.88
+Epoch 61 (106/187) | Steps 11700 | ms/batch 735.43 | Train Loss: 32.3617 | Ph. Acc. (Avg.) 88.28 | Ph. Acc. Avg. (No Sil) 85.76
+Epoch 61 (156/187) | Steps 11750 | ms/batch 734.92 | Train Loss: 34.1473 | Ph. Acc. (Avg.) 88.30 | Ph. Acc. Avg. (No Sil) 85.76
+Finished training epoch 61. Elapsed time: 137.94177556037903
+Starting epoch 63
+Epoch 62 (19/187) | Steps 11800 | ms/batch 743.45 | Train Loss: 38.4411 | Ph. Acc. (Avg.) 88.72 | Ph. Acc. Avg. (No Sil) 86.30
+Epoch 62 (69/187) | Steps 11850 | ms/batch 736.01 | Train Loss: 33.8879 | Ph. Acc. (Avg.) 88.34 | Ph. Acc. Avg. (No Sil) 85.84
+Epoch 62 (119/187) | Steps 11900 | ms/batch 734.40 | Train Loss: 36.6758 | Ph. Acc. (Avg.) 88.19 | Ph. Acc. Avg. (No Sil) 85.67
+Epoch 62 (169/187) | Steps 11950 | ms/batch 725.11 | Train Loss: 34.7772 | Ph. Acc. (Avg.) 88.18 | Ph. Acc. Avg. (No Sil) 85.66
+Finished training epoch 62. Elapsed time: 136.67099690437317
+Starting epoch 64
+Epoch 63 (32/187) | Steps 12000 | ms/batch 700.61 | Train Loss: 36.0614 | Ph. Acc. (Avg.) 88.06 | Ph. Acc. Avg. (No Sil) 85.45
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9005s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8092715342839558
+	 - Avg. Val. Multi-TD Val. Error: 1.4084640145301819
+	 - Avg. Val. Phoneme Error: 0.38396282494068146
+	 - Avg. Val. Phoneme Accuracy: 89.2822265625
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.4528861848939
+	 - Avg. Val. Waveform Error: 0.11250973120331764
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9010s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.7193s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 63 (82/187) | Steps 12050 | ms/batch 786.89 | Train Loss: 34.8871 | Ph. Acc. (Avg.) 88.28 | Ph. Acc. Avg. (No Sil) 85.72
+Epoch 63 (132/187) | Steps 12100 | ms/batch 691.09 | Train Loss: 37.3479 | Ph. Acc. (Avg.) 88.27 | Ph. Acc. Avg. (No Sil) 85.72
+Epoch 63 (182/187) | Steps 12150 | ms/batch 691.78 | Train Loss: 37.0717 | Ph. Acc. (Avg.) 88.27 | Ph. Acc. Avg. (No Sil) 85.69
+Finished training epoch 63. Elapsed time: 134.53026580810547
+Starting epoch 65
+Epoch 64 (45/187) | Steps 12200 | ms/batch 703.03 | Train Loss: 34.5562 | Ph. Acc. (Avg.) 88.53 | Ph. Acc. Avg. (No Sil) 86.07
+Epoch 64 (95/187) | Steps 12250 | ms/batch 692.33 | Train Loss: 36.1252 | Ph. Acc. (Avg.) 88.48 | Ph. Acc. Avg. (No Sil) 86.00
+Epoch 64 (145/187) | Steps 12300 | ms/batch 723.32 | Train Loss: 35.8466 | Ph. Acc. (Avg.) 88.40 | Ph. Acc. Avg. (No Sil) 85.91
+Finished training epoch 64. Elapsed time: 133.34488892555237
+Starting epoch 66
+Epoch 65 (8/187) | Steps 12350 | ms/batch 745.81 | Train Loss: 35.5229 | Ph. Acc. (Avg.) 88.65 | Ph. Acc. Avg. (No Sil) 86.16
+Epoch 65 (58/187) | Steps 12400 | ms/batch 735.52 | Train Loss: 35.4411 | Ph. Acc. (Avg.) 88.32 | Ph. Acc. Avg. (No Sil) 85.81
+Epoch 65 (108/187) | Steps 12450 | ms/batch 734.55 | Train Loss: 34.2852 | Ph. Acc. (Avg.) 88.28 | Ph. Acc. Avg. (No Sil) 85.75
+Epoch 65 (158/187) | Steps 12500 | ms/batch 736.22 | Train Loss: 39.7058 | Ph. Acc. (Avg.) 88.36 | Ph. Acc. Avg. (No Sil) 85.82
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9386s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.8000824848810832
+	 - Avg. Val. Multi-TD Val. Error: 1.401379903157552
+	 - Avg. Val. Phoneme Error: 0.3775211125612259
+	 - Avg. Val. Phoneme Accuracy: 89.5751953125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.89805609140822
+	 - Avg. Val. Waveform Error: 0.10865660384297371
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9392s to run validation loop
+----------------------------------------------------------------------------------------------------
+Finished training epoch 65. Elapsed time: 139.0284779071808
+Finished training epoch 65. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4817s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 67
+Epoch 66 (21/187) | Steps 12550 | ms/batch 855.01 | Train Loss: 35.3841 | Ph. Acc. (Avg.) 88.38 | Ph. Acc. Avg. (No Sil) 85.86
+Epoch 66 (71/187) | Steps 12600 | ms/batch 735.95 | Train Loss: 34.5749 | Ph. Acc. (Avg.) 88.55 | Ph. Acc. Avg. (No Sil) 85.99
+Epoch 66 (121/187) | Steps 12650 | ms/batch 734.20 | Train Loss: 35.9453 | Ph. Acc. (Avg.) 88.46 | Ph. Acc. Avg. (No Sil) 85.93
+Epoch 66 (171/187) | Steps 12700 | ms/batch 734.51 | Train Loss: 36.0950 | Ph. Acc. (Avg.) 88.34 | Ph. Acc. Avg. (No Sil) 85.78
+Finished training epoch 66. Elapsed time: 137.94405674934387
+Starting epoch 68
+Epoch 67 (34/187) | Steps 12750 | ms/batch 745.53 | Train Loss: 35.3842 | Ph. Acc. (Avg.) 88.40 | Ph. Acc. Avg. (No Sil) 85.97
+Epoch 67 (84/187) | Steps 12800 | ms/batch 734.40 | Train Loss: 33.7763 | Ph. Acc. (Avg.) 88.32 | Ph. Acc. Avg. (No Sil) 85.81
+Epoch 67 (134/187) | Steps 12850 | ms/batch 735.20 | Train Loss: 36.1330 | Ph. Acc. (Avg.) 88.35 | Ph. Acc. Avg. (No Sil) 85.86
+Epoch 67 (184/187) | Steps 12900 | ms/batch 731.13 | Train Loss: 33.2945 | Ph. Acc. (Avg.) 88.31 | Ph. Acc. Avg. (No Sil) 85.78
+Finished training epoch 67. Elapsed time: 137.74867987632751
+Starting epoch 69
+Epoch 68 (47/187) | Steps 12950 | ms/batch 740.73 | Train Loss: 37.5610 | Ph. Acc. (Avg.) 88.55 | Ph. Acc. Avg. (No Sil) 86.08
+Epoch 68 (97/187) | Steps 13000 | ms/batch 690.66 | Train Loss: 36.0108 | Ph. Acc. (Avg.) 88.52 | Ph. Acc. Avg. (No Sil) 86.05
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9102s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7970892190933228
+	 - Avg. Val. Multi-TD Val. Error: 1.4053782025973003
+	 - Avg. Val. Phoneme Error: 0.3877374579509099
+	 - Avg. Val. Phoneme Accuracy: 89.30257161458334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.54192016619677
+	 - Avg. Val. Waveform Error: 0.11018062010407448
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7971...
+----------------------------------------------------------------------------------------------------
+Took 2.4549s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.2042s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 68 (147/187) | Steps 13050 | ms/batch 824.68 | Train Loss: 36.0633 | Ph. Acc. (Avg.) 88.41 | Ph. Acc. Avg. (No Sil) 85.97
+Finished training epoch 68. Elapsed time: 138.32112574577332
+Starting epoch 70
+Epoch 69 (10/187) | Steps 13100 | ms/batch 701.82 | Train Loss: 36.7547 | Ph. Acc. (Avg.) 88.72 | Ph. Acc. Avg. (No Sil) 86.19
+Epoch 69 (60/187) | Steps 13150 | ms/batch 690.49 | Train Loss: 37.0177 | Ph. Acc. (Avg.) 88.44 | Ph. Acc. Avg. (No Sil) 85.99
+Epoch 69 (110/187) | Steps 13200 | ms/batch 690.01 | Train Loss: 34.3308 | Ph. Acc. (Avg.) 88.61 | Ph. Acc. Avg. (No Sil) 86.13
+Epoch 69 (160/187) | Steps 13250 | ms/batch 690.60 | Train Loss: 34.2974 | Ph. Acc. (Avg.) 88.54 | Ph. Acc. Avg. (No Sil) 86.04
+Finished training epoch 69. Elapsed time: 130.06121730804443
+Starting epoch 71
+Epoch 70 (23/187) | Steps 13300 | ms/batch 730.17 | Train Loss: 33.9726 | Ph. Acc. (Avg.) 88.77 | Ph. Acc. Avg. (No Sil) 86.30
+Epoch 70 (73/187) | Steps 13350 | ms/batch 735.56 | Train Loss: 34.4682 | Ph. Acc. (Avg.) 88.78 | Ph. Acc. Avg. (No Sil) 86.29
+Epoch 70 (123/187) | Steps 13400 | ms/batch 736.64 | Train Loss: 35.4124 | Ph. Acc. (Avg.) 88.66 | Ph. Acc. Avg. (No Sil) 86.17
+Epoch 70 (173/187) | Steps 13450 | ms/batch 735.33 | Train Loss: 34.3268 | Ph. Acc. (Avg.) 88.55 | Ph. Acc. Avg. (No Sil) 86.09
+Finished training epoch 70. Elapsed time: 138.01781821250916
+Finished training epoch 70. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4726s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 72
+Epoch 71 (36/187) | Steps 13500 | ms/batch 834.42 | Train Loss: 34.9620 | Ph. Acc. (Avg.) 88.39 | Ph. Acc. Avg. (No Sil) 85.93
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9425s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7824373245239258
+	 - Avg. Val. Multi-TD Val. Error: 1.3962478439013164
+	 - Avg. Val. Phoneme Error: 0.37286828955014545
+	 - Avg. Val. Phoneme Accuracy: 89.58740234375
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.96483157738537
+	 - Avg. Val. Waveform Error: 0.10989666978518169
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7824...
+----------------------------------------------------------------------------------------------------
+Took 2.4688s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 71 (86/187) | Steps 13550 | ms/batch 784.35 | Train Loss: 36.9293 | Ph. Acc. (Avg.) 88.52 | Ph. Acc. Avg. (No Sil) 86.14
+Epoch 71 (136/187) | Steps 13600 | ms/batch 735.37 | Train Loss: 35.6749 | Ph. Acc. (Avg.) 88.59 | Ph. Acc. Avg. (No Sil) 86.16
+Epoch 71 (186/187) | Steps 13650 | ms/batch 735.34 | Train Loss: 34.3079 | Ph. Acc. (Avg.) 88.63 | Ph. Acc. Avg. (No Sil) 86.18
+Finished training epoch 71. Elapsed time: 140.462482213974
+Starting epoch 73
+Epoch 72 (49/187) | Steps 13700 | ms/batch 744.56 | Train Loss: 34.2981 | Ph. Acc. (Avg.) 88.76 | Ph. Acc. Avg. (No Sil) 86.30
+Epoch 72 (99/187) | Steps 13750 | ms/batch 735.86 | Train Loss: 34.7450 | Ph. Acc. (Avg.) 88.59 | Ph. Acc. Avg. (No Sil) 86.13
+Epoch 72 (149/187) | Steps 13800 | ms/batch 735.25 | Train Loss: 36.6873 | Ph. Acc. (Avg.) 88.56 | Ph. Acc. Avg. (No Sil) 86.03
+Finished training epoch 72. Elapsed time: 137.96047616004944
+Starting epoch 74
+Epoch 73 (12/187) | Steps 13850 | ms/batch 743.75 | Train Loss: 35.6041 | Ph. Acc. (Avg.) 88.25 | Ph. Acc. Avg. (No Sil) 85.80
+Epoch 73 (62/187) | Steps 13900 | ms/batch 735.04 | Train Loss: 35.1876 | Ph. Acc. (Avg.) 88.47 | Ph. Acc. Avg. (No Sil) 86.03
+Epoch 73 (112/187) | Steps 13950 | ms/batch 728.51 | Train Loss: 34.7754 | Ph. Acc. (Avg.) 88.66 | Ph. Acc. Avg. (No Sil) 86.23
+Epoch 73 (162/187) | Steps 14000 | ms/batch 689.89 | Train Loss: 34.2449 | Ph. Acc. (Avg.) 88.68 | Ph. Acc. Avg. (No Sil) 86.23
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8959s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.799787123998006
+	 - Avg. Val. Multi-TD Val. Error: 1.4164419372876484
+	 - Avg. Val. Phoneme Error: 0.39163391292095184
+	 - Avg. Val. Phoneme Accuracy: 89.16015625
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.14868674877577
+	 - Avg. Val. Waveform Error: 0.10915834829211235
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.8969s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.6625s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training epoch 73. Elapsed time: 138.84149146080017
+Starting epoch 75
+Epoch 74 (25/187) | Steps 14050 | ms/batch 791.49 | Train Loss: 35.1518 | Ph. Acc. (Avg.) 88.47 | Ph. Acc. Avg. (No Sil) 85.88
+Epoch 74 (75/187) | Steps 14100 | ms/batch 691.08 | Train Loss: 33.6002 | Ph. Acc. (Avg.) 88.51 | Ph. Acc. Avg. (No Sil) 86.08
+Epoch 74 (125/187) | Steps 14150 | ms/batch 691.53 | Train Loss: 35.6698 | Ph. Acc. (Avg.) 88.62 | Ph. Acc. Avg. (No Sil) 86.13
+Epoch 74 (175/187) | Steps 14200 | ms/batch 691.47 | Train Loss: 35.5745 | Ph. Acc. (Avg.) 88.54 | Ph. Acc. Avg. (No Sil) 86.06
+Finished training epoch 74. Elapsed time: 129.7205994129181
+Starting epoch 76
+Epoch 75 (38/187) | Steps 14250 | ms/batch 699.19 | Train Loss: 35.1189 | Ph. Acc. (Avg.) 88.72 | Ph. Acc. Avg. (No Sil) 86.25
+Epoch 75 (88/187) | Steps 14300 | ms/batch 717.75 | Train Loss: 36.0480 | Ph. Acc. (Avg.) 88.63 | Ph. Acc. Avg. (No Sil) 86.17
+Epoch 75 (138/187) | Steps 14350 | ms/batch 736.54 | Train Loss: 32.5537 | Ph. Acc. (Avg.) 88.61 | Ph. Acc. Avg. (No Sil) 86.17
+Finished training epoch 75. Elapsed time: 135.44512295722961
+Finished training epoch 75. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4271s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 77
+Epoch 76 (1/187) | Steps 14400 | ms/batch 834.45 | Train Loss: 33.1367 | Ph. Acc. (Avg.) 87.90 | Ph. Acc. Avg. (No Sil) 85.49
+Epoch 76 (51/187) | Steps 14450 | ms/batch 736.52 | Train Loss: 34.9985 | Ph. Acc. (Avg.) 88.72 | Ph. Acc. Avg. (No Sil) 86.34
+Epoch 76 (101/187) | Steps 14500 | ms/batch 735.25 | Train Loss: 34.5105 | Ph. Acc. (Avg.) 88.72 | Ph. Acc. Avg. (No Sil) 86.35
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9604s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7865488330523174
+	 - Avg. Val. Multi-TD Val. Error: 1.4139358798662822
+	 - Avg. Val. Phoneme Error: 0.38448865214983624
+	 - Avg. Val. Phoneme Accuracy: 89.36767578125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.53450066775486
+	 - Avg. Val. Waveform Error: 0.10805940379699071
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9609s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 76 (151/187) | Steps 14550 | ms/batch 754.09 | Train Loss: 34.9720 | Ph. Acc. (Avg.) 88.69 | Ph. Acc. Avg. (No Sil) 86.29
+Finished training epoch 76. Elapsed time: 138.978901386261
+Starting epoch 78
+Epoch 77 (14/187) | Steps 14600 | ms/batch 745.47 | Train Loss: 32.7887 | Ph. Acc. (Avg.) 89.05 | Ph. Acc. Avg. (No Sil) 86.70
+Epoch 77 (64/187) | Steps 14650 | ms/batch 734.94 | Train Loss: 32.4366 | Ph. Acc. (Avg.) 88.74 | Ph. Acc. Avg. (No Sil) 86.28
+Epoch 77 (114/187) | Steps 14700 | ms/batch 735.55 | Train Loss: 33.1913 | Ph. Acc. (Avg.) 88.68 | Ph. Acc. Avg. (No Sil) 86.23
+Epoch 77 (164/187) | Steps 14750 | ms/batch 736.30 | Train Loss: 35.6335 | Ph. Acc. (Avg.) 88.68 | Ph. Acc. Avg. (No Sil) 86.23
+Finished training epoch 77. Elapsed time: 138.00003695487976
+Starting epoch 79
+Epoch 78 (27/187) | Steps 14800 | ms/batch 744.68 | Train Loss: 33.6096 | Ph. Acc. (Avg.) 88.78 | Ph. Acc. Avg. (No Sil) 86.40
+Epoch 78 (77/187) | Steps 14850 | ms/batch 744.48 | Train Loss: 34.4869 | Ph. Acc. (Avg.) 88.94 | Ph. Acc. Avg. (No Sil) 86.51
+Epoch 78 (127/187) | Steps 14900 | ms/batch 735.48 | Train Loss: 34.7334 | Ph. Acc. (Avg.) 88.91 | Ph. Acc. Avg. (No Sil) 86.47
+Epoch 78 (177/187) | Steps 14950 | ms/batch 735.10 | Train Loss: 34.3994 | Ph. Acc. (Avg.) 88.79 | Ph. Acc. Avg. (No Sil) 86.34
+Finished training epoch 78. Elapsed time: 138.1080620288849
+Starting epoch 80
+Epoch 79 (40/187) | Steps 15000 | ms/batch 701.26 | Train Loss: 34.9983 | Ph. Acc. (Avg.) 88.65 | Ph. Acc. Avg. (No Sil) 86.29
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9012s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7842902541160583
+	 - Avg. Val. Multi-TD Val. Error: 1.4049704273541768
+	 - Avg. Val. Phoneme Error: 0.37902210156122845
+	 - Avg. Val. Phoneme Accuracy: 89.49788411458334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.75708562101201
+	 - Avg. Val. Waveform Error: 0.10820804660518964
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9023s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.6736s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 79 (90/187) | Steps 15050 | ms/batch 783.96 | Train Loss: 33.9846 | Ph. Acc. (Avg.) 88.62 | Ph. Acc. Avg. (No Sil) 86.18
+Epoch 79 (140/187) | Steps 15100 | ms/batch 689.87 | Train Loss: 33.3188 | Ph. Acc. (Avg.) 88.66 | Ph. Acc. Avg. (No Sil) 86.22
+Finished training epoch 79. Elapsed time: 134.22180318832397
+Starting epoch 81
+Epoch 80 (3/187) | Steps 15150 | ms/batch 699.44 | Train Loss: 34.6500 | Ph. Acc. (Avg.) 88.23 | Ph. Acc. Avg. (No Sil) 85.74
+Epoch 80 (53/187) | Steps 15200 | ms/batch 690.68 | Train Loss: 34.2707 | Ph. Acc. (Avg.) 88.82 | Ph. Acc. Avg. (No Sil) 86.38
+Epoch 80 (103/187) | Steps 15250 | ms/batch 690.36 | Train Loss: 35.2843 | Ph. Acc. (Avg.) 88.93 | Ph. Acc. Avg. (No Sil) 86.45
+Epoch 80 (153/187) | Steps 15300 | ms/batch 711.67 | Train Loss: 34.2930 | Ph. Acc. (Avg.) 88.92 | Ph. Acc. Avg. (No Sil) 86.48
+Finished training epoch 80. Elapsed time: 131.92120456695557
+Finished training epoch 80. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.7089s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 82
+Epoch 81 (16/187) | Steps 15350 | ms/batch 834.28 | Train Loss: 38.3468 | Ph. Acc. (Avg.) 88.50 | Ph. Acc. Avg. (No Sil) 86.09
+Epoch 81 (66/187) | Steps 15400 | ms/batch 735.72 | Train Loss: 32.4508 | Ph. Acc. (Avg.) 88.84 | Ph. Acc. Avg. (No Sil) 86.39
+Epoch 81 (116/187) | Steps 15450 | ms/batch 735.97 | Train Loss: 35.5062 | Ph. Acc. (Avg.) 88.81 | Ph. Acc. Avg. (No Sil) 86.34
+Epoch 81 (166/187) | Steps 15500 | ms/batch 735.80 | Train Loss: 35.9115 | Ph. Acc. (Avg.) 88.85 | Ph. Acc. Avg. (No Sil) 86.39
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9591s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.785613973935445
+	 - Avg. Val. Multi-TD Val. Error: 1.4168375531832378
+	 - Avg. Val. Phoneme Error: 0.38240071137746173
+	 - Avg. Val. Phoneme Accuracy: 89.35546875
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.601276153732
+	 - Avg. Val. Waveform Error: 0.11319669832785924
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9600s to run validation loop
+----------------------------------------------------------------------------------------------------
+Finished training epoch 81. Elapsed time: 139.02559852600098
+Starting epoch 83
+Epoch 82 (29/187) | Steps 15550 | ms/batch 764.38 | Train Loss: 32.0557 | Ph. Acc. (Avg.) 89.07 | Ph. Acc. Avg. (No Sil) 86.69
+Epoch 82 (79/187) | Steps 15600 | ms/batch 736.10 | Train Loss: 33.6050 | Ph. Acc. (Avg.) 88.91 | Ph. Acc. Avg. (No Sil) 86.57
+Epoch 82 (129/187) | Steps 15650 | ms/batch 735.56 | Train Loss: 33.5081 | Ph. Acc. (Avg.) 88.96 | Ph. Acc. Avg. (No Sil) 86.59
+Epoch 82 (179/187) | Steps 15700 | ms/batch 736.13 | Train Loss: 33.5219 | Ph. Acc. (Avg.) 88.94 | Ph. Acc. Avg. (No Sil) 86.57
+Finished training epoch 82. Elapsed time: 138.0719985961914
+Starting epoch 84
+Epoch 83 (42/187) | Steps 15750 | ms/batch 745.31 | Train Loss: 33.0991 | Ph. Acc. (Avg.) 89.02 | Ph. Acc. Avg. (No Sil) 86.66
+Epoch 83 (92/187) | Steps 15800 | ms/batch 736.10 | Train Loss: 33.5403 | Ph. Acc. (Avg.) 88.94 | Ph. Acc. Avg. (No Sil) 86.58
+Epoch 83 (142/187) | Steps 15850 | ms/batch 736.13 | Train Loss: 33.8342 | Ph. Acc. (Avg.) 88.92 | Ph. Acc. Avg. (No Sil) 86.59
+Finished training epoch 83. Elapsed time: 138.03839826583862
+Starting epoch 85
+Epoch 84 (5/187) | Steps 15900 | ms/batch 744.74 | Train Loss: 31.8592 | Ph. Acc. (Avg.) 89.11 | Ph. Acc. Avg. (No Sil) 86.57
+Epoch 84 (55/187) | Steps 15950 | ms/batch 735.59 | Train Loss: 35.2505 | Ph. Acc. (Avg.) 88.79 | Ph. Acc. Avg. (No Sil) 86.45
+Epoch 84 (105/187) | Steps 16000 | ms/batch 697.22 | Train Loss: 33.9062 | Ph. Acc. (Avg.) 88.90 | Ph. Acc. Avg. (No Sil) 86.51
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8993s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7865382830301921
+	 - Avg. Val. Multi-TD Val. Error: 1.4067693948745728
+	 - Avg. Val. Phoneme Error: 0.38381725549697876
+	 - Avg. Val. Phoneme Accuracy: 89.40022786458334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.52708116931295
+	 - Avg. Val. Waveform Error: 0.10870008294781049
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9005s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.6465s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 84 (155/187) | Steps 16050 | ms/batch 790.26 | Train Loss: 33.4100 | Ph. Acc. (Avg.) 88.93 | Ph. Acc. Avg. (No Sil) 86.54
+Finished training epoch 84. Elapsed time: 137.56864476203918
+Starting epoch 86
+Epoch 85 (18/187) | Steps 16100 | ms/batch 701.79 | Train Loss: 34.2812 | Ph. Acc. (Avg.) 89.16 | Ph. Acc. Avg. (No Sil) 86.75
+Epoch 85 (68/187) | Steps 16150 | ms/batch 688.97 | Train Loss: 33.8362 | Ph. Acc. (Avg.) 89.03 | Ph. Acc. Avg. (No Sil) 86.75
+Epoch 85 (118/187) | Steps 16200 | ms/batch 689.34 | Train Loss: 33.9675 | Ph. Acc. (Avg.) 89.07 | Ph. Acc. Avg. (No Sil) 86.72
+Epoch 85 (168/187) | Steps 16250 | ms/batch 689.87 | Train Loss: 32.7433 | Ph. Acc. (Avg.) 88.98 | Ph. Acc. Avg. (No Sil) 86.64
+Finished training epoch 85. Elapsed time: 129.44053053855896
+Finished training epoch 85. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.8951s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 87
+Epoch 86 (31/187) | Steps 16300 | ms/batch 825.78 | Train Loss: 32.4168 | Ph. Acc. (Avg.) 89.06 | Ph. Acc. Avg. (No Sil) 86.71
+Epoch 86 (81/187) | Steps 16350 | ms/batch 735.42 | Train Loss: 35.0712 | Ph. Acc. (Avg.) 88.94 | Ph. Acc. Avg. (No Sil) 86.54
+Epoch 86 (131/187) | Steps 16400 | ms/batch 734.20 | Train Loss: 34.2086 | Ph. Acc. (Avg.) 88.98 | Ph. Acc. Avg. (No Sil) 86.59
+Epoch 86 (181/187) | Steps 16450 | ms/batch 734.79 | Train Loss: 35.4660 | Ph. Acc. (Avg.) 88.93 | Ph. Acc. Avg. (No Sil) 86.56
+Finished training epoch 86. Elapsed time: 137.890123128891
+Starting epoch 88
+Epoch 87 (44/187) | Steps 16500 | ms/batch 744.67 | Train Loss: 33.2994 | Ph. Acc. (Avg.) 89.10 | Ph. Acc. Avg. (No Sil) 86.64
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9241s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7973923087120056
+	 - Avg. Val. Multi-TD Val. Error: 1.4083502888679504
+	 - Avg. Val. Phoneme Error: 0.3847740093866984
+	 - Avg. Val. Phoneme Accuracy: 89.27408854166666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.42320819112628
+	 - Avg. Val. Waveform Error: 0.10797955840826035
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9252s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 87 (94/187) | Steps 16550 | ms/batch 753.36 | Train Loss: 33.1767 | Ph. Acc. (Avg.) 89.10 | Ph. Acc. Avg. (No Sil) 86.75
+Epoch 87 (144/187) | Steps 16600 | ms/batch 735.23 | Train Loss: 32.8575 | Ph. Acc. (Avg.) 89.06 | Ph. Acc. Avg. (No Sil) 86.69
+Finished training epoch 87. Elapsed time: 138.80761742591858
+Starting epoch 89
+Epoch 88 (7/187) | Steps 16650 | ms/batch 743.28 | Train Loss: 33.5771 | Ph. Acc. (Avg.) 89.30 | Ph. Acc. Avg. (No Sil) 86.86
+Epoch 88 (57/187) | Steps 16700 | ms/batch 735.05 | Train Loss: 34.4359 | Ph. Acc. (Avg.) 88.96 | Ph. Acc. Avg. (No Sil) 86.47
+Epoch 88 (107/187) | Steps 16750 | ms/batch 734.60 | Train Loss: 33.8624 | Ph. Acc. (Avg.) 89.05 | Ph. Acc. Avg. (No Sil) 86.62
+Epoch 88 (157/187) | Steps 16800 | ms/batch 735.28 | Train Loss: 31.0418 | Ph. Acc. (Avg.) 89.01 | Ph. Acc. Avg. (No Sil) 86.60
+Finished training epoch 88. Elapsed time: 137.93123245239258
+Starting epoch 90
+Epoch 89 (20/187) | Steps 16850 | ms/batch 745.73 | Train Loss: 33.0593 | Ph. Acc. (Avg.) 88.57 | Ph. Acc. Avg. (No Sil) 86.19
+Epoch 89 (70/187) | Steps 16900 | ms/batch 736.91 | Train Loss: 32.8400 | Ph. Acc. (Avg.) 88.90 | Ph. Acc. Avg. (No Sil) 86.64
+Epoch 89 (120/187) | Steps 16950 | ms/batch 735.65 | Train Loss: 33.2573 | Ph. Acc. (Avg.) 89.02 | Ph. Acc. Avg. (No Sil) 86.74
+Epoch 89 (170/187) | Steps 17000 | ms/batch 702.88 | Train Loss: 29.9169 | Ph. Acc. (Avg.) 88.99 | Ph. Acc. Avg. (No Sil) 86.67
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.8937s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.792443037033081
+	 - Avg. Val. Multi-TD Val. Error: 1.4160701235135396
+	 - Avg. Val. Phoneme Error: 0.3882501820723216
+	 - Avg. Val. Phoneme Accuracy: 89.22119140625
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.35643270514913
+	 - Avg. Val. Waveform Error: 0.10775381699204445
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.8948s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.8476s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training epoch 89. Elapsed time: 140.4517059326172
+Starting epoch 91
+Epoch 90 (33/187) | Steps 17050 | ms/batch 793.99 | Train Loss: 33.1515 | Ph. Acc. (Avg.) 88.76 | Ph. Acc. Avg. (No Sil) 86.29
+Epoch 90 (83/187) | Steps 17100 | ms/batch 689.91 | Train Loss: 34.8249 | Ph. Acc. (Avg.) 88.91 | Ph. Acc. Avg. (No Sil) 86.50
+Epoch 90 (133/187) | Steps 17150 | ms/batch 689.80 | Train Loss: 33.0142 | Ph. Acc. (Avg.) 88.93 | Ph. Acc. Avg. (No Sil) 86.60
+Epoch 90 (183/187) | Steps 17200 | ms/batch 689.59 | Train Loss: 32.9695 | Ph. Acc. (Avg.) 88.95 | Ph. Acc. Avg. (No Sil) 86.62
+Finished training epoch 90. Elapsed time: 129.48978185653687
+Finished training epoch 90. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4258s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 92
+Epoch 91 (46/187) | Steps 17250 | ms/batch 787.82 | Train Loss: 31.6233 | Ph. Acc. (Avg.) 88.92 | Ph. Acc. Avg. (No Sil) 86.55
+Epoch 91 (96/187) | Steps 17300 | ms/batch 712.98 | Train Loss: 34.9409 | Ph. Acc. (Avg.) 89.10 | Ph. Acc. Avg. (No Sil) 86.72
+Epoch 91 (146/187) | Steps 17350 | ms/batch 735.37 | Train Loss: 35.5182 | Ph. Acc. (Avg.) 89.11 | Ph. Acc. Avg. (No Sil) 86.73
+Finished training epoch 91. Elapsed time: 134.72517228126526
+Starting epoch 93
+Epoch 92 (9/187) | Steps 17400 | ms/batch 744.39 | Train Loss: 35.0230 | Ph. Acc. (Avg.) 89.17 | Ph. Acc. Avg. (No Sil) 86.98
+Epoch 92 (59/187) | Steps 17450 | ms/batch 728.65 | Train Loss: 33.9523 | Ph. Acc. (Avg.) 89.21 | Ph. Acc. Avg. (No Sil) 86.91
+Epoch 92 (109/187) | Steps 17500 | ms/batch 734.95 | Train Loss: 30.9060 | Ph. Acc. (Avg.) 89.17 | Ph. Acc. Avg. (No Sil) 86.86
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9341s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7888306975364685
+	 - Avg. Val. Multi-TD Val. Error: 1.4137274821599324
+	 - Avg. Val. Phoneme Error: 0.3866891761620839
+	 - Avg. Val. Phoneme Accuracy: 89.31884765625
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.51966167087105
+	 - Avg. Val. Waveform Error: 0.11038446674744289
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9346s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 92 (159/187) | Steps 17550 | ms/batch 753.65 | Train Loss: 34.7868 | Ph. Acc. (Avg.) 89.15 | Ph. Acc. Avg. (No Sil) 86.81
+Finished training epoch 92. Elapsed time: 138.52031636238098
+Starting epoch 94
+Epoch 93 (22/187) | Steps 17600 | ms/batch 744.83 | Train Loss: 33.1795 | Ph. Acc. (Avg.) 88.94 | Ph. Acc. Avg. (No Sil) 86.67
+Epoch 93 (72/187) | Steps 17650 | ms/batch 734.78 | Train Loss: 33.0610 | Ph. Acc. (Avg.) 89.00 | Ph. Acc. Avg. (No Sil) 86.70
+Epoch 93 (122/187) | Steps 17700 | ms/batch 735.24 | Train Loss: 33.6608 | Ph. Acc. (Avg.) 89.09 | Ph. Acc. Avg. (No Sil) 86.79
+Epoch 93 (172/187) | Steps 17750 | ms/batch 735.10 | Train Loss: 34.4355 | Ph. Acc. (Avg.) 89.03 | Ph. Acc. Avg. (No Sil) 86.72
+Finished training epoch 93. Elapsed time: 137.93626046180725
+Starting epoch 95
+Epoch 94 (35/187) | Steps 17800 | ms/batch 744.28 | Train Loss: 33.3176 | Ph. Acc. (Avg.) 89.02 | Ph. Acc. Avg. (No Sil) 86.66
+Epoch 94 (85/187) | Steps 17850 | ms/batch 735.20 | Train Loss: 35.3085 | Ph. Acc. (Avg.) 89.06 | Ph. Acc. Avg. (No Sil) 86.74
+Epoch 94 (135/187) | Steps 17900 | ms/batch 735.83 | Train Loss: 32.8665 | Ph. Acc. (Avg.) 89.05 | Ph. Acc. Avg. (No Sil) 86.69
+Epoch 94 (185/187) | Steps 17950 | ms/batch 735.05 | Train Loss: 33.5272 | Ph. Acc. (Avg.) 89.10 | Ph. Acc. Avg. (No Sil) 86.77
+Finished training epoch 94. Elapsed time: 137.95208191871643
+Starting epoch 96
+Epoch 95 (48/187) | Steps 18000 | ms/batch 719.58 | Train Loss: 32.9898 | Ph. Acc. (Avg.) 89.39 | Ph. Acc. Avg. (No Sil) 87.11
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9019s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.788049300511678
+	 - Avg. Val. Multi-TD Val. Error: 1.426286021868388
+	 - Avg. Val. Phoneme Error: 0.37597573300202686
+	 - Avg. Val. Phoneme Accuracy: 89.51009114583334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.81644160854727
+	 - Avg. Val. Waveform Error: 0.11062927792469661
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9025s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.2265s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 95 (98/187) | Steps 18050 | ms/batch 793.50 | Train Loss: 33.5966 | Ph. Acc. (Avg.) 89.30 | Ph. Acc. Avg. (No Sil) 86.95
+Epoch 95 (148/187) | Steps 18100 | ms/batch 693.68 | Train Loss: 35.7811 | Ph. Acc. (Avg.) 89.22 | Ph. Acc. Avg. (No Sil) 86.88
+Finished training epoch 95. Elapsed time: 136.00939440727234
+Finished training epoch 95. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4522s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 97
+Epoch 96 (11/187) | Steps 18150 | ms/batch 793.01 | Train Loss: 30.1693 | Ph. Acc. (Avg.) 89.48 | Ph. Acc. Avg. (No Sil) 87.31
+Epoch 96 (61/187) | Steps 18200 | ms/batch 691.09 | Train Loss: 32.7829 | Ph. Acc. (Avg.) 89.09 | Ph. Acc. Avg. (No Sil) 86.77
+Epoch 96 (111/187) | Steps 18250 | ms/batch 690.76 | Train Loss: 31.9672 | Ph. Acc. (Avg.) 89.29 | Ph. Acc. Avg. (No Sil) 86.95
+Epoch 96 (161/187) | Steps 18300 | ms/batch 787.33 | Train Loss: 32.1291 | Ph. Acc. (Avg.) 89.27 | Ph. Acc. Avg. (No Sil) 86.96
+Finished training epoch 96. Elapsed time: 147.76072454452515
+Starting epoch 98
+Epoch 97 (24/187) | Steps 18350 | ms/batch 972.51 | Train Loss: 32.3407 | Ph. Acc. (Avg.) 89.23 | Ph. Acc. Avg. (No Sil) 86.85
+Epoch 97 (74/187) | Steps 18400 | ms/batch 734.96 | Train Loss: 33.7109 | Ph. Acc. (Avg.) 89.21 | Ph. Acc. Avg. (No Sil) 86.83
+Epoch 97 (124/187) | Steps 18450 | ms/batch 735.06 | Train Loss: 32.3963 | Ph. Acc. (Avg.) 89.18 | Ph. Acc. Avg. (No Sil) 86.83
+Epoch 97 (174/187) | Steps 18500 | ms/batch 734.51 | Train Loss: 36.4467 | Ph. Acc. (Avg.) 89.17 | Ph. Acc. Avg. (No Sil) 86.82
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9274s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7793801824251811
+	 - Avg. Val. Multi-TD Val. Error: 1.4144626061121623
+	 - Avg. Val. Phoneme Error: 0.37858271102110547
+	 - Avg. Val. Phoneme Accuracy: 89.306640625
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.49740317554533
+	 - Avg. Val. Waveform Error: 0.11293320606152217
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7794...
+----------------------------------------------------------------------------------------------------
+Took 2.4435s to run validation loop
+----------------------------------------------------------------------------------------------------
+Finished training epoch 97. Elapsed time: 139.6025161743164
+Starting epoch 99
+Epoch 98 (37/187) | Steps 18550 | ms/batch 793.65 | Train Loss: 32.8986 | Ph. Acc. (Avg.) 89.45 | Ph. Acc. Avg. (No Sil) 87.17
+Epoch 98 (87/187) | Steps 18600 | ms/batch 734.86 | Train Loss: 34.3485 | Ph. Acc. (Avg.) 89.31 | Ph. Acc. Avg. (No Sil) 87.00
+Epoch 98 (137/187) | Steps 18650 | ms/batch 734.90 | Train Loss: 32.2638 | Ph. Acc. (Avg.) 89.34 | Ph. Acc. Avg. (No Sil) 87.00
+Finished training epoch 98. Elapsed time: 137.97375202178955
+Starting epoch 100
+Epoch 99 (0/187) | Steps 18700 | ms/batch 744.50 | Train Loss: 33.8554 | Ph. Acc. (Avg.) 87.06 | Ph. Acc. Avg. (No Sil) 84.35
+Epoch 99 (50/187) | Steps 18750 | ms/batch 736.10 | Train Loss: 32.8648 | Ph. Acc. (Avg.) 89.43 | Ph. Acc. Avg. (No Sil) 87.22
+Epoch 99 (100/187) | Steps 18800 | ms/batch 735.73 | Train Loss: 31.3092 | Ph. Acc. (Avg.) 89.38 | Ph. Acc. Avg. (No Sil) 87.10
+Epoch 99 (150/187) | Steps 18850 | ms/batch 734.50 | Train Loss: 30.3669 | Ph. Acc. (Avg.) 89.38 | Ph. Acc. Avg. (No Sil) 87.05
+Finished training epoch 99. Elapsed time: 138.00429368019104
+Starting epoch 101
+Epoch 100 (13/187) | Steps 18900 | ms/batch 745.18 | Train Loss: 33.7740 | Ph. Acc. (Avg.) 89.62 | Ph. Acc. Avg. (No Sil) 87.39
+Epoch 100 (63/187) | Steps 18950 | ms/batch 735.48 | Train Loss: 31.9942 | Ph. Acc. (Avg.) 89.18 | Ph. Acc. Avg. (No Sil) 86.87
+Epoch 100 (113/187) | Steps 19000 | ms/batch 735.47 | Train Loss: 33.6332 | Ph. Acc. (Avg.) 89.25 | Ph. Acc. Avg. (No Sil) 86.98
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9395s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7774765292803447
+	 - Avg. Val. Multi-TD Val. Error: 1.420343041419983
+	 - Avg. Val. Phoneme Error: 0.3822835137446721
+	 - Avg. Val. Phoneme Accuracy: 89.35139973958334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.65321264282535
+	 - Avg. Val. Waveform Error: 0.10945341487725575
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7775...
+----------------------------------------------------------------------------------------------------
+Took 2.4744s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.7158s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 100 (163/187) | Steps 19050 | ms/batch 820.65 | Train Loss: 35.1431 | Ph. Acc. (Avg.) 89.30 | Ph. Acc. Avg. (No Sil) 87.01
+Finished training epoch 100. Elapsed time: 141.4190890789032
+Finished training epoch 100. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4363s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 102
+Epoch 101 (26/187) | Steps 19100 | ms/batch 796.59 | Train Loss: 33.5605 | Ph. Acc. (Avg.) 89.11 | Ph. Acc. Avg. (No Sil) 86.75
+Epoch 101 (76/187) | Steps 19150 | ms/batch 692.48 | Train Loss: 29.4992 | Ph. Acc. (Avg.) 89.22 | Ph. Acc. Avg. (No Sil) 86.85
+Epoch 101 (126/187) | Steps 19200 | ms/batch 693.07 | Train Loss: 32.1442 | Ph. Acc. (Avg.) 89.21 | Ph. Acc. Avg. (No Sil) 86.84
+Epoch 101 (176/187) | Steps 19250 | ms/batch 696.34 | Train Loss: 33.9046 | Ph. Acc. (Avg.) 89.27 | Ph. Acc. Avg. (No Sil) 86.93
+Finished training epoch 101. Elapsed time: 130.36428546905518
+Starting epoch 103
+Epoch 102 (39/187) | Steps 19300 | ms/batch 703.10 | Train Loss: 33.1991 | Ph. Acc. (Avg.) 89.32 | Ph. Acc. Avg. (No Sil) 87.06
+Epoch 102 (89/187) | Steps 19350 | ms/batch 713.87 | Train Loss: 31.4201 | Ph. Acc. (Avg.) 89.28 | Ph. Acc. Avg. (No Sil) 86.97
+Epoch 102 (139/187) | Steps 19400 | ms/batch 735.18 | Train Loss: 31.7327 | Ph. Acc. (Avg.) 89.34 | Ph. Acc. Avg. (No Sil) 87.03
+Finished training epoch 102. Elapsed time: 135.25266313552856
+Starting epoch 104
+Epoch 103 (2/187) | Steps 19450 | ms/batch 745.81 | Train Loss: 31.1650 | Ph. Acc. (Avg.) 89.99 | Ph. Acc. Avg. (No Sil) 87.67
+Epoch 103 (52/187) | Steps 19500 | ms/batch 736.43 | Train Loss: 36.6854 | Ph. Acc. (Avg.) 89.27 | Ph. Acc. Avg. (No Sil) 87.04
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9311s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.798753301302592
+	 - Avg. Val. Multi-TD Val. Error: 1.4133308132489522
+	 - Avg. Val. Phoneme Error: 0.3897904306650162
+	 - Avg. Val. Phoneme Accuracy: 89.51009114583334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.81644160854727
+	 - Avg. Val. Waveform Error: 0.11173040295640628
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9316s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 103 (102/187) | Steps 19550 | ms/batch 748.99 | Train Loss: 32.2799 | Ph. Acc. (Avg.) 89.38 | Ph. Acc. Avg. (No Sil) 87.16
+Epoch 103 (152/187) | Steps 19600 | ms/batch 735.91 | Train Loss: 33.6323 | Ph. Acc. (Avg.) 89.41 | Ph. Acc. Avg. (No Sil) 87.19
+Finished training epoch 103. Elapsed time: 138.70282530784607
+Starting epoch 105
+Epoch 104 (15/187) | Steps 19650 | ms/batch 743.79 | Train Loss: 31.8070 | Ph. Acc. (Avg.) 89.79 | Ph. Acc. Avg. (No Sil) 87.36
+Epoch 104 (65/187) | Steps 19700 | ms/batch 735.07 | Train Loss: 33.0596 | Ph. Acc. (Avg.) 89.45 | Ph. Acc. Avg. (No Sil) 87.18
+Epoch 104 (115/187) | Steps 19750 | ms/batch 734.04 | Train Loss: 33.8359 | Ph. Acc. (Avg.) 89.54 | Ph. Acc. Avg. (No Sil) 87.28
+Epoch 104 (165/187) | Steps 19800 | ms/batch 734.30 | Train Loss: 31.0101 | Ph. Acc. (Avg.) 89.47 | Ph. Acc. Avg. (No Sil) 87.22
+Finished training epoch 104. Elapsed time: 137.82148265838623
+Starting epoch 106
+Epoch 105 (28/187) | Steps 19850 | ms/batch 745.27 | Train Loss: 32.9764 | Ph. Acc. (Avg.) 89.24 | Ph. Acc. Avg. (No Sil) 86.92
+Epoch 105 (78/187) | Steps 19900 | ms/batch 734.91 | Train Loss: 32.0153 | Ph. Acc. (Avg.) 89.27 | Ph. Acc. Avg. (No Sil) 87.00
+Epoch 105 (128/187) | Steps 19950 | ms/batch 735.72 | Train Loss: 33.0051 | Ph. Acc. (Avg.) 89.30 | Ph. Acc. Avg. (No Sil) 86.97
+Epoch 105 (178/187) | Steps 20000 | ms/batch 744.70 | Train Loss: 33.4636 | Ph. Acc. (Avg.) 89.37 | Ph. Acc. Avg. (No Sil) 87.06
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9725s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7866509159406025
+	 - Avg. Val. Multi-TD Val. Error: 1.4176901578903198
+	 - Avg. Val. Phoneme Error: 0.38792561491330463
+	 - Avg. Val. Phoneme Accuracy: 89.27001953125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.34159370826532
+	 - Avg. Val. Waveform Error: 0.10708616053064664
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9730s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.7038s to generate samples
+----------------------------------------------------------------------------------------------------
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4188s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Finished training epoch 105. Elapsed time: 147.263573884964
+Finished training epoch 105. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 5.1365s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 107
+Epoch 106 (41/187) | Steps 20050 | ms/batch 988.73 | Train Loss: 31.6882 | Ph. Acc. (Avg.) 89.76 | Ph. Acc. Avg. (No Sil) 87.46
+Epoch 106 (91/187) | Steps 20100 | ms/batch 692.60 | Train Loss: 33.2126 | Ph. Acc. (Avg.) 89.56 | Ph. Acc. Avg. (No Sil) 87.27
+Epoch 106 (141/187) | Steps 20150 | ms/batch 690.92 | Train Loss: 32.9216 | Ph. Acc. (Avg.) 89.48 | Ph. Acc. Avg. (No Sil) 87.22
+Finished training epoch 106. Elapsed time: 130.0901267528534
+Starting epoch 108
+Epoch 107 (4/187) | Steps 20200 | ms/batch 704.01 | Train Loss: 33.7947 | Ph. Acc. (Avg.) 88.98 | Ph. Acc. Avg. (No Sil) 86.77
+Epoch 107 (54/187) | Steps 20250 | ms/batch 690.04 | Train Loss: 32.7258 | Ph. Acc. (Avg.) 89.25 | Ph. Acc. Avg. (No Sil) 87.05
+Epoch 107 (104/187) | Steps 20300 | ms/batch 691.14 | Train Loss: 32.0272 | Ph. Acc. (Avg.) 89.37 | Ph. Acc. Avg. (No Sil) 87.19
+Epoch 107 (154/187) | Steps 20350 | ms/batch 723.21 | Train Loss: 29.9953 | Ph. Acc. (Avg.) 89.40 | Ph. Acc. Avg. (No Sil) 87.14
+Finished training epoch 107. Elapsed time: 132.6949701309204
+Starting epoch 109
+Epoch 108 (17/187) | Steps 20400 | ms/batch 745.66 | Train Loss: 31.8852 | Ph. Acc. (Avg.) 89.53 | Ph. Acc. Avg. (No Sil) 87.19
+Epoch 108 (67/187) | Steps 20450 | ms/batch 736.13 | Train Loss: 32.7851 | Ph. Acc. (Avg.) 89.37 | Ph. Acc. Avg. (No Sil) 87.13
+Epoch 108 (117/187) | Steps 20500 | ms/batch 780.14 | Train Loss: 33.3776 | Ph. Acc. (Avg.) 89.49 | Ph. Acc. Avg. (No Sil) 87.29
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.2099s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.771356503168742
+	 - Avg. Val. Multi-TD Val. Error: 1.4115664164225261
+	 - Avg. Val. Phoneme Error: 0.3843732674916585
+	 - Avg. Val. Phoneme Accuracy: 89.29443359375
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.39353019735866
+	 - Avg. Val. Waveform Error: 0.11070620516935985
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7714...
+----------------------------------------------------------------------------------------------------
+Took 2.9054s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 108 (167/187) | Steps 20550 | ms/batch 869.74 | Train Loss: 34.0098 | Ph. Acc. (Avg.) 89.44 | Ph. Acc. Avg. (No Sil) 87.21
+Finished training epoch 108. Elapsed time: 148.2642481327057
+Starting epoch 110
+Epoch 109 (30/187) | Steps 20600 | ms/batch 809.23 | Train Loss: 29.7697 | Ph. Acc. (Avg.) 89.55 | Ph. Acc. Avg. (No Sil) 87.12
+Epoch 109 (80/187) | Steps 20650 | ms/batch 802.03 | Train Loss: 33.0883 | Ph. Acc. (Avg.) 89.52 | Ph. Acc. Avg. (No Sil) 87.17
+Epoch 109 (130/187) | Steps 20700 | ms/batch 800.06 | Train Loss: 33.7257 | Ph. Acc. (Avg.) 89.50 | Ph. Acc. Avg. (No Sil) 87.20
+Epoch 109 (180/187) | Steps 20750 | ms/batch 802.28 | Train Loss: 33.3997 | Ph. Acc. (Avg.) 89.44 | Ph. Acc. Avg. (No Sil) 87.15
+Finished training epoch 109. Elapsed time: 150.28053379058838
+Starting epoch 111
+Epoch 110 (43/187) | Steps 20800 | ms/batch 810.40 | Train Loss: 33.7486 | Ph. Acc. (Avg.) 89.61 | Ph. Acc. Avg. (No Sil) 87.31
+Epoch 110 (93/187) | Steps 20850 | ms/batch 805.17 | Train Loss: 31.2180 | Ph. Acc. (Avg.) 89.53 | Ph. Acc. Avg. (No Sil) 87.20
+Epoch 110 (143/187) | Steps 20900 | ms/batch 802.90 | Train Loss: 34.6137 | Ph. Acc. (Avg.) 89.47 | Ph. Acc. Avg. (No Sil) 87.19
+Finished training epoch 110. Elapsed time: 150.52774810791016
+Finished training epoch 110. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4975s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 112
+Epoch 111 (6/187) | Steps 20950 | ms/batch 899.79 | Train Loss: 33.2928 | Ph. Acc. (Avg.) 89.93 | Ph. Acc. Avg. (No Sil) 87.78
+Epoch 111 (56/187) | Steps 21000 | ms/batch 795.81 | Train Loss: 30.5071 | Ph. Acc. (Avg.) 89.56 | Ph. Acc. Avg. (No Sil) 87.36
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9677s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7906777064005535
+	 - Avg. Val. Multi-TD Val. Error: 1.4150778253873189
+	 - Avg. Val. Phoneme Error: 0.38122911751270294
+	 - Avg. Val. Phoneme Accuracy: 89.34326171875
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.445466686452
+	 - Avg. Val. Waveform Error: 0.11162656545639038
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9688s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.8776s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 111 (106/187) | Steps 21050 | ms/batch 864.63 | Train Loss: 33.0563 | Ph. Acc. (Avg.) 89.56 | Ph. Acc. Avg. (No Sil) 87.32
+Epoch 111 (156/187) | Steps 21100 | ms/batch 753.51 | Train Loss: 31.8270 | Ph. Acc. (Avg.) 89.49 | Ph. Acc. Avg. (No Sil) 87.24
+Finished training epoch 111. Elapsed time: 149.4682581424713
+Starting epoch 113
+Epoch 112 (19/187) | Steps 21150 | ms/batch 766.40 | Train Loss: 34.8873 | Ph. Acc. (Avg.) 89.65 | Ph. Acc. Avg. (No Sil) 87.53
+Epoch 112 (69/187) | Steps 21200 | ms/batch 758.17 | Train Loss: 33.0404 | Ph. Acc. (Avg.) 89.57 | Ph. Acc. Avg. (No Sil) 87.39
+Epoch 112 (119/187) | Steps 21250 | ms/batch 760.23 | Train Loss: 32.4849 | Ph. Acc. (Avg.) 89.50 | Ph. Acc. Avg. (No Sil) 87.31
+Epoch 112 (169/187) | Steps 21300 | ms/batch 765.85 | Train Loss: 31.5089 | Ph. Acc. (Avg.) 89.52 | Ph. Acc. Avg. (No Sil) 87.25
+Finished training epoch 112. Elapsed time: 142.6914963722229
+Starting epoch 114
+Epoch 113 (32/187) | Steps 21350 | ms/batch 797.64 | Train Loss: 32.0040 | Ph. Acc. (Avg.) 89.49 | Ph. Acc. Avg. (No Sil) 87.25
+Epoch 113 (82/187) | Steps 21400 | ms/batch 796.28 | Train Loss: 31.8793 | Ph. Acc. (Avg.) 89.58 | Ph. Acc. Avg. (No Sil) 87.37
+Epoch 113 (132/187) | Steps 21450 | ms/batch 795.57 | Train Loss: 33.3250 | Ph. Acc. (Avg.) 89.66 | Ph. Acc. Avg. (No Sil) 87.46
+Epoch 113 (182/187) | Steps 21500 | ms/batch 794.58 | Train Loss: 31.4253 | Ph. Acc. (Avg.) 89.61 | Ph. Acc. Avg. (No Sil) 87.39
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9969s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7800687551498413
+	 - Avg. Val. Multi-TD Val. Error: 1.422633707523346
+	 - Avg. Val. Phoneme Error: 0.38177670538425446
+	 - Avg. Val. Phoneme Accuracy: 89.501953125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.77192461789583
+	 - Avg. Val. Waveform Error: 0.10738855227828026
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9979s to run validation loop
+----------------------------------------------------------------------------------------------------
+Finished training epoch 113. Elapsed time: 150.53304171562195
+Starting epoch 115
+Epoch 114 (45/187) | Steps 21550 | ms/batch 825.33 | Train Loss: 28.3897 | Ph. Acc. (Avg.) 89.69 | Ph. Acc. Avg. (No Sil) 87.50
+Epoch 114 (95/187) | Steps 21600 | ms/batch 795.85 | Train Loss: 31.6673 | Ph. Acc. (Avg.) 89.65 | Ph. Acc. Avg. (No Sil) 87.54
+Epoch 114 (145/187) | Steps 21650 | ms/batch 790.20 | Train Loss: 30.9817 | Ph. Acc. (Avg.) 89.62 | Ph. Acc. Avg. (No Sil) 87.43
+Finished training epoch 114. Elapsed time: 148.9595091342926
+Starting epoch 116
+Epoch 115 (8/187) | Steps 21700 | ms/batch 803.85 | Train Loss: 34.9474 | Ph. Acc. (Avg.) 89.52 | Ph. Acc. Avg. (No Sil) 87.06
+Epoch 115 (58/187) | Steps 21750 | ms/batch 800.71 | Train Loss: 31.5932 | Ph. Acc. (Avg.) 89.56 | Ph. Acc. Avg. (No Sil) 87.27
+Epoch 115 (108/187) | Steps 21800 | ms/batch 795.14 | Train Loss: 31.0374 | Ph. Acc. (Avg.) 89.62 | Ph. Acc. Avg. (No Sil) 87.34
+Epoch 115 (158/187) | Steps 21850 | ms/batch 794.10 | Train Loss: 32.8751 | Ph. Acc. (Avg.) 89.63 | Ph. Acc. Avg. (No Sil) 87.35
+Finished training epoch 115. Elapsed time: 149.37826108932495
+Finished training epoch 115. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.4638s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 117
+Epoch 116 (21/187) | Steps 21900 | ms/batch 893.91 | Train Loss: 30.0015 | Ph. Acc. (Avg.) 89.52 | Ph. Acc. Avg. (No Sil) 87.33
+Epoch 116 (71/187) | Steps 21950 | ms/batch 837.23 | Train Loss: 30.3475 | Ph. Acc. (Avg.) 89.59 | Ph. Acc. Avg. (No Sil) 87.29
+Epoch 116 (121/187) | Steps 22000 | ms/batch 828.77 | Train Loss: 31.9910 | Ph. Acc. (Avg.) 89.57 | Ph. Acc. Avg. (No Sil) 87.34
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.0142s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7671411236127217
+	 - Avg. Val. Multi-TD Val. Error: 1.4159993926684062
+	 - Avg. Val. Phoneme Error: 0.38005275030930835
+	 - Avg. Val. Phoneme Accuracy: 89.48974609375
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.89063659296632
+	 - Avg. Val. Waveform Error: 0.11066793526212375
+----------------------------------------------------------------------------------------------------
+Saving best model with best val. SU error @ 1.7671...
+----------------------------------------------------------------------------------------------------
+Took 2.5655s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.0215s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 116 (171/187) | Steps 22050 | ms/batch 902.23 | Train Loss: 31.4814 | Ph. Acc. (Avg.) 89.68 | Ph. Acc. Avg. (No Sil) 87.45
+Finished training epoch 116. Elapsed time: 157.92210221290588
+Starting epoch 118
+Epoch 117 (34/187) | Steps 22100 | ms/batch 779.26 | Train Loss: 32.1172 | Ph. Acc. (Avg.) 89.71 | Ph. Acc. Avg. (No Sil) 87.42
+Epoch 117 (84/187) | Steps 22150 | ms/batch 768.53 | Train Loss: 30.9498 | Ph. Acc. (Avg.) 89.56 | Ph. Acc. Avg. (No Sil) 87.29
+Epoch 117 (134/187) | Steps 22200 | ms/batch 769.00 | Train Loss: 32.0814 | Ph. Acc. (Avg.) 89.68 | Ph. Acc. Avg. (No Sil) 87.41
+Epoch 117 (184/187) | Steps 22250 | ms/batch 776.01 | Train Loss: 31.5931 | Ph. Acc. (Avg.) 89.70 | Ph. Acc. Avg. (No Sil) 87.45
+Finished training epoch 117. Elapsed time: 144.6313281059265
+Starting epoch 119
+Epoch 118 (47/187) | Steps 22300 | ms/batch 780.21 | Train Loss: 32.1773 | Ph. Acc. (Avg.) 89.55 | Ph. Acc. Avg. (No Sil) 87.22
+Epoch 118 (97/187) | Steps 22350 | ms/batch 791.95 | Train Loss: 32.4973 | Ph. Acc. (Avg.) 89.66 | Ph. Acc. Avg. (No Sil) 87.44
+Epoch 118 (147/187) | Steps 22400 | ms/batch 804.10 | Train Loss: 32.7153 | Ph. Acc. (Avg.) 89.61 | Ph. Acc. Avg. (No Sil) 87.35
+Finished training epoch 118. Elapsed time: 148.92711400985718
+Starting epoch 120
+Epoch 119 (10/187) | Steps 22450 | ms/batch 819.80 | Train Loss: 30.1523 | Ph. Acc. (Avg.) 89.41 | Ph. Acc. Avg. (No Sil) 86.97
+Epoch 119 (60/187) | Steps 22500 | ms/batch 802.94 | Train Loss: 30.8532 | Ph. Acc. (Avg.) 89.74 | Ph. Acc. Avg. (No Sil) 87.51
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.0079s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.777876118818919
+	 - Avg. Val. Multi-TD Val. Error: 1.4209715723991394
+	 - Avg. Val. Phoneme Error: 0.3809562474489212
+	 - Avg. Val. Phoneme Accuracy: 89.46533203125
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.7496661225701
+	 - Avg. Val. Waveform Error: 0.10763103887438774
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 1.0090s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 119 (110/187) | Steps 22550 | ms/batch 823.16 | Train Loss: 31.0478 | Ph. Acc. (Avg.) 89.71 | Ph. Acc. Avg. (No Sil) 87.51
+Epoch 119 (160/187) | Steps 22600 | ms/batch 810.79 | Train Loss: 33.7760 | Ph. Acc. (Avg.) 89.67 | Ph. Acc. Avg. (No Sil) 87.48
+Finished training epoch 119. Elapsed time: 152.15323781967163
+Starting epoch 121
+Epoch 120 (23/187) | Steps 22650 | ms/batch 813.88 | Train Loss: 31.3230 | Ph. Acc. (Avg.) 89.72 | Ph. Acc. Avg. (No Sil) 87.48
+Epoch 120 (73/187) | Steps 22700 | ms/batch 803.96 | Train Loss: 32.5634 | Ph. Acc. (Avg.) 89.71 | Ph. Acc. Avg. (No Sil) 87.52
+Epoch 120 (123/187) | Steps 22750 | ms/batch 803.52 | Train Loss: 31.9632 | Ph. Acc. (Avg.) 89.70 | Ph. Acc. Avg. (No Sil) 87.48
+Epoch 120 (173/187) | Steps 22800 | ms/batch 805.91 | Train Loss: 31.5033 | Ph. Acc. (Avg.) 89.71 | Ph. Acc. Avg. (No Sil) 87.46
+Finished training epoch 120. Elapsed time: 150.72217106819153
+Finished training epoch 120. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.9113s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 122
+Epoch 121 (36/187) | Steps 22850 | ms/batch 901.75 | Train Loss: 31.2701 | Ph. Acc. (Avg.) 89.79 | Ph. Acc. Avg. (No Sil) 87.49
+Epoch 121 (86/187) | Steps 22900 | ms/batch 794.13 | Train Loss: 31.9753 | Ph. Acc. (Avg.) 89.74 | Ph. Acc. Avg. (No Sil) 87.49
+Epoch 121 (136/187) | Steps 22950 | ms/batch 792.05 | Train Loss: 30.7297 | Ph. Acc. (Avg.) 89.71 | Ph. Acc. Avg. (No Sil) 87.48
+Epoch 121 (186/187) | Steps 23000 | ms/batch 793.28 | Train Loss: 31.2877 | Ph. Acc. (Avg.) 89.68 | Ph. Acc. Avg. (No Sil) 87.44
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 0.9428s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.782793402671814
+	 - Avg. Val. Multi-TD Val. Error: 1.4172267317771912
+	 - Avg. Val. Phoneme Error: 0.38463474810123444
+	 - Avg. Val. Phoneme Accuracy: 89.25374348958334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.37869120047485
+	 - Avg. Val. Waveform Error: 0.1093419815103213
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 0.9434s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.3506s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training epoch 121. Elapsed time: 154.14634037017822
+Starting epoch 123
+Epoch 122 (49/187) | Steps 23050 | ms/batch 862.38 | Train Loss: 31.0760 | Ph. Acc. (Avg.) 89.85 | Ph. Acc. Avg. (No Sil) 87.72
+Epoch 122 (99/187) | Steps 23100 | ms/batch 744.49 | Train Loss: 32.8953 | Ph. Acc. (Avg.) 89.82 | Ph. Acc. Avg. (No Sil) 87.65
+Epoch 122 (149/187) | Steps 23150 | ms/batch 748.62 | Train Loss: 29.9073 | Ph. Acc. (Avg.) 89.79 | Ph. Acc. Avg. (No Sil) 87.59
+Finished training epoch 122. Elapsed time: 140.00350737571716
+Starting epoch 124
+Epoch 123 (12/187) | Steps 23200 | ms/batch 753.67 | Train Loss: 31.9976 | Ph. Acc. (Avg.) 90.04 | Ph. Acc. Avg. (No Sil) 87.80
+Epoch 123 (62/187) | Steps 23250 | ms/batch 747.36 | Train Loss: 29.6042 | Ph. Acc. (Avg.) 89.92 | Ph. Acc. Avg. (No Sil) 87.68
+Epoch 123 (112/187) | Steps 23300 | ms/batch 824.89 | Train Loss: 29.4117 | Ph. Acc. (Avg.) 89.82 | Ph. Acc. Avg. (No Sil) 87.59
+Epoch 123 (162/187) | Steps 23350 | ms/batch 782.01 | Train Loss: 35.1591 | Ph. Acc. (Avg.) 89.82 | Ph. Acc. Avg. (No Sil) 87.59
+Finished training epoch 123. Elapsed time: 147.19246315956116
+Starting epoch 125
+Epoch 124 (25/187) | Steps 23400 | ms/batch 815.47 | Train Loss: 30.1191 | Ph. Acc. (Avg.) 89.78 | Ph. Acc. Avg. (No Sil) 87.72
+Epoch 124 (75/187) | Steps 23450 | ms/batch 805.78 | Train Loss: 33.3672 | Ph. Acc. (Avg.) 89.69 | Ph. Acc. Avg. (No Sil) 87.52
+Epoch 124 (125/187) | Steps 23500 | ms/batch 805.90 | Train Loss: 32.3290 | Ph. Acc. (Avg.) 89.78 | Ph. Acc. Avg. (No Sil) 87.61
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.0326s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7714154918988545
+	 - Avg. Val. Multi-TD Val. Error: 1.4090255498886108
+	 - Avg. Val. Phoneme Error: 0.3806041131416957
+	 - Avg. Val. Phoneme Accuracy: 89.39615885416666
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.63095414749962
+	 - Avg. Val. Waveform Error: 0.10677088797092438
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 1.0338s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 124 (175/187) | Steps 23550 | ms/batch 827.20 | Train Loss: 30.9891 | Ph. Acc. (Avg.) 89.79 | Ph. Acc. Avg. (No Sil) 87.60
+Finished training epoch 124. Elapsed time: 152.24031043052673
+Starting epoch 126
+Epoch 125 (38/187) | Steps 23600 | ms/batch 817.95 | Train Loss: 31.6850 | Ph. Acc. (Avg.) 89.78 | Ph. Acc. Avg. (No Sil) 87.58
+Epoch 125 (88/187) | Steps 23650 | ms/batch 805.03 | Train Loss: 31.5590 | Ph. Acc. (Avg.) 89.80 | Ph. Acc. Avg. (No Sil) 87.61
+Epoch 125 (138/187) | Steps 23700 | ms/batch 801.89 | Train Loss: 32.8623 | Ph. Acc. (Avg.) 89.87 | Ph. Acc. Avg. (No Sil) 87.66
+Finished training epoch 125. Elapsed time: 151.35940313339233
+Finished training epoch 125. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 5.0230s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 127
+Epoch 126 (1/187) | Steps 23750 | ms/batch 917.57 | Train Loss: 31.2415 | Ph. Acc. (Avg.) 90.84 | Ph. Acc. Avg. (No Sil) 88.60
+Epoch 126 (51/187) | Steps 23800 | ms/batch 803.80 | Train Loss: 30.6290 | Ph. Acc. (Avg.) 90.01 | Ph. Acc. Avg. (No Sil) 87.80
+Epoch 126 (101/187) | Steps 23850 | ms/batch 809.41 | Train Loss: 31.3213 | Ph. Acc. (Avg.) 89.96 | Ph. Acc. Avg. (No Sil) 87.81
+Epoch 126 (151/187) | Steps 23900 | ms/batch 807.24 | Train Loss: 31.6108 | Ph. Acc. (Avg.) 89.92 | Ph. Acc. Avg. (No Sil) 87.75
+Finished training epoch 126. Elapsed time: 151.12115049362183
+Starting epoch 128
+Epoch 127 (14/187) | Steps 23950 | ms/batch 815.23 | Train Loss: 32.9752 | Ph. Acc. (Avg.) 89.64 | Ph. Acc. Avg. (No Sil) 87.53
+Epoch 127 (64/187) | Steps 24000 | ms/batch 816.48 | Train Loss: 30.3081 | Ph. Acc. (Avg.) 89.89 | Ph. Acc. Avg. (No Sil) 87.73
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.0969s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7673701047897339
+	 - Avg. Val. Multi-TD Val. Error: 1.4120567440986633
+	 - Avg. Val. Phoneme Error: 0.3821542114019394
+	 - Avg. Val. Phoneme Accuracy: 89.47347005208334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.7496661225701
+	 - Avg. Val. Waveform Error: 0.10693807527422905
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 1.0980s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 3.9979s to generate samples
+----------------------------------------------------------------------------------------------------
+Epoch 127 (114/187) | Steps 24050 | ms/batch 928.97 | Train Loss: 31.2281 | Ph. Acc. (Avg.) 89.88 | Ph. Acc. Avg. (No Sil) 87.69
+Epoch 127 (164/187) | Steps 24100 | ms/batch 773.63 | Train Loss: 29.2377 | Ph. Acc. (Avg.) 89.84 | Ph. Acc. Avg. (No Sil) 87.66
+Finished training epoch 127. Elapsed time: 155.53213167190552
+Starting epoch 129
+Epoch 128 (27/187) | Steps 24150 | ms/batch 782.66 | Train Loss: 30.3108 | Ph. Acc. (Avg.) 89.98 | Ph. Acc. Avg. (No Sil) 87.87
+Epoch 128 (77/187) | Steps 24200 | ms/batch 773.73 | Train Loss: 30.5254 | Ph. Acc. (Avg.) 89.91 | Ph. Acc. Avg. (No Sil) 87.76
+Epoch 128 (127/187) | Steps 24250 | ms/batch 771.06 | Train Loss: 29.6242 | Ph. Acc. (Avg.) 89.92 | Ph. Acc. Avg. (No Sil) 87.75
+Epoch 128 (177/187) | Steps 24300 | ms/batch 771.21 | Train Loss: 31.5748 | Ph. Acc. (Avg.) 89.88 | Ph. Acc. Avg. (No Sil) 87.69
+Finished training epoch 128. Elapsed time: 144.88955283164978
+Starting epoch 130
+Epoch 129 (40/187) | Steps 24350 | ms/batch 805.67 | Train Loss: 30.3223 | Ph. Acc. (Avg.) 90.10 | Ph. Acc. Avg. (No Sil) 87.99
+Epoch 129 (90/187) | Steps 24400 | ms/batch 813.08 | Train Loss: 32.7359 | Ph. Acc. (Avg.) 90.03 | Ph. Acc. Avg. (No Sil) 87.92
+Epoch 129 (140/187) | Steps 24450 | ms/batch 807.58 | Train Loss: 32.3130 | Ph. Acc. (Avg.) 89.85 | Ph. Acc. Avg. (No Sil) 87.72
+Finished training epoch 129. Elapsed time: 151.57105946540833
+Starting epoch 131
+Epoch 130 (3/187) | Steps 24500 | ms/batch 818.72 | Train Loss: 31.1921 | Ph. Acc. (Avg.) 90.48 | Ph. Acc. Avg. (No Sil) 88.25
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.0452s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.7824261387189229
+	 - Avg. Val. Multi-TD Val. Error: 1.4138065377871196
+	 - Avg. Val. Phoneme Error: 0.3848729332288106
+	 - Avg. Val. Phoneme Accuracy: 89.34326171875
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.51224217242914
+	 - Avg. Val. Waveform Error: 0.10897354409098625
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 1.0465s to run validation loop
+----------------------------------------------------------------------------------------------------
+Epoch 130 (53/187) | Steps 24550 | ms/batch 834.41 | Train Loss: 30.5324 | Ph. Acc. (Avg.) 89.93 | Ph. Acc. Avg. (No Sil) 87.69
+Epoch 130 (103/187) | Steps 24600 | ms/batch 808.41 | Train Loss: 31.5461 | Ph. Acc. (Avg.) 89.90 | Ph. Acc. Avg. (No Sil) 87.68
+Epoch 130 (153/187) | Steps 24650 | ms/batch 801.05 | Train Loss: 31.7832 | Ph. Acc. (Avg.) 89.87 | Ph. Acc. Avg. (No Sil) 87.66
+Finished training epoch 130. Elapsed time: 154.6900646686554
+Finished training epoch 130. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 4.5375s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Starting epoch 132
+Epoch 131 (16/187) | Steps 24700 | ms/batch 947.64 | Train Loss: 29.0545 | Ph. Acc. (Avg.) 89.87 | Ph. Acc. Avg. (No Sil) 87.68
+Epoch 131 (66/187) | Steps 24750 | ms/batch 800.64 | Train Loss: 30.6399 | Ph. Acc. (Avg.) 89.90 | Ph. Acc. Avg. (No Sil) 87.70
+Epoch 131 (116/187) | Steps 24800 | ms/batch 800.06 | Train Loss: 31.7703 | Ph. Acc. (Avg.) 89.89 | Ph. Acc. Avg. (No Sil) 87.69
+Epoch 131 (166/187) | Steps 24850 | ms/batch 809.21 | Train Loss: 29.8675 | Ph. Acc. (Avg.) 89.90 | Ph. Acc. Avg. (No Sil) 87.67
+Finished training epoch 131. Elapsed time: 150.51419353485107
+Starting epoch 133
+Epoch 132 (29/187) | Steps 24900 | ms/batch 811.89 | Train Loss: 33.6212 | Ph. Acc. (Avg.) 89.79 | Ph. Acc. Avg. (No Sil) 87.53
+Epoch 132 (79/187) | Steps 24950 | ms/batch 797.97 | Train Loss: 32.7293 | Ph. Acc. (Avg.) 89.82 | Ph. Acc. Avg. (No Sil) 87.58
+Epoch 132 (129/187) | Steps 25000 | ms/batch 799.67 | Train Loss: 32.1824 | Ph. Acc. (Avg.) 89.86 | Ph. Acc. Avg. (No Sil) 87.60
+Starting validation
+----------------------------------------------------------------------------------------------------
+Took 1.0254s to run validation loop
+	 - Avg. Val. Speech Unit Error : 1.769077201684316
+	 - Avg. Val. Multi-TD Val. Error: 1.4159089922904968
+	 - Avg. Val. Phoneme Error: 0.39130309720834094
+	 - Avg. Val. Phoneme Accuracy: 89.30257161458334
+	 - Avg. Val. Phoneme Accuracy (No Sil.): 82.35643270514913
+	 - Avg. Val. Waveform Error: 0.11071536193291347
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Took 1.0265s to run validation loop
+----------------------------------------------------------------------------------------------------
+Starting to generate validation samples for plotting
+----------------------------------------------------------------------------------------------------
+Took 4.0220s to generate samples
+----------------------------------------------------------------------------------------------------
+Finished training script. Starting saving last model
+Starting to save models...
+----------------------------------------------------------------------------------------------------
+Took 8.5109s to save checkpoint
+----------------------------------------------------------------------------------------------------
+Writing a .done file in exp/ste-gan/gaddy_voiced_EMGGeneratorGanTTS_SPEECH_UNITS_small_dis_chunk_2048_with_adv_loss_fmw_7.0_tdw_15.0_suw_1.0_phw_1.0_wv_0.0
