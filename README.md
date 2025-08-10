@@ -8,8 +8,8 @@ This repository contains the implementation and resources for the V-ETS project 
 
 This work builds on the following repositories:  
 - [Morrison et al. (2021). Chunked Autoregressive GAN for Conditional Waveform Synthesis](https://doi.org/10.48550/ARXIV.2110.10139) | [GitHub](https://github.com/descriptinc/cargan)
-- [van Niekerk et al. (2022). A Comparison of Discrete and Soft Speech Units for Improved Voice Conversion. ICASSP 2022. IEEE](https://doi.org/10.1109/icassp43922.2022.9746484) | [GitHub](https://github.com/bshall/soft-vc[)
-- Gaddy & Klein (2020). Digital Voicing of Silent Speech](https://doi.org/10.48550/ARXIV.2010.02960  ) | [GitHub](https://github.com/dgaddy/silent_speech)
+- [van Niekerk et al. (2022). A Comparison of Discrete and Soft Speech Units for Improved Voice Conversion. ICASSP 2022. IEEE](https://doi.org/10.1109/icassp43922.2022.9746484) | [GitHub](https://github.com/bshall/soft-vc)
+- [Gaddy & Klein (2020). Digital Voicing of Silent Speech](https://doi.org/10.48550/ARXIV.2010.02960) | [GitHub](https://github.com/dgaddy/silent_speech)
 - [Scheck & Schultz (2023). STE-GAN: Speech-to-Electromyography Signal Conversion Using GANs. INTERSPEECH 2023. ISCA](https://doi.org/10.21437/interspeech.2023-174) | [GitHub](https://github.com/scheck-k/ste-gan/)
 
 ---
