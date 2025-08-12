@@ -1,13 +1,3 @@
-"""
-This script pre-processes the data set of David Gaddy and Dan Klein: "Digital Voicing of Silent Speech"
-It is a modified script of the authors' code: https://github.com/dgaddy/silent_speech/blob/main/read_emg.py
-    
-It carries out the following pre-processing steps:
-- Reads EMG data, filters it and downsamples it to 800 Hz.
-- Extract Soft Speech Units from Audio via the Soft HuBERT model.
-- Extracts MFCCs 
-- Phoneme targets are loaded from the forced alignment directory.
-"""
 import argparse
 import json
 import os

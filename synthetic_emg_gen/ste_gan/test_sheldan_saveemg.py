@@ -1,7 +1,3 @@
-"""Main Test script for the STE-GAN from Sheldan.
-
-Adapted from: https://github.com/descriptinc/cargan/blob/master/cargan/train.py
-"""
 import argparse
 from datetime import datetime
 import functools

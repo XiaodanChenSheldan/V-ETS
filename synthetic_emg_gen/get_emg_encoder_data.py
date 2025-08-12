@@ -1,8 +1,3 @@
-'''
-把ste-gan生成的emg以及所有related的data整理好
-生成到能直接feed到silent_speech里
-'''
-
 #!/usr/bin/env python3
 
 
@@ -221,12 +216,6 @@ def get_file_name_list_jason(path, fileType):
 
 if __name__ == '__main__':
     project_path = 'path/to/project/v-ets/CoM2S_mix_scratch'
-    
-    reset = False
-    if reset:
-        if os.path.exists(project_path):
-            shutil.rmtree(project_path)
-        os.makedirs(project_path)
 
     sound_dataset_path = './raw_data_sheldan/LibriSpeech/dev-clean'
     mfa_dataset_path = './raw_data_sheldan/MFA_output'
@@ -234,28 +223,29 @@ if __name__ == '__main__':
 
     emg_data_format, audio_data_format, text_data_format = 'npy', 'flac', 'txt'
 
-    run_emg_data = True
+
+    run_emg_data, init_emg_data_path = True, False
     if run_emg_data:
         train_emg_dataset_path = project_path+'emg_data_all'
         print(f'{train_emg_dataset_path=}')
-        if os.path.exists(train_emg_dataset_path):
+        if init_emg_data_path:
             print('remove')
             shutil.rmtree(train_emg_dataset_path)
         os.makedirs(train_emg_dataset_path)
         train_emg_dataset_path = project_path+'emg_data_all/'+'voiced_parallel_data'
         print(f'{train_emg_dataset_path=}')
-        os.makedirs(train_emg_dataset_path)
+        os.makedirs(train_emg_dataset_path, exist_ok=True)
         emg_file_name_list = emg_data(train_emg_dataset_path, emg_dataset_path, emg_data_format, 'emg')
         other_emg_data(emg_file_name_list, train_emg_dataset_path, sound_dataset_path, audio_data_format, 'audio')
         other_emg_data(emg_file_name_list, train_emg_dataset_path, sound_dataset_path, text_data_format, 'text')    
 
 
     '''text_alignements'''
-    run_text_alignements = True
+    run_text_alignements, init_mfa_data_path = True, False
     if run_text_alignements:
         MFA_dataset_path = project_path+'text_alignments_all'
-        if os.path.exists(MFA_dataset_path):
+        if init_mfa_data_path:
             shutil.rmtree(MFA_dataset_path)
-        os.makedirs(MFA_dataset_path)
+        os.makedirs(MFA_dataset_path, exist_ok=True)
         text_alignement(emg_file_name_list, MFA_dataset_path, mfa_dataset_path)
 

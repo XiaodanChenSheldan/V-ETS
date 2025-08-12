@@ -35,7 +35,7 @@ The dataset is organized as follows:
 - **Transcript data:**  
   `v-ets/CoM2S_mix_scratch/emg_data_all/..._text.txt`
 
-- **Phoneme class alignments:**  
+- **Forced alignment data:**  
   `v-ets/CoM2S_mix_scratch/text_alignments_all/..._audio.TextGrid`
 
 *Note: The ellipsis (`...`) represents specific speaker and utterance identifiers in the file paths.*
@@ -138,6 +138,9 @@ The dataset is organized as follows:
     ```bash
     python get_emg_encoder_data.py
     ```
+    
+    If you set `init_data_path=True`, the entire ~8 hours dataset located at `path/to/project/CoM2S_mix_scratch/emg_data_all` and all forced alignment files in `path/to/project/CoM2S_mix_scratch/text_alignments_all` will be deleted.
+    Only enable this option if you intend to regenerate your own EMG–speech paired data from scratch.
 
 4. **Quit the virtual environment:**
     ```bash
