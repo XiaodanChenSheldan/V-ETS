@@ -177,13 +177,13 @@ The dataset is organized as follows:
     ```bash
     python -m evaluate_baseline_nosilent --models output_sheldan_mix_scratch_voiced/model.pt --hifigan_checkpoint hifigan_finetuned/checkpoint --output_directory evaluation_baselinenosilent_scratch_voiced_baseline
     ```
-    Audio samples from the baseline test dataset are located in the `evaluation_baselinenosilent_scratch_voiced_baseline/` directory.
+    Audio samples from the baseline test dataset are located in the `evaluation_baselinenosilent_scratch_voiced_baseline` directory.
 
     To run test on synthetic data:
     ```bash
     python -m evaluate --models output_sheldan_mix_scratch_voiced/model.pt --hifigan_checkpoint hifigan_finetuned/checkpoint --output_directory evaluation_scratch_voiced
     ```
-    Audio samples from the synthetic test dataset are located in the `evaluation_baselinenosilent_scratch_voiced_baseline/` directory.
+    Audio samples from the synthetic test dataset are located in the `evaluation_scratch_voiced` directory.
 
 3. **Quit the virtual environment:**
     ```bash
