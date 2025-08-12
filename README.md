@@ -17,39 +17,6 @@ The speech data used in this project is derived from [LibriSpeech](https://doi.o
 
 A comparison of generated audio samples from the baseline model and our model is available [here](https://xiaodanchensheldan.github.io/v-ets/).
 
-## Audio Examples
-
-<table>
-  <thead>
-    <tr>
-      <th style="width:10%;">Test Dataset</th>
-      <th style="width:15%;">Input</th>
-      <th style="width:15%;">Voiced Baseline Model</th>
-      <th style="width:15%;">Our CoM2S with Mix-Train-from-Scratch</th>
-      <th style="width:45%;">Transcripts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background-color:#e8ebee;">
-      <td>Real</td>
-      <td><audio controls style="width:100px;height:25px;" src="audio_samples/real_1.flac"></audio></td>
-      <td><audio controls style="width:100px;height:25px;" src="audio_samples/baseline_1.wav"></audio></td>
-      <td><audio controls style="width:100px;height:25px;" src="audio_samples/com2s_1.wav"></audio></td>
-      <td>
-        Some of the refu<span style="color:red;font-weight:bold;">g</span>ees were exchanging news with the people on the omnibuses
-      </td>
-    </tr>
-    <tr style="background-color:#d1d7db;">
-      <td>Synthetic</td>
-      <td><audio controls style="width:100px;height:25px;" src="audio_samples/synthetic_1.flac"></audio></td>
-      <td><audio controls style="width:100px;height:25px;" src="audio_samples/baseline_2.wav"></audio></td>
-      <td><audio controls style="width:100px;height:25px;" src="audio_samples/com2s_2.wav"></audio></td>
-      <td>
-        Because we hadn't ever suspected <span style="color:red;font-weight:bold;">things</span> were going wrong
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 
 ---
