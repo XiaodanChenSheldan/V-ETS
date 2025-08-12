@@ -106,7 +106,7 @@ The dataset is organized as follows:
     ```
     This will overwrite the test dataset under `ste-gan/data/sheldan_complete/test`.
 
-    (if you get `AttributeError: module 'torch.nn.utils.parametrizations' has no attribute 'weight_norm'` error, symply go to `path/to/torch/.cache/torch/hub/bshall_hubert_main/hubert/model.py` and change: `self.conv = nn.utils.parametrizations.weight_norm(`to: `self.conv = nn.utils.weight_norm(` ).
+    (if you get `AttributeError: module 'torch.nn.utils.parametrizations' has no attribute 'weight_norm'` error, symply go to `path/to/torch/.cache/torch/hub/bshall_hubert_main/hubert/model.py` and change: `self.conv = nn.utils.parametrizations.weight_norm`to: `self.conv = nn.utils.weight_norm` ).
 
     ```bash
     python -m ste_gan.test_sheldan_saveemg --filter_threshold 0.5
