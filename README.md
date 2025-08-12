@@ -12,17 +12,51 @@ This work builds on the following repositories:
 - [Gaddy & Klein (2020). Digital Voicing of Silent Speech](https://doi.org/10.48550/ARXIV.2010.02960) | [GitHub](https://github.com/dgaddy/silent_speech)
 - [Scheck & Schultz (2023). STE-GAN: Speech-to-Electromyography Signal Conversion Using GANs. INTERSPEECH 2023. ISCA](https://doi.org/10.21437/interspeech.2023-174) | [GitHub](https://github.com/scheck-k/ste-gan/)
 
+
+The speech data used in this project is derived from [LibriSpeech](https://doi.org/10.1109/icassp.2015.7178964).
+
+A comparison of generated audio samples from the baseline model and our model is available [here](https://xiaodanchensheldan.github.io/v-ets/).
+
+## Audio Examples
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:10%;">Test Dataset</th>
+      <th style="width:15%;">Input</th>
+      <th style="width:15%;">Voiced Baseline Model</th>
+      <th style="width:15%;">Our CoM2S with Mix-Train-from-Scratch</th>
+      <th style="width:45%;">Transcripts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#e8ebee;">
+      <td>Real</td>
+      <td><audio controls style="width:100px;height:25px;" src="audio_samples/real_1.flac"></audio></td>
+      <td><audio controls style="width:100px;height:25px;" src="audio_samples/baseline_1.wav"></audio></td>
+      <td><audio controls style="width:100px;height:25px;" src="audio_samples/com2s_1.wav"></audio></td>
+      <td>
+        Some of the refu<span style="color:red;font-weight:bold;">g</span>ees were exchanging news with the people on the omnibuses
+      </td>
+    </tr>
+    <tr style="background-color:#d1d7db;">
+      <td>Synthetic</td>
+      <td><audio controls style="width:100px;height:25px;" src="audio_samples/synthetic_1.flac"></audio></td>
+      <td><audio controls style="width:100px;height:25px;" src="audio_samples/baseline_2.wav"></audio></td>
+      <td><audio controls style="width:100px;height:25px;" src="audio_samples/com2s_2.wav"></audio></td>
+      <td>
+        Because we hadn't ever suspected <span style="color:red;font-weight:bold;">things</span> were going wrong
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
 ---
 ## Open access Libri-EMG dataset
 In support of future research, we provide the proposed [Libri-EMG](https://zenodo.org/records/16788832) dataset—an open-access, time-aligned, multi-speaker voiced EMG and speech recordings collection. This dataset contains **8.3 hours** of EMG-speech data covering a diverse set of **1,532 speakers** across both male and female categories.
 
-The speech data used in this project is derived from [LibriSpeech](https://doi.org/10.1109/icassp.2015.7178964)
-
-[Audio Examples and Comparisons](https://xiaodanchensheldan.github.io/v-ets/)
-
-
 ### Data Structure
-
 The dataset is organized as follows:
 
 - **Audio data:**  
@@ -40,7 +74,7 @@ The dataset is organized as follows:
 *Note: The ellipsis (`...`) represents specific speaker and utterance identifiers in the file paths.*
 
 
-## Phoneme-Error-Based Filtered Synthetic Libri-EMG Data
+## Generation of Time-aligned EMG Features from Multi-Speaker Speech
 0. **Installation**
 
     Set up the required packages by creating a Python 3.10 environment named ste-gan using Conda.
